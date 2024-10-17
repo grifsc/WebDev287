@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/navbar-styles.css">
+    <link rel="stylesheet" href="/css/login-styles.css">
+</head>
+<body>
+    <section class="header">
+        <a href="#" class="logo">Logo</a>
+
+        <i class="fa-solid fa-bars toggle-btn"></i>
+
+        <nav class="navbar">
+            <a href="/html/home.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </nav>
+    </section>
+
+    <section class="forms">
+        <!-- Log In Form -->
+        <div class="wrapper">
+            <div class="form-box login">
+                <h2>Log In</h2>
+                <div class="client-admin">
+                    <button class="client">Client</button>
+                    <button class="admin">Administrator</button>
+                </div>
+
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forgot">
+                        <label><input type="checkbox">&nbsp Remember me</label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn">Log In</button>
+                    <div class="login-register">
+                        <p>Don't have an account?
+                            <a href="#" class="register-link">Register</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+        <!-- Sign In Form -->
+            <div class="form-box register">
+                <h2>Registration</h2>
+                <form action="#">
+                    <div class="user-info">
+                        <div class="input-box">
+                            <span class="icon"><i class="fa-solid fa-user"></i></span>
+                            <input type="text" required>
+                            <label>First Name</label>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="icon"><i class="fa-solid fa-user"></i></span>
+                            <input type="email" required>
+                            <label>Last Name</label>
+                        </div>
+                    </div>
+
+                    <div class="account-info">
+                        <div class="input-box">
+                            <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                            <input type="email" required>
+                            <label>Email</label>
+                        </div>
+                        <div class="input-box">
+                            <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                            <input type="password" required>
+                            <label>Password</label>
+                        </div>
+                        <div class="remember-forgot">
+                            <label><input type="checkbox">&nbsp I agree to the terms & conditions</label>
+                        </div>
+                        <button type="submit" class="btn">Log In</button>
+                        <div class="login-register">
+                            <p>Already have an account?
+                                <a href="#" class="login-link">Log in</a>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="icons">
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-twitter"></i></a>
+            <a href=""><i class="fa-brands fa-instagram"></i></a> 
+        </div>
+        <p>&copy Company Name 2024</p>
+    </section>
+
+    <script src="/javascript/navbar.js"></script>
+    <script src="/javascript/login.js"></script>
+</body>
+</html>

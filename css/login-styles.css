@@ -1,0 +1,253 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #faf9fa;
+}
+
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.wrapper{
+    position: relative;
+    margin: 10rem 0;
+    width: 600px;
+    height: 540px;
+    border: 3px solid rgba(200, 200, 200, .5);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: height .2s ease;
+}
+
+.wrapper.active{
+    height: 520px;
+
+}
+
+.wrapper .form-box{
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box.login{
+    transition: none;
+    transform: translateX(-600px);
+}
+
+.wrapper .form-box.register{
+    position: absolute;
+    transition: none;
+    transform: translateX(600px);
+}
+
+.wrapper.active .form-box.register{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.form-box h2{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.client-admin{
+    position: relative;
+    text-align: center;
+}
+
+.client-admin button{
+    display: inline;
+    width: 40%;
+    margin: 30px 5px;
+    height: 70px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    margin-left: 20px;
+    font-size: 1em;
+    transition: all 0.15s;
+}
+
+.client{
+    background-color: white;
+    color: black;
+    border-color: rgb(200, 200, 200);
+}
+
+.client:active, .client:focus, .admin.admin:active, .admin:focus{
+    background-color: #c8c8c8;
+}
+
+.admin{
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #212427;
+    margin: 30px 0;
+}
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #646464;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input:focus~label, .input-box input:valid~label{
+    top: -5px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1rem;
+    line-height: 57px;
+}
+
+.remember-forgot{
+    font-size: .9em;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input{
+    accent-color: #212427;
+}
+
+.remember-forgot a{
+    color: #212427;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+
+.btn{
+    width: 100%;
+    height: 45px;
+    background-color: #212427;
+    color: #faf9fa;
+    font-size: 1em;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.login-register{
+    font-size: .9em;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a{
+    color: #212427;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover{
+    text-decoration: underline;
+}
+
+.user-info{
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+@media(max-width: 700px){
+    .wrapper{
+        width: 360px;
+    }
+
+    .client-admin button{
+        margin-left: 10px;
+        width: 43%;
+    }
+}
+
+/*----- Footer Section -----*/
+.footer{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 0 30px;
+    margin-top: 130vh;
+}
+
+.footer .abt-us{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.footer h4{
+    margin-bottom: 25px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.icons a{
+    text-decoration: none;
+    color: #212427;
+}
+
+.icons .fa-brands{
+    font-size: 1.8em;
+    margin: 0 10px;
+}

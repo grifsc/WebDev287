@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+}
+
+body{
+    background-color: #faf9fa;
+    align-items: center;
+    justify-content: center;
+}
+
+.header{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+/*----- Text Box Section -----*/
+.initial-description{
+    min-height: 70vh;
+    width: 90%;
+    margin: auto;
+    padding-top: 15%;
+    text-align: center;
+    position: relative;
+}
+
+.text-box h1{
+    font-size: 62px;
+}
+
+p{
+    margin: 10px 0 40px;
+    font-size: 18px;
+}
+
+@media(max-width: 622px){
+    .text-box h1{
+        font-size: 40px;
+    }
+}
+
+/*----- Slidesshow Section -----*/
+.slidesshow-container{
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+}
+
+.slides{
+    display: none;
+}
+
+.slides img{
+    height: 80vh;
+    object-fit: cover;
+}
+
+.prev, .next{
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: #f4f7f7;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    cursor: pointer;
+}
+
+.next{
+    right: 0;
+    border: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover{
+    break-after: rgba(0,0,0,0.8);
+}
+
+.caption{
+    color: #f4f7f7;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+.number-text{
+    color: #f4f7f7;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+.dot{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 0 2px;
+    background-color: #c8c8c8;
+    border-radius: 50%;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover{
+    background-color: #717171;
+}
+
+.fade{
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from{opacity: 0.4;}
+    to{opacity: 1;}
+}
+
+/*----- Services Section -----*/
+.services{
+    padding: 50px 0;
+    text-align: center;
+    padding-top: 100px;
+    margin-right: 60px;
+    margin-left: 60px;
+}
+
+h1{
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.services .subtitle{
+    font-size: 18px;
+}
+
+.services p{
+    font-size: 1.4vw;
+    line-height: 22px;
+    padding: 10px;
+}
+
+.row{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.services-col{
+    flex-basis: 31%;
+    background-color: #c8c8c8;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding:  4vw 12px 7vw 12px;
+    box-sizing: border-box;
+}
+
+.services-col img{
+    width: 90%;
+    height: 50%;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+h3{
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.services-col:hover{
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, .2);
+}
+
+@media(max-width: 930px){
+
+    .services-col h3{
+        margin-top: 10px;
+    }
+
+    .row{
+        flex-direction: column;
+    }
+
+    .services-col p{
+        font-size: 2.5vw;
+        padding:  10px 12px 5px 12px;
+    }
+}
+
+@media(max-width: 514px){
+    .services-col p{
+        font-size: 3.5vw;
+        padding:  10px 12px 5px 12px;
+    }
+}
+
+/*----- Why Us Section -----*/
+.why-description{
+    min-height: 80vh;
+    background-color: #c8c8c8;
+    vertical-align: middle;
+    padding: 10% 0;
+}
+
+.why-description .text{
+    margin-right: 60px;
+    margin-left: 60px;
+}
+
+/*----- Reviews Section -----*/
+.reviews{
+    width: 90%;
+    margin: auto;
+    padding-top: 100px;
+    text-align: center;
+}
+
+.reviews-col{
+    flex-basis: 44%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: left;
+    background-color: #212427;
+    color: #faf9fa;
+    padding: 25px;
+    display: flex;
+}
+
+.reviews .icon{
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 30px;
+}
+
+/*----- Footer Section -----*/
+.footer{
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 0 30px;
+    margin-top: 20vh;
+}
+
+.footer .abt-us{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.footer h4{
+    margin-bottom: 25px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.icons a{
+    text-decoration: none;
+    color: #212427;
+}
+
+.icons .fa-brands{
+    font-size: 1.8em;
+    margin: 0 10px;
+}

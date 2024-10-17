@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/navbar-styles.css">
+    <link rel="stylesheet" href="/css/home-styles.css">
+</head>
+<body>
+    <section class="header">
+        <a href="#" class="logo">Logo</a>
+
+        <i class="fa-solid fa-bars toggle-btn"></i>
+
+        <nav class="navbar">
+            <a href="/html/home.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="/html/contact.html">Contact</a>
+            <a href="/html/login.html" class="btn"><button class="login-btn">Log In</button></a>
+        </nav>
+    </section>
+
+    <section class="initial-description">
+        <div class="text-box">
+            <h1>World's Best Cleaning Services</h1>
+            <p>
+                Welcome to [Your Company Name], where we make your space shine! Our professional cleaning services are tailored to meet your needs, 
+                ensuring a spotless environment for homes and businesses alike. Experience the ease of booking reliable, high-quality cleaning with 
+                just a few clicks.
+            </p>
+        </div>
+    </section>
+
+    <!-- Slidesshow -->
+    <section class="slidesshow-container">
+        <div class="slides fade">
+            <div class="number-text">1 / 4</div>
+            <img src="/images/blue.png" style="width: 100%;">
+            <div class="caption">Caption Text</div>
+        </div>
+
+        <div class="slides fade">
+            <div class="number-text">2 / 4</div>
+            <img src="/images/gray.jpeg" style="width: 100%;">
+            <div class="caption">Caption Text</div>
+        </div>
+
+        <div class="slides fade">
+            <div class="number-text">3 / 4</div>
+            <img src="/images/pink.png" style="width: 100%;">
+            <div class="caption">Caption Text</div>
+        </div>
+
+        <div class="slides fade">
+            <div class="number-text">4 / 4</div>
+            <img src="/images/purple.jpeg" style="width: 100%;">
+            <div class="caption">Caption Text</div>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </section>
+
+    <div style="text-align: center;">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+
+    <section class="services">
+        <h1>Services Offered</h1>
+        <p class="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+
+        <div class="row">
+            <div class="services-col">
+                <img src="/images/blue.png">
+                <h3>Service 1</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
+                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium 
+                    quis, sem. Nulla consequat massa quis enim. 
+                </p>
+            </div>
+
+            <div class="services-col">
+                <img src="/images/blue.png">
+                <h3>Service 2</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
+                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium 
+                    quis, sem. Nulla consequat massa quis enim. 
+                </p>
+            </div>
+
+            <div class="services-col">
+                <img src="/images/blue.png">
+                <h3>Service 3</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
+                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium 
+                    quis, sem. Nulla consequat massa quis enim. 
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-description">
+        <div class="text">
+            <h1>Why choose us?</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, 
+                ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, 
+                fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, 
+                justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum 
+                semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
+                ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus 
+                varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper 
+                ultricies nisi. Nam eget dui.
+            </p>
+        </div>
+    </section>
+
+    <section class="reviews">
+        <h1>What Our Customers Says</h1>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+
+        <div class="row">
+            <div class="reviews-col">
+                <span class="icon"><i class="fa-solid fa-user"></i></span>
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
+                        penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium 
+                        quis, sem. Nulla consequat massa quis enim. 
+                    </p>
+                    <h3>Name of Customer</h3>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+            </div>
+
+            <div class="reviews-col">
+                <span class="icon"><i class="fa-solid fa-user"></i></span>
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
+                        penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium 
+                        quis, sem. Nulla consequat massa quis enim. 
+                    </p>
+                    <h3>Name of Customer</h3>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star-half-stroke"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <section class="footer">
+        <div class="abt-us">
+            <h4>About Us</h4>
+            <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
+                penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
+            </p>
+        </div>
+
+        <div class="icons">
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-twitter"></i></a>
+            <a href=""><i class="fa-brands fa-instagram"></i></a> 
+        </div>
+        <p>&copy Company Name 2024</p>
+    </section>
+
+    <script src="/javascript/navbar.js"></script>
+    <script src="/javascript/slideshow.js"></scripts>
+</body>
+</html>
