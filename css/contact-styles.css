@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+    color: #212427;
+}
+
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.contact{
+    position: relative;
+    min-height: 70vh;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contact .content{
+    max-width: 900px;
+    text-align: center;
+}
+
+.contact .content h1{
+    font-size: 42px;
+    font-weight: 600;
+}
+
+.contact .content p{
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.container .contact-info{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container .contact-info .box{
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+}
+
+.container .contact-info .box .fa-solid{
+    font-size: 1.8em;
+    width: 50px;
+    display: flex;
+}
+
+.container .contact-info .box .text{
+    display: flex;
+    margin-left: 20px;
+    font-size: 1.2em;
+    flex-direction: column;
+}
+
+
+
+/*----- Footer Section -----*/
+.footer{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 0 30px;
+    margin-top: 130vh;
+}
+
+.footer .abt-us{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.footer h4{
+    margin-bottom: 25px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.icons a{
+    text-decoration: none;
+    color: #212427;
+}
+
+.icons .fa-brands{
+    font-size: 1.8em;
+    margin: 0 10px;
+}

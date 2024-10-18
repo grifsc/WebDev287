@@ -29,8 +29,8 @@ body{
 .wrapper{
     position: relative;
     margin: 10rem 0;
-    width: 600px;
-    height: 540px;
+    width: 500px;
+    height: 440px;
     border: 3px solid rgba(200, 200, 200, .5);
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
@@ -42,8 +42,7 @@ body{
 }
 
 .wrapper.active{
-    height: 520px;
-
+    height: 700px;
 }
 
 .wrapper .form-box{
@@ -228,18 +227,8 @@ body{
     text-align: center;
     justify-content: center;
     padding: 0 30px;
-    margin-top: 130vh;
-}
-
-.footer .abt-us{
-    width: 80%;
-    margin-left: 10%;
-}
-
-.footer h4{
-    margin-bottom: 25px;
-    margin-top: 20px;
-    font-weight: 600;
+    margin-top: 900px;
+    margin-bottom: 10px;
 }
 
 .icons a{
@@ -249,5 +238,5 @@ body{
 
 .icons .fa-brands{
     font-size: 1.8em;
-    margin: 0 10px;
+    margin: 10px;
 }
