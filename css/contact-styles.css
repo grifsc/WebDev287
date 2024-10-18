@@ -21,8 +21,8 @@
 
 .contact{
     position: relative;
-    min-height: 70vh;
-    padding: 120px 100px 90px 100px;
+    margin-top: 10%;
+    padding: 0 100px 90px 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,7 +53,7 @@
 }
 
 .container .contact-info{
-    width: 30%;
+    width: 40%;
     display: flex;
     flex-direction: column;
 }
@@ -170,6 +170,35 @@
     cursor: pointer;
 }
 
+@media(max-width:925px){
+    .contact{
+        padding: 50px;
+    }
+
+    .container{
+        flex-direction: column;
+    }
+
+    .container .contact-info{
+        width: 80%;
+    }
+
+    .contact-form{
+        margin-top: 40px;
+        width: 80%;
+    }
+}
+
+@media(max-width:500px){
+    .container .contact-info h2{
+        font-size: 1.2em;
+    }
+
+    .container .contact-info p{
+        font-size: 0.9em;
+    }
+}
+
 /*----- Footer Section -----*/
 .footer{
     position: absolute;
@@ -178,6 +207,7 @@
     justify-content: center;
     padding: 0 30px;
     margin-bottom: 10%;
+    margin-top: 0.5%;
 
 }
 
@@ -192,5 +222,5 @@
 }
 
 .footer p{
-    margin-bottom: 20px;
+    margin-bottom: 2%;
 }
