@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>Logo</h2>
+                </div>
+
+                <div class="close" id="close-btn">
+                    <span class="icons"><i class="fa-solid fa-xmark"></i></span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="#" class="active">
+                    <span class="icons"><i class="fa-solid fa-house"></i></span>
+                    <h3 href="#">Dashboard</h3>
+                </a>
+
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-user"></i></span>
+                    <h3 href="#">Customers</h3>
+                </a>
+
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-bars-progress"></i></span>
+                    <h3 href="#">Manage Services</h3>
+                </a>
+
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-window-restore"></i></span>
+                    <h3 href="#">Modify Website</h3>
+                </a>
+
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-gear"></i></span>
+                    <h3 href="#">Setting</h3>
+                </a>
+
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                    <h3 href="#">Log Out</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <h1>Dashboard</h1>
+
+            <div class="date">
+                <input type="date">
+            </div>
+
+            <div class="insights">
+                <div class="sales">
+                    <span><i class="fa-solid fa-chart-line"></i></span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Total Sales</h3>
+                            <h1>$25,024</h1>
+                        </div>
+
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>81%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-mute">Last 24 Hours</small>
+                </div>
+
+                <div class="all-time-sales">
+                    <span><i class="fa-solid fa-sack-dollar"></i></span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>All-Time Total Sales</h3>
+                            <h1>$865,324</h1>
+                        </div>
+
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>44%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-mute">Since Opening</small>
+                </div>
+            </div>
+
+            <div class="recent-bookings">
+                <h2>Recent Bookings</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Client Name</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!-- <tr>
+                            <td>John Doe</td>
+                            <td>Service 1</td>
+                            <td>Oct 25, 2024</td>
+                            <td>3:00 PM</td>
+                            <td class="warning">Pending</td>
+                            <td class="primary">Details</td>
+                        </tr>        -->
+                    </tbody>
+                </table>
+                <a href="">Show All</a>
+            </div>
+        </main>
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Matteo</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-picture">
+                        <img src="/images/profile-pic.webp">
+                    </div>
+                </div>
+            </div>
+
+            <div class="sales-analytics">
+                <h2>Sales Analytics</h2>
+                <div class="item online">
+                    <div class="icon">
+                        <span><i class="fa-solid fa-arrow-pointer"></i></span>
+                    </div>
+
+                    <div class="right">
+                        <div class="info">
+                            <h3>ONLINE BOOKINGS</h3>
+                            <small class="text-muted">Last 24 Hours</small>
+                        </div>
+
+                        <div class="stats">
+                            <small class="success">+ 3 bookings</small>
+                            <h3>138</h3>
+                            <small class="text-muted">This months</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item offline">
+                    <div class="icon">
+                        <span><i class="fa-solid fa-bookmark"></i></span>
+                    </div>
+
+                    <div class="right">
+                        <div class="info">
+                            <h3>OFFLINE BOOKINGS</h3>
+                            <small class="text-muted">Last 24 Hours</small>
+                        </div>
+
+                        <div class="stats">
+                            <small class="warning"> 0 bookings</small>
+                            <h3>112</h3>
+                            <small class="text-muted">This months</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item customers">
+                    <div class="icon">
+                        <span><i class="fa-solid fa-user"></i></span>
+                    </div>
+
+                    <div class="right">
+                        <div class="info">
+                            <h3>NEW CUSTOMERS</h3>
+                            <small class="text-muted">Last 24 Hours</small>
+                        </div>
+
+                        <div class="stats">
+                            <small class="success">+ 5 bookings</small>
+                            <h3>143</h3>
+                            <small class="text-muted">This months</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascript/bookings.js"></script>
+    <script src="/javascript/admin-dashboard.js"></script>
+</body>
+</html>
