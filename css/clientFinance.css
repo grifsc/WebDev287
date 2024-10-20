@@ -1,0 +1,128 @@
+
+.navba-links{
+    background-color: lightblue;
+    padding: 5px;
+}
+
+
+  
+  .navba-links > ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  
+    list-style-type: none;
+  
+    gap: 6%;
+  }
+  
+  .navba-links li:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+.profile-display img {
+    width: 50px;
+    border-radius: 10px;
+}
+img{
+    float:right;
+}
+.content-table{
+    border-collapse: collapse;
+    margin:25px 0;
+    font-size: 0.9em;
+    min-width:400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px lightblue;
+}
+
+.content-table thread tr{
+    background-color: lightskyblue;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td{
+    padding: 10px 130px;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid white;
+}
+
+.content-table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 2px solid lightskyblue;
+}
+
+.services-bills-receipts {
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .logo{
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .navba-links{
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .profile-display{
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+      
+
+.profile-text h1, .profile-text h3 {
+    margin: 0;  /* Removes default margin */
+    text-align:right;
+    margin-right:10px;
+}
+
+.bills-container{
+    display: flex;
+    justify-content: left;
+    gap:20px;
+}
+.bill{
+    text-align: center;
+    background:#fff;
+    padding: 20px;
+    border: 2px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 300px;
+    justify-content: center;
+}
+
+.bill h2, .bill h3{
+    color: #333;
+}
+.bill p{
+    color: #666;
+    margin: 5px 0;
+}
