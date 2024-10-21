@@ -109,12 +109,12 @@
     .navbar a:hover{
         color: #c8c8c8;
     }
-
+    
     .navbar .login-btn{
         display: block;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 20px;
         padding: 15px 50px;
-    }
+    } 
 }

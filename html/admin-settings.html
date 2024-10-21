@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <link rel="stylesheet" href="/css/admin-settings.css">
+    <link rel="stylesheet" href="/css/admin-profile-dropdown.css">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>Logo</h2>
+                </div>
+
+                <div class="close" id="close-btn">
+                    <span class="icons"><i class="fa-solid fa-xmark"></i></span>
+                </div>
+            </div>
+
+            <!--Sidebar has different tabs for admin-->
+            <div class="sidebar">
+                <!--Dashboard/Summary-->
+                <a href="admin-dashboard.html">
+                    <span class="icons"><i class="fa-solid fa-house"></i></span>
+                    <h3 href="#">Dashboard</h3>
+                </a>
+
+                <!--List of Customers-->
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-user"></i></span>
+                    <h3 href="#">Customers</h3>
+                </a>
+
+                <!--Scheduled Services-->
+                <a href="admin-manage-services.html">
+                    <span class="icons"><i class="fa-solid fa-bars-progress"></i></span>
+                    <h3 href="#">Manage Services</h3>
+                </a>
+
+                <!--Edit Client View-->
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-window-restore"></i></span>
+                    <h3 href="#">Modify Website</h3>
+                </a>
+
+                <!--Profile Settings-->
+                <a href="#" class ="active">
+                    <span class="icons"><i class="fa-solid fa-gear"></i></span>
+                    <h3 href="#">Settings</h3>
+                </a>
+
+                <!--Log out-->
+                <a href="/html/home.html">
+                    <span class="icons"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                    <h3 href="#">Log Out</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <h1>Settings</h1>
+
+            <div class="date">
+                <input type="date">
+            </div>
+
+            <div class="settings">
+               
+                <div class="account-details">
+                    <h1>My Account</h1>    
+                    <!--Name Section-->
+                    <div class="info-container">
+                        <div class="info-section">
+                            <label for="name">Name:</label>
+                            <p id="name" class="info-text">Matteo</p>
+                        </div>
+                        <button onclick="showPopup('name')">Edit Name</button>
+                    </div>
+
+                    <!--Popup form for Name-->
+                    <div class="popup-form" id="popup-form-name">
+                        <h3>Edit Name</h3>
+                        <form id="nameForm">
+                            <input type="text" id="newName" name="newName" placeholder="Enter new name" required>
+                            <!-- Two buttons: Save and Cancel -->
+                            <button type="button" class="cancel-btn" onclick="hidePopup()">Cancel</button>
+                            <button type="submit" class="save-btn">Save</button>
+                        </form>
+                    </div>
+                
+                    <!--Email Section-->
+                    <div class="info-container">
+                        <div class="info-section">
+                            <label for="email">Email:</label>
+                            <p id="email" class="info-text">matteo@hotmail.com</p>
+                        </div>
+                        <button onclick="showPopup('email')">Edit Email</button>
+                    </div>
+
+                    <!--Popup form for Email-->
+                    <div class="popup-form" id="popup-form-email">
+                        <h3>Edit Email</h3>
+                        <form id="emailForm">
+                            <input type="text" id="newEmail" name="newEmail" placeholder="Enter new email" required>
+                            <!-- Two buttons: Save and Cancel -->
+                            <button type="button" class="cancel-btn" onclick="hidePopup()">Cancel</button>
+                            <button type="submit" class="save-btn">Save</button>
+                        </form>
+                    </div>
+                
+                    <!--Password Section-->
+                    <div class="info-container">
+                        <div class="info-section">
+                            <label for="password">Password:</label>
+                            <p id="password" class="info-text">********</p>
+                        </div>
+                        <button onclick="showPopup('password')">Edit Password</button>
+                    </div>
+
+                    <!--Popup form for Password-->
+                    <div class="popup-form" id="popup-form-password">
+                        <h3>Edit Password</h3>
+                        <form id="passwordForm">
+                            <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password" required>
+                            <!-- Two buttons: Save and Cancel -->
+                            <button type="button" class="cancel-btn" onclick="hidePopup()">Cancel</button>
+                            <button type="submit" class="save-btn">Save</button>
+                        </form>
+                    </div>
+                
+                    <!-- Dimmed overlay -->
+                    <div class="overlay" id="overlay"></div>
+                             
+                </div>      
+            </div>
+
+            
+        </main>
+        
+        <!--Profile icon and name in top right-->
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Matteo</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-picture" onclick="toggleDropdown()">
+                        <img src="/images/profile-pic.webp">
+                    </div>
+            
+                    <!-- Profile dropdown menu -->
+                    <div class="dropdown">
+                        <div id="profileDropdownMenu" class="dropdown-content">
+                            <a href="admin-dashboard.html">Dashboard</a>
+                            <a href="admin-settings.html">Settings</a>
+                            <a href="/html/home.html">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+
+    <script src="/javascript/bookings.js"></script>
+    <script src="/javascript/admin-settings.js"></script>
+    <script src="/javascript/admin-profile-dropdown.js"></script>
+
+</body>
+</html>

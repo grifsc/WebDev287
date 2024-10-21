@@ -1,0 +1,178 @@
+main .settings{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+}
+
+main .settings > div{
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 0.03s ease;
+}
+
+main .settings > div:hover{
+    box-shadow: none;
+}
+
+main .settings > div span{
+    background: var(--color-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: var(--color-white);
+    font-size: 2rem;
+    width: 2.8rem;
+    height: 2.8rem;
+}
+
+main .settings > div.all-time-sales span{
+    background-color: var(--color-success);
+}
+
+main .settings > div .middle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main .settings h3{
+    margin: 1rem 0 0 .6rem;
+    font-size: 1rem;
+}
+
+
+main .settings .number{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .settings small{
+    margin-top: 1.3rem;
+    display: block;
+}
+
+
+main .settings > div:first-child {
+    grid-column: span 2;
+    height: 150%; 
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+
+/* Styling the info sections */
+.info-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Larger font size for Name, Email, Password */
+.info-text {
+    font-size: 1.2rem; /* 20% larger */
+    font-weight: bold;
+}
+
+/* Styling the button */
+button {
+    padding: 10px 20px;
+    background-color: #00b4d8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0077b6;
+}
+
+/* The dimmed overlay when the form pops up */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* 20% opacity */
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+/* Styling the popup form */
+.popup-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    width: 300px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popup-form.active {
+    display: block;
+    opacity: 1;
+}
+
+.popup-form input[type="text"],
+.popup-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Button styling inside the form */
+.popup-form button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-form .save-btn {
+    background-color: #00b4d8;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.popup-form .save-btn:hover {
+    background-color: #0077b6;
+}
+
+.popup-form .cancel-btn {
+    background-color: #f44336;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.popup-form .cancel-btn:hover {
+    background-color: #d32f2f;
+}
+

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <link rel="stylesheet" href="/css/admin-profile-dropdown.css">
+    <link rel="stylesheet" href="/css/admin-manage-services.css">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>Logo</h2>
+                </div>
+
+                <div class="close" id="close-btn">
+                    <span class="icons"><i class="fa-solid fa-xmark"></i></span>
+                </div>
+            </div>
+
+            <!--Sidebar has different tabs for admin-->
+            <div class="sidebar">
+                <!--Dashboard/Summary-->
+                <a href="admin-dashboard.html">
+                    <span class="icons"><i class="fa-solid fa-house"></i></span>
+                    <h3 href="#">Dashboard</h3>
+                </a>
+
+                <!--List of Customers-->
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-user"></i></span>
+                    <h3 href="#">Customers</h3>
+                </a>
+
+                <!--Scheduled Services-->
+                <a href="admin-manage-services.html">
+                    <span class="icons"><i class="fa-solid fa-bars-progress"></i></span>
+                    <h3 href="#">Manage Services</h3>
+                </a>
+
+                <!--Edit Client View-->
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-window-restore"></i></span>
+                    <h3 href="#">Modify Website</h3>
+                </a>
+
+                <!--Profile Settings-->
+                <a href="#" class ="active">
+                    <span class="icons"><i class="fa-solid fa-gear"></i></span>
+                    <h3 href="#">Settings</h3>
+                </a>
+
+                <!--Log out-->
+                <a href="/html/home.html">
+                    <span class="icons"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                    <h3 href="#">Log Out</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <h1 style="text-align: left;">Manage Services</h1>
+
+            <div class="date">
+                <input type="date">
+            </div>
+
+            <h1 style="text-align: center;">October 2024 Calendar</h1>
+            <br>
+            
+<table class="calendar">
+    <thead>
+        <!--Header with weekdays-->
+        <tr>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--Calendar of Oct, empty cells are days from other months -->
+        <tr>
+            <td></td> 
+            <td></td> 
+            <td class="day" data-day="1">1</td> 
+            <td class="day" data-day="2">2</td>
+            <td class="day" data-day="3">3</td>
+            <td class="day" data-day="4">4</td>
+            <td class="day" data-day="5">5</td>
+        </tr>
+        <tr>
+            <td class="day" data-day="6">6</td>
+            <td class="day" data-day="7">7</td>
+            <td class="day" data-day="8">8</td>
+            <td class="day" data-day="9">9</td>
+            <td class="day" data-day="10">10</td>
+            <td class="day" data-day="11">11</td>
+            <td class="day" data-day="12">12</td>
+        </tr>
+        <tr>
+            <td class="day" data-day="13">13</td>
+            <td class="day" data-day="14">14</td>
+            <td class="day" data-day="15">15</td>
+            <td class="day" data-day="16">16</td>
+            <td class="day" data-day="17">17</td>
+            <td class="day" data-day="18">18</td>
+            <td class="day" data-day="19">19</td>
+        </tr>
+        <tr>
+            <td class="day" data-day="20">20</td>
+            <td class="day" data-day="21">21</td>
+            <td class="day" data-day="22">22</td>
+            <td class="day" data-day="23">23</td>
+            <td class="day" data-day="24">24</td>
+            <td class="day" data-day="25">25</td>
+            <td class="day" data-day="26">26</td>
+        </tr>
+        <tr>
+            <td class="day" data-day="27">27</td>
+            <td class="day" data-day="28">28</td>
+            <td class="day" data-day="29">29</td>
+            <td class="day" data-day="30">30</td>
+            <td class="day" data-day="31">31</td>
+            <td></td> <!-- Empty after last day -->
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Popup Schedule Form -->
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popup">
+    <h3>Schedule for <span id="selectedDay"></span></h3>
+    <table class="schedule-table">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Slot</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Schedule rows from 9 AM to 5 PM -->
+            <tr><td>9:00 AM</td><td class="slot" data-time="9am"></td></tr>
+            <tr><td>10:00 AM</td><td class="slot" data-time="10am"></td></tr>
+            <tr><td>11:00 AM</td><td class="slot" data-time="11am"></td></tr>
+            <tr><td>12:00 PM</td><td class="slot" data-time="12pm"></td></tr>
+            <tr><td>1:00 PM</td><td class="slot" data-time="1pm"></td></tr>
+            <tr><td>2:00 PM</td><td class="slot" data-time="2pm"></td></tr>
+            <tr><td>3:00 PM</td><td class="slot" data-time="3pm"></td></tr>
+            <tr><td>4:00 PM</td><td class="slot" data-time="4pm"></td></tr>
+        </tbody>
+    </table>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+</div>
+
+           
+
+            
+        </main>
+        
+        <!--Profile icon and name in top right-->
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Matteo</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-picture" onclick="toggleDropdown()">
+                        <img src="/images/profile-pic.webp">
+                    </div>
+            
+                    <!--Profile dropdown menu-->
+                    <div class="dropdown">
+                        <div id="profileDropdownMenu" class="dropdown-content">
+                            <a href="admin-dashboard.html">Dashboard</a>
+                            <a href="admin-settings.html">Settings</a>
+                            <a href="/html/home.html">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+
+    <script src="/javascript/bookings.js"></script>
+    <script src="/javascript/admin-profile-dropdown.js"></script>
+    <script src="/javascript/admin-manage-services.js"></script>
+
+</body>
+</html>
