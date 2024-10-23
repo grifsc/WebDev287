@@ -1,0 +1,10 @@
+li {
+    list-style-type: none;
+}
+
+.horizontal-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
