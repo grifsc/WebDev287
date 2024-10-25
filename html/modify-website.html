@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/modify-page.css">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>Logo</h2>
+                </div>
+
+                <div class="close" id="close-btn">
+                    <span class="icons"><i class="fa-solid fa-xmark"></i></span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="/html/admin-dashboard.html">
+                    <span class="icons"><i class="fa-solid fa-house"></i></span>
+                    <h3 href="#">Dashboard</h3>
+                </a>
+
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-user"></i></span>
+                    <h3 href="#">Customers</h3>
+                </a>
+
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-bars-progress"></i></span>
+                    <h3 href="#">Manage Services</h3>
+                </a>
+
+                <a href="/html/modify-website.html" class="active">
+                    <span class="icons" ><i class="fa-solid fa-window-restore"></i></span>
+                    <h3 href="#">Modify Website</h3>
+                </a>
+
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-gear"></i></span>
+                    <h3 href="#">Setting</h3>
+                </a>
+
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                    <h3 href="#">Log Out</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <div class="top">
+                <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Matteo</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-picture">
+                        <img src="/images/profile-pic.webp">
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <h1>Modify Website</h1>
+
+            <!-- Home Page Section -->
+            <div class="form-section">
+                <h2>Home Page</h2>
+
+                <label for="welcome">Opening Message</label>
+                <input type="text" id="welcome" name="welcome" placeholder="Welcome to our cleaning services!">
+
+                <label for="description">Inital Short Hook</label>
+                <textarea id="description" name="description" placeholder="Enter descriptions..."></textarea>
+
+                <label for="slideshow">Slideshow Display Images</label>
+                <input type="file" id="slideshow" name="slideshow" multiple>
+
+                <!-------- To be Change -------->
+                <label for="services">Services Offered</label>
+                <textarea id="services" name="services" placeholder="List your services..."></textarea>
+            </div>
+
+            <!-- Contact Page Section -->
+            <div class="form-section">
+                <h2>Contact Page</h2>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="contact@example.com">
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+
+                <div class="location">
+                    <label for="location" class="location-subtitle">Location</label>
+
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your address" required>
+                    
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                    
+                    <label for="state">State/Province</label>
+                    <input type="text" id="state" name="state" placeholder="Enter your state or province" required>
+                    
+                    <label for="zip">Zip Code:</label>
+                    <input type="text" id="zip" name="zip" placeholder="Enter your zip code" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Contact Page</h2>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="contact@example.com">
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+
+                <div class="location">
+                    <label for="location" class="location-subtitle">Location</label>
+
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your address" required>
+                    
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                    
+                    <label for="state">State/Province</label>
+                    <input type="text" id="state" name="state" placeholder="Enter your state or province" required>
+                    
+                    <label for="zip">Zip Code:</label>
+                    <input type="text" id="zip" name="zip" placeholder="Enter your zip code" required>
+                </div>
+            </div>
+
+            <!-- Save and Preview Buttons -->
+            <div class="form-btn">
+                <button class="btn save">Save Changes</button>
+                <button class="btn preview">Client's View</button>
+            </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="/javascript/admin-dashboard.js"></script>
+    <script src="/javascript/modify-website.js"></script>
+</body>
+</html>
