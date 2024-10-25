@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/client-home.css">
+    <title>Client Home</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>Logo</h2>
+                </div>
+
+                <div class="close" id="close-btn">
+                    <span class="icons"><i class="fa-solid fa-xmark"></i></span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="#" class ="active">
+                    <span class="icons"><i class="fa-solid fa-house"></i></span>
+                    <h3 href="#">Home</h3>
+                </a>
+    
+                <!--Offered Services-->
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-list-check"></i></span>
+                    <h3 href="#">Offered Services</h3>
+                </a>
+    
+                <!--Manage Orders-->
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-tags"></i></span>
+                    <h3 href="#">Manage Orders</h3>
+                </a>
+    
+                <!--Billing Overview-->
+                <a href="/html/client-finance.html">
+                    <span class="icons"><i class="fa-solid fa-money-check-dollar"></i></span>
+                    <h3 href="#">Billing Overview</h3>
+                </a>
+    
+                <!--Account Settings-->
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-gear"></i></span>
+                    <h3 href="#">Account Settings</h3>
+                </a>
+
+                <!--Log out-->
+                <a href="/html/home.html">
+                    <span class="icons"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                    <h3 href="#">Log Out</h3>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <div class="top">
+                <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Matteo</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-picture">
+                        <img src="/images/profile-pic.webp">
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="home-title">Home Page</h1>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>Total Services</h3>
+                    <p><span>3</span></p>
+                    <small class="text-muted">Last 30 Days</small>
+                </div>
+                <div class="card">
+                    <h3>Upcoming Payments</h3>
+                    <p><span>$245</span></p>
+                    <small class="text-muted">Due Next Month</small>
+                </div>
+                <div class="card">
+                    <h3>Next Booking</h3>
+                    <p><span>Oct 30, 2024</span></p>
+                    <small class="text-muted">Service 2</small>
+                </div>
+            </div>
+
+            <div class="content-table">
+                <h1>Recent Services</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <script src="/javascript/singleClientServices.js"></script>
+        <script src="/javascript/clientHome.js"></script>
+    </div>
+</body>
+</html>
