@@ -83,7 +83,7 @@ main .settings > div:first-child {
 
 /* Larger font size for Name, Email, Password */
 .info-text {
-    font-size: 1.2rem; /* 20% larger */
+    font-size: 1.2rem; 
     font-weight: bold;
 }
 

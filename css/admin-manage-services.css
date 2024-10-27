@@ -1,12 +1,14 @@
+/* Calendar container */
 .calendar-container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: white;
     padding: 20px;
-    border-radius: 10px; 
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Calendar table */
 .calendar {
     width: 100%;
     border-collapse: collapse;
@@ -14,32 +16,25 @@
 
 .calendar th, .calendar td {
     border: 1px solid #ccc !important;
-    padding: 0; 
-    position: relative;
+    padding: 0;
     width: 14.28%;
-    height: 100px; 
-}
-
-.calendar th {
-    background-color: #f4f4f4;
-    font-weight: normal;
-    text-align: center;
-}
-
-.calendar td {
-    cursor: pointer;
+    height: 100px;
     text-align: right;
     vertical-align: top;
     padding: 8px;
     font-size: 1rem;
+    cursor: pointer;
+}
+
+.calendar th {
+    background-color: #f4f4f4;
 }
 
 .calendar td:hover {
     background-color: #f0f8ff;
 }
 
-
-/* Popup overlay */
+/* Overlay and popup */
 .overlay {
     display: none;
     position: fixed;
@@ -47,28 +42,45 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.0);
+    opacity: 0;
+    transition: opacity 0.3s ease;
     z-index: 999;
 }
 
-/* Popup form */
+.overlay.active {
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+}
+
 .popup {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.9);
     background-color: white;
     padding: 20px;
-    border-radius: 10px; 
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
     z-index: 1000;
 }
 
-/* Schedule table */
+.popup.active {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Schedule table inside popup */
 .schedule-table {
-    border-collapse: collapse;
     width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
 }
 
 .schedule-table th, .schedule-table td {
@@ -79,30 +91,23 @@
 }
 
 .schedule-table td.selected {
-    background-color: #00b4d8; /* Light blue for selected slots */
+    background-color: #00b4d8;
     color: white;
 }
 
-
-
 /* Close button */
 .close-btn {
-    background-color: #f44336; /* Match "Cancel" button from previous code */
+    background-color: #f44336;
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px; /* Rounded edges */
+    border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    display: inline-block;
+    transition: background-color 0.2s ease;
 }
 
 .close-btn:hover {
     background-color: #d32f2f;
 }
-
-/* Center the heading */
-h1 {
-    text-align: center;
-    font-size: 1.5rem;
-}
-
