@@ -1,0 +1,18 @@
+/*make table scrollable*/
+main .recent-bookings{
+    margin-top: 2rem;
+    height: 700px;
+    overflow-y: auto;
+
+}
+
+/*sticky header*/
+main .recent-bookings table th{
+    position: sticky;
+    top: 0;
+    background: var(--color-white);
+    z-index: 10;
+    padding: 1.1rem;
+   
+}
+

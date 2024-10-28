@@ -1,66 +1,96 @@
 document.addEventListener('DOMContentLoaded', function () {
+    //Grabbing the necessary DOM elements for overlay, popup, selected day display, and close button
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('popup');
     const selectedDayElement = document.getElementById('selectedDay');
     const days = document.querySelectorAll('.day');
     const closeBtn = document.querySelector('.close-btn');
 
-    // Object to store selected slots for each day
+    //Object to store scheduled data for each day, including slot, status, and fulfilled selections
     const scheduleData = {};
 
-    // Function to open the popup and set the selected day
+    //Function to open the popup and display the selected day number
     function openPopup(dayNumber) {
         selectedDayElement.textContent = `October ${dayNumber}, 2024`;
-        overlay.classList.add('active');
-        popup.classList.add('active');
-        
-        // Load schedule for the selected day
-        loadSchedule(dayNumber);
+        overlay.classList.add('active'); //Activate overlay to dim background
+        popup.classList.add('active'); //Show popup form
+        loadSchedule(dayNumber); //Load schedule data for the selected day
     }
 
-    // Function to close the popup and remove active classes
+    //Function to close the popup and hide the overlay
     function closePopup() {
         overlay.classList.remove('active');
         popup.classList.remove('active');
     }
 
-    // Function to load the schedule for a specific day
+    //Function to load the saved schedule for a specific day and apply saved selections
     function loadSchedule(dayNumber) {
+        //Fetch all time slot elements in the popup form
         const slots = document.querySelectorAll('.slot');
-        
-        // Clear previous selections
-        slots.forEach(slot => slot.classList.remove('selected'));
+        const fulfilledSlots = document.querySelectorAll('.fulfilled');
+        const statuses = document.querySelectorAll('.status');
 
-        // Retrieve and apply the saved schedule for this day
-        const daySchedule = scheduleData[dayNumber] || [];
-        daySchedule.forEach(time => {
+        //Clear any previously selected slots, statuses, and fulfilled slots
+        slots.forEach(slot => slot.classList.remove('selected'));
+        fulfilledSlots.forEach(fulfilled => fulfilled.classList.remove('selected'));
+        statuses.forEach(status => status.classList.remove('selected'));
+
+        //Retrieve schedule data for the selected day or initialize empty data if no prior data exists
+        const daySchedule = scheduleData[dayNumber] || { slots: [], fulfilled: [], statuses: [] };
+
+        //Apply stored selections for time slots
+        daySchedule.slots.forEach(time => {
             const slot = document.querySelector(`.slot[data-time="${time}"]`);
-            if (slot) {
-                slot.classList.add('selected');
-            }
+            if (slot) slot.classList.add('selected');
         });
 
-        // Store the current day in a data attribute for later reference
+        //Apply stored selections for fulfilled slots
+        daySchedule.fulfilled.forEach(time => {
+            const fulfilled = document.querySelector(`.fulfilled[data-time="${time}"]`);
+            if (fulfilled) fulfilled.classList.add('selected');
+        });
+
+        //Apply stored selections for status
+        daySchedule.statuses.forEach(time => {
+            const status = document.querySelector(`.status[data-time="${time}"]`);
+            if (status) status.classList.add('selected');
+        });
+
+        // Store the current day in the popup for easy reference
         popup.setAttribute('data-day', dayNumber);
     }
 
-    // Function to save the selected slots for the current day
+    // Function to save the selected time slots, fulfilled states, and payment statuses for the current day
     function saveSchedule(dayNumber) {
-        const slots = document.querySelectorAll('.slot');
+        // Arrays to hold the selected times for slots, fulfilled states, and payment statuses
         const selectedSlots = [];
+        const selectedFulfilled = [];
+        const selectedStatuses = [];
 
-        // Gather all selected slots
-        slots.forEach(slot => {
-            if (slot.classList.contains('selected')) {
-                selectedSlots.push(slot.getAttribute('data-time'));
-            }
+        // Gather all selected slot times
+        document.querySelectorAll('.slot.selected').forEach(slot => {
+            selectedSlots.push(slot.getAttribute('data-time'));
         });
 
-        // Save the selected slots for the specific day
-        scheduleData[dayNumber] = selectedSlots;
+        // Gather all selected fulfilled times
+        document.querySelectorAll('.fulfilled.selected').forEach(fulfilled => {
+            selectedFulfilled.push(fulfilled.getAttribute('data-time'));
+        });
+
+        // Gather all selected status times
+        document.querySelectorAll('.status.selected').forEach(status => {
+            selectedStatuses.push(status.getAttribute('data-time'));
+        });
+
+        // Save selected times for slots, fulfilled states, and statuses for the specific day
+        scheduleData[dayNumber] = {
+            slots: selectedSlots,
+            fulfilled: selectedFulfilled,
+            statuses: selectedStatuses
+        };
     }
 
-    // When a calendar day is clicked, open the popup with the selected day
+    // Add event listeners for each calendar day to open the popup with the selected day
     days.forEach(day => {
         day.addEventListener('click', function () {
             const dayNumber = this.getAttribute('data-day');
@@ -68,20 +98,36 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Close popup when clicking outside of it (overlay)
+    // Close the popup when clicking outside of it (on the overlay)
     overlay.addEventListener('click', closePopup);
 
-    // Toggle slot selection within the schedule table
+    // Add event listeners for slot elements to toggle selection and save changes
     document.querySelectorAll('.slot').forEach(slot => {
         slot.addEventListener('click', function () {
             this.classList.toggle('selected');
-
-            // Get the current day from the popup's data attribute
             const currentDay = popup.getAttribute('data-day');
-            saveSchedule(currentDay); // Save selection changes
+            saveSchedule(currentDay); // Save slot selection changes
         });
     });
 
-    // Attach closePopup function to the close button
+    // Add event listeners for fulfilled elements to toggle selection and save changes
+    document.querySelectorAll('.fulfilled').forEach(fulfilled => {
+        fulfilled.addEventListener('click', function () {
+            this.classList.toggle('selected');
+            const currentDay = popup.getAttribute('data-day');
+            saveSchedule(currentDay); // Save fulfilled selection changes
+        });
+    });
+
+    // Add event listeners for status elements to toggle selection and save changes
+    document.querySelectorAll('.status').forEach(status => {
+        status.addEventListener('click', function () {
+            this.classList.toggle('selected');
+            const currentDay = popup.getAttribute('data-day');
+            saveSchedule(currentDay); // Save status selection changes
+        });
+    });
+
+    // Attach the closePopup function to the close button
     closeBtn.addEventListener('click', closePopup);
 });
