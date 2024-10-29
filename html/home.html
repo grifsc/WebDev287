@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="/css/home-styles.css">
 </head>
 <body>
+    <!---------- Initial View Section ---------->
     <section class="header">
-        <a href="#" class="logo">Logo</a>
-
+        <div class="logo">
+            <img src="/images/logo.png" alt="404">
+            <h1>PokéRent</h1>
+        </div>
         <i class="fa-solid fa-bars toggle-btn"></i>
-
         <nav class="navbar">
             <a href="/html/home.html">Home</a>
             <a href="#">Services</a>
@@ -25,39 +27,91 @@
 
     <section class="initial-description">
         <div class="text-box">
-            <h1>World's Best Cleaning Services</h1>
+            <h1>Welcome to PokéRent!</h1>
             <p>
-                Welcome to [Your Company Name], where we make your space shine! Our professional cleaning services are tailored to meet your needs, 
-                ensuring a spotless environment for homes and businesses alike. Experience the ease of booking reliable, high-quality cleaning with 
-                just a few clicks.
+                Discover the magic of Pokémon-assisted services! From cleaning to healing, our friendly Pokémon are here to help you 
+                with a variety of tasks. Rent a Pokémon for your next project and experience the ease and efficiency of working 
+                alongside these amazing creatures. Let's make your life easier—one Pokémon at a time!
             </p>
         </div>
     </section>
 
-    <!-- Slidesshow -->
+        <!---------- Why Us Section ---------->
+        <section class="why-us">
+            <div class="container">
+                <h2>Why Choose Our PokéService Rentals?</h2>
+                <div class="benefits">
+                    <div class="benefit">
+                        <h3>Expert Assistance</h3>
+                        <p>
+                            Our Pokémon are specially trained to assist with various tasks, ensuring high-quality service every time. 
+                            Whether it's cleaning or healing, our Pokémon have the skills you need!
+                        </p>
+                    </div>
+                    <div class="benefit">
+                        <h3>Reliable and Trustworthy</h3>
+                        <p>
+                            We prioritize safety and trust. Each Pokémon in our service has been vetted and trained, so you can rest assured 
+                            that they will handle your needs with care and professionalism.
+                        </p>
+                    </div>
+                    <div class="benefit">
+                        <h3>Affordable Rentals</h3>
+                        <p>
+                            Enjoy competitive pricing on all our Pokémon rentals. We believe everyone should experience the magic of Pokémon 
+                            assistance without breaking the bank!
+                        </p>
+                    </div>
+                    <div class="benefit">
+                        <h3>Flexible Options</h3>
+                        <p>
+                            Whether you need a Pokémon for a one-time service or ongoing assistance, we offer flexible rental options 
+                            to fit your needs. Choose the service that works best for you!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!---------- Slideshow Section ---------->
     <section class="slidesshow-container">
         <div class="slides fade">
             <div class="number-text">1 / 4</div>
-            <img src="/images/blue.png" style="width: 100%;">
-            <div class="caption">Caption Text</div>
+            <img src="/images/blastoise-cleaning.jpg" style="width: 100%;">
+            <div class="caption">
+                Your Personal Car Cleaning Champion! Let our water-blasting Pokémon
+                handle the tough grime while you sit back and relax.
+            </div>
         </div>
 
         <div class="slides fade">
             <div class="number-text">2 / 4</div>
-            <img src="/images/gray.jpeg" style="width: 100%;">
-            <div class="caption">Caption Text</div>
+            <img src="/images/cramorant-fishing.webp" style="width: 100%;">
+            <div class="caption">
+                Casting Lines with Cramorant! Experience a unique fishing adventure as 
+                our skilled Pokémon swoops in to catch your dinner—just watch out for the 
+                occasional snack!
+            </div>
         </div>
 
         <div class="slides fade">
             <div class="number-text">3 / 4</div>
-            <img src="/images/pink.png" style="width: 100%;">
-            <div class="caption">Caption Text</div>
+            <img src="/images/togepi-playing.avif" style="width: 100%;">
+            <div class="caption">
+                Playtime with Togepi! Experience joy and laughter as this little bundle 
+                of happiness brings fun and smiles to your day. Let's make magical 
+                memories together!
+            </div>
         </div>
 
         <div class="slides fade">
             <div class="number-text">4 / 4</div>
-            <img src="/images/purple.jpeg" style="width: 100%;">
-            <div class="caption">Caption Text</div>
+            <img src="/images/jigglipuff-singing.webp" style="width: 100%;">
+            <div class="caption">
+                Jigglypuff's Serenade! Let the enchanting melodies of Jigglypuff soothe 
+                your soul as it fills the air with magical tunes. Get ready to sing along 
+                and drift into dreamland!
+            </div>
         </div>
 
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -71,120 +125,102 @@
         <span class="dot" onclick="currentSlide(4)"></span>
     </div>
 
+    <!---------- Services Section ---------->
     <section class="services">
-        <h1>Services Offered</h1>
-        <p class="subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-
-        <div class="row">
-            <div class="services-col">
-                <img src="/images/blue.png">
-                <h3>Service 1</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
-                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium 
-                    quis, sem. Nulla consequat massa quis enim. 
-                </p>
-            </div>
-
-            <div class="services-col">
-                <img src="/images/blue.png">
-                <h3>Service 2</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
-                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium 
-                    quis, sem. Nulla consequat massa quis enim. 
-                </p>
-            </div>
-
-            <div class="services-col">
-                <img src="/images/blue.png">
-                <h3>Service 3</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
-                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium 
-                    quis, sem. Nulla consequat massa quis enim. 
-                </p>
+        <div class="container">
+            <h2>Most Popular Services</h2>
+            <div class="grid">
+                <div class="service">
+                    <img src="/images/9.png">
+                    <h3>Cleaning with Blastoise</h3>
+                    <p>
+                        Experience the power of water with our Blastoise Cleaning Service! 
+                        Using its exceptional water jet technique, Blastoise effectively 
+                        cleans surfaces, reaching even the toughest spots. Whether it's a 
+                        residential space or a commercial area, our Pokémon ensures that every 
+                        corner is spotless and refreshed, leaving you with a sparkling environment.
+                    </p>
+                </div>
+                <div class="service">
+                    <img src="/images/700.png">
+                    <h3>Sylveon Healing Service</h3>
+                    <p>
+                        Immerse yourself in tranquility with our Sylveon Healing Service. 
+                        Sylveon is renowned for its soothing abilities, and its gentle touch 
+                        helps alleviate stress and anxiety. This service not only restores physical
+                        wellness but also brings emotional comfort. Experience a revitalizing 
+                        session that will leave you feeling relaxed and rejuvenated, as Sylveon 
+                        works its magic to heal both body and spirit.
+                    </p>
+                </div>
+                <div class="service">
+                    <img src="/images/122.png">
+                    <h3>Bring Mr. Mime to Party</h3>
+                    <p>
+                        Elevate your events with the enchanting performances of Mr. Mime! Our 
+                        party service brings Mr. Mime to your gatherings, providing an 
+                        entertaining mix of magic tricks and playful antics that delight guests 
+                        of all ages. Whether it's a birthday party, family reunion, or corporate 
+                        event, Mr. Mime ensures laughter and joy, making your occasion truly 
+                        unforgettable!
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="why-description">
-        <div class="text">
-            <h1>Why choose us?</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
-                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, 
-                ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, 
-                fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, 
-                justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum 
-                semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend
-                ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus 
-                varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper 
-                ultricies nisi. Nam eget dui.
-            </p>
-        </div>
-    </section>
-
-    <section class="reviews">
-        <h1>What Our Customers Says</h1>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-
-        <div class="row">
-            <div class="reviews-col">
-                <span class="icon"><i class="fa-solid fa-user"></i></span>
-                <div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
-                        penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium 
-                        quis, sem. Nulla consequat massa quis enim. 
-                    </p>
-                    <h3>Name of Customer</h3>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-            </div>
-
-            <div class="reviews-col">
-                <span class="icon"><i class="fa-solid fa-user"></i></span>
-                <div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
-                        penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium 
-                        quis, sem. Nulla consequat massa quis enim. 
-                    </p>
-                    <h3>Name of Customer</h3>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star-half-stroke"></i>
-                </div>
-            </div>
-        </div>
     </div>
     </section>
 
+    <!---------- Footer Section ---------->
     <section class="footer">
-        <div class="abt-us">
-            <h4>About Us</h4>
-            <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque 
-                penatibus et magnis dis parturient montes, nascetur ridiculus mus. 
-            </p>
+        <div class="container">
+            <div class="row">
+                <div class="column about-us">
+                    <h3>About PokéRent</h3>
+                    <p>
+                        PokéRent brings the magic of Pokémon to everyday life. From 
+                        cleaning and healing to unforgettable events, our Pokémon 
+                        partners are ready to lend a hand (or paw)! Rent your ideal Pokémon 
+                        for any occasion and experience the wonder firsthand.
+                    </p>
+                </div>
+
+                <div class="column service-col">
+                    <h3>Services</h3>
+                    <p>Blastoise Car Cleaning</p>
+                    <p>Sylveon's Medical Care</p>
+                    <p>Fishing with Cramorant</p>
+                    <p>Roasting Smores with Cyndaquil</p>
+                    <p>Playing with Togepi</p>
+                    <p>Jigglipuff Singing a Lullaby</p>
+                    <p>Bring Mr. Mime to your Party</p>
+                </div>
+
+                <div class="column contact">
+                    <h3>Contact</h3>
+                    <p><i class="fa-solid fa-location-dot"></i>123 Made-Up Road, Montreal, Quebec</p>    
+                    <p><i class="fa-solid fa-phone"></i>(514) 123 - 4567</p>    
+                    <p><i class="fa-solid fa-envelope"></i>pokerent@gmail.com</p>    
+                </div>
+
+                <div class="column follow-us">
+                    <h3>Follow Us</h3>
+                    <a class="socials-btn" href="https://www.facebook.com" role="button"><i class="fa-brands fa-facebook"></i></a>
+                    <a class="socials-btn" href="https://x.com/?lang=en" role="button"><i class="fa-brands fa-twitter"></i></a>
+                    <a class="socials-btn" href="https://www.instagram.com" role="button"><i class="fa-brands fa-instagram"></i></a> 
+                </div>
+            </div>
         </div>
 
-        <div class="icons">
-            <a href="https://www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://x.com/?lang=en"><i class="fa-brands fa-twitter"></i></a>
-            <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a> 
+        <div class="copyright">
+            <p>Copyright &copy 2024. All Rights Reserved.</p>
         </div>
-        <p>&copy Company Name 2024</p>
     </section>
 
     <script src="/javascript/navbar.js"></script>
-    <script src="/javascript/slideshow.js"></scripts>
+    <script src="/javascript/slideshow.js"></script>
+    <script src="/javascript/home.js"></script>
+
 </body>
 </html>

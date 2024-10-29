@@ -1,20 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 
+:root {
+    --color-primary: #00b4d8;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f6;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
 .logo{
-    font-size: 32px;
-    color: #212427;
-    text-decoration: none;
-    font-weight: 700;
-    user-select: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem;
 }
 
 .navbar a{
     position: relative;
-    font-size: 18px;
-    color: #212427;
+    font-size: 1.2rem;
+    color: var(--color-dark);
     font-weight: 500;
     text-decoration: none;
-    margin-left: 40px;
+    margin-left: 2.5rem;
+    transition: all .3s ease;
+}
+
+.navbar a:hover{
+    color: var(--color-primary);
 }
 
 .navbar a::before{
@@ -24,8 +57,8 @@
     left: 0;
     height: 3px;
     width: 0;
-    background-color: #212427;
-    transition: .3s;
+    background-color: var(--color-primary);
+    transition: all .3s ease;
 }
 
 .navbar a:hover::before{
@@ -34,25 +67,30 @@
 
 .navbar .login-btn{
     border: none;
-    color: #faf9fa;
-    background: #212427;
-    border-radius: 10px;
-    padding: 8px 25px;
-    font-size: 18px;
+    color: var(--color-white);
+    background: var(--color-dark);
+    border-radius: var(--border-radius-2);
+    padding: 0.8rem 2.5rem;
+    font-size: 1.2rem;
     font-weight: 500;
-    margin-left: 40px;
+    margin-left: 1.5rem;
     cursor: pointer;
-    transition: 0.25s;
+    transition: all 0.25s ease;
 }
 
 .navbar .login-btn:hover{
-    background-color: #c8c8c8;
+    box-shadow: var(--box-shadow);
+    color: var(--color-primary);
+    background-color: var(--color-light);
+    border-color: var(--color-primary);
+    border-style: solid;
+    border-width: 2px;
 }
 
 .toggle-btn{
     position: relative;
     font-size: 2rem;
-    color: #212427;
+    color: var(--color-dark);
     cursor: pointer;
     display: none;
 }
@@ -65,18 +103,25 @@
     background-color: transparent;
 }
 
-/* Breakdown */
+/* ------------- NavBar Responsiveness ------------- */
 @media(max-width: 880px){
     .header{
-        padding: 20px 50px ;
+        padding: 2rem 2rem;
     }
+
 
     .toggle-btn{
         display: block;
+        background: transparent;
+    }
+
+    .toggle-btn.active{
+        background-color: transparent;
     }
 
     .toggle-btn.active::before{
         content: '\f00d';
+        background-color: transparent;
     }
 
     .header .navbar{
@@ -84,11 +129,11 @@
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: #faf9fa;
+        background-color: var(--color-white);
         padding: 0 5%;
         box-shadow: 0 1rem 1rem rgba(0, 0, 0, .2);
         transform: scale(0);
-        transition: 0s ease;
+        transition: all 0s ease;
         transform-origin: top center;
     }
 
@@ -99,7 +144,7 @@
     .header .navbar a{
         display: block;
         margin: 1.5rem 0;
-        font-size: 20px;
+        font-size: 1.5rem;
     }
 
     .navbar a::before{
@@ -107,14 +152,14 @@
     }
 
     .navbar a:hover{
-        color: #c8c8c8;
+        color: var(--color-primary);
     }
-    
+
     .navbar .login-btn{
         display: block;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: 20px;
-        padding: 15px 50px;
-    } 
+        margin-bottom: 1.5rem;
+        padding: .75rem 2rem;
+    }
 }
