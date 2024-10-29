@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/customer-admin.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>Logo</h2>
+                </div>
+
+                <div class="close" id="close-btn">
+                    <span class="icons"><i class="fa-solid fa-xmark"></i></span>
+                </div>
+            </div>
+
+            <!--Sidebar has different tabs for admin-->
+            <div class="sidebar">
+                <!--Dashboard/Summary-->
+                <a href="admin-dashboard.html" class="active">
+                    <span class="icons"><i class="fa-solid fa-house"></i></span>
+                    <h3 href="#">Dashboard</h3>
+                </a>
+
+                <!--List of Customers-->
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-user"></i></span>
+                    <h3 href="#">Customers</h3>
+                </a>
+
+                <!--Scheduled Services-->
+                <a href="admin-manage-services.html">
+                    <span class="icons"><i class="fa-solid fa-bars-progress"></i></span>
+                    <h3 href="#">Manage Services</h3>
+                </a>
+
+                <!--Edit Client View-->
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-window-restore"></i></span>
+                    <h3 href="#">Modify Website</h3>
+                </a>
+
+                <!--Profile Settings-->
+                <a href="admin-settings.html">
+                    <span class="icons"><i class="fa-solid fa-gear"></i></span>
+                    <h3 href="#">Settings</h3>
+                </a>
+
+                <!--Log out-->
+                <a href="/html/home.html">
+                    <span class="icons"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                    <h3 href="#">Log Out</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <div class="top">
+                <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Matteo</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-picture">
+                        <img src="/images/profile-pic.webp">
+                    </div>
+                </div>
+            </div>
+
+            
+<!-- This is where I am adding some new code for the table im importing from admin dashboard-->
+<div class="recent-bookings">
+    <h2>Client History</h2>
+
+    <form class="search-form" onsubmit="return false;">
+        <button type="submit">Search</button>
+        <label for="email-search"></label>
+        <input type="search" id="email-search" name="query" placeholder="Enter client email">
+        <button>Add Members +</button>
+      </form>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Client Name</th>
+                <th>Email</th>
+                <th>Joined Date</th>
+                <th>Time</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>John1234@gmail.com</td>
+                <td>Oct 19, 2024</td>
+                <td>2:00 PM</td>
+                <td class="primary">Details</td>
+            </tr>  
+            <tr>
+                <td>Jane Doe</td>
+                <td> DoeJane4278@gmail.com</td>
+                <td>Oct 19, 2024</td>
+                <td>2:00 PM</td>
+                <td class="primary">Details</td>
+            </tr>      
+            <tr>
+                <td>Brad Smith</td>
+                <td>Smith4222@hotmail.com</td>
+                <td>Sept 4, 2024</td>
+                <td>11:30 AM</td>
+                <td class="primary">Details</td>
+            </tr>
+            <tr>
+                <td>Holly Grant</td>
+                <td>HollyG721@outlook.com</td>
+                <td>Nov 7, 2024</td>
+                <td>4:45 PM</td>
+                <td class="primary">Details</td>
+            </tr>
+            <tr>
+                <td>Lily West</td>
+                <td>West644@gmail.com</td>
+                <td>June 27, 2024</td>
+                <td>9:20 AM</td>
+                <td class="primary">Details</td>
+            </tr>
+            <tr>
+              <td>Sarah Knowles</td>
+              <td>Sarah_Knowles88@hotmail.com</td>
+              <td>Oct 22, 2024</td>
+              <td>1:30 PM</td>
+              <td class="primary">Details</td>
+            </tr>
+            <tr>
+                <td>Theo Mannuel</td>
+                <td>Mannuel2828@outlook.com</td>
+                <td>Sept 10, 2024</td>
+                <td>12:05 PM</td>
+                <td class="primary">Details</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="">Show All</a>
+</div>
+            <!-- This is where I am ending some new code for the table im importing from admin dashboard-->
+        </main>
+    </div>
+</body>
+</html>
+
+
