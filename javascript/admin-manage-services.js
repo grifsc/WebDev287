@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const overlay = document.getElementById('overlay');               
     //popup form
     const popup = document.getElementById('popup');                   
-    //For when user clicks a day on the calendar
+    //for when user clicks a day on the calendar
     const selectedDayElement = document.getElementById('selectedDay'); 
-    //All the days on the calendar
+    //all the days on the calendar
     const days = document.querySelectorAll('.day');                   
     //close 
     const closeBtn = document.querySelector('.close-btn');            
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loadSchedule(dayNumber);                                       
     }
 
-    //remove the dim effect and close the popup and 
+    //remove the dim effect and close the popup 
     function closePopup() {
         overlay.classList.remove('active');  
         popup.classList.remove('active');     
