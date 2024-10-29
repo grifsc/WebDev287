@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/admin-dashboard.css">
     <link rel="stylesheet" href="/css/admin-profile-dropdown.css">
     <link rel="stylesheet" href="/css/admin-customers.css">
+    <link rel="stylesheet" href="/css/admin-settings.css">
 </head>
 <body>
     <div class="container">
@@ -86,6 +87,7 @@
                                     <th>Time</th>
                                     <th>Service <br> Status</th>
                                     <th>Payement <br> Status</th>
+                                    <th></th>
                                 </tr>
                             </thead>
         
@@ -101,7 +103,15 @@
                             </tbody>
                         </table>
                     </div>
-                    
+                    <div class="popup-form" id="popup-form-name">
+                        <h3>Edit Name</h3>
+                        <form id="nameForm">
+                            <input type="text" id="newName" name="newName" placeholder="Enter new name" required>
+                            <!-- Two buttons: Save and Cancel -->
+                            <button type="button" class="cancel-btn" onclick="hidePopup()">Cancel</button>
+                            <button type="submit" class="save-btn">Save</button>
+                        </form>
+                    </div>
         </main>
 
         <div class="right">
