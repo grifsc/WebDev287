@@ -1,7 +1,7 @@
 /*make table scrollable*/
 main .recent-bookings{
     margin-top: 2rem;
-    height: 700px;
+    height: 500px;
     overflow-y: auto;
 
 }
