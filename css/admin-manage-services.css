@@ -15,20 +15,23 @@
 }
 
 .calendar th, .calendar td {
-    border: 1px solid #ccc !important;
+    border: 2px solid #ccc !important;
     padding: 0;
     width: 14.28%;
     height: 100px;
     text-align: right;
     vertical-align: top;
     padding: 8px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     cursor: pointer;
+}
+.calendar td {
+    color: var(--color-primary)
 }
 
 .calendar th {
-    background-color: #f4f4f4;
-}
+    background-color: var(--color-primary);
+}   
 
 .calendar td:hover {
     background-color: #f0f8ff;
@@ -64,7 +67,7 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 370px;
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
     z-index: 1000;
@@ -92,7 +95,6 @@
 
 .schedule-table td.selected {
     background-color: #00b4d8;
-    color: white;
 }
 
 /* Close button */

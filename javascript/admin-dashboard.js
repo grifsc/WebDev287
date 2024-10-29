@@ -25,7 +25,7 @@ Bookings.forEach(booking => {
             booking.status === 'Complete' ? 'success' :
             'primary'
         }">${booking.status}</td>
-        <td class="primary">Details</td>
+       
     `;
 
     tr.innerHTML = trContent;
