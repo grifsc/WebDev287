@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Contact Us</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="/css/navbar-styles.css">
     <link rel="stylesheet" href="/css/contact-styles.css">
 </head>
 <body>
-    <!---------- Initial View Section ---------->
+    <!---------- NavBar Section ---------->
     <section class="header">
         <div class="logo">
             <img src="/images/logo.png" alt="404">
@@ -25,6 +25,7 @@
         </nav>
     </section>
 
+    <!---------- Contact Body Section ---------->
     <section class="contact">
         <div class="content">
             <h1>Get in Touch</h1>
@@ -36,69 +37,73 @@
         </div>
 
         <div class="container">
-            <div class="contact-info">
-                <div class="box">
-                    <div class="icon"><i class="fa-solid fa-location-dot"></i></div> 
-                    <div class="text">
-                        <h2 class="address">Address</h2>
-                        <p>123 Made-Up Road, <br>Montreal, Quebec <br>H1A 123 </p>
+            <div class="grid">
+                <div class="contact-info">
+                    <div class="box">
+                        <div class="icon"><i class="fa-solid fa-location-dot"></i></div> 
+                        <div class="text">
+                            <h2 class="address">Address</h2>
+                            <p>123 Made-Up Road, <br>Montreal, Quebec <br>H1A 123 </p>
+                        </div>
+                    </div>
+    
+                    <div class="box">
+                        <div class="icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="text">
+                            <h2 class="phone">Phone Number</h2>
+                            <p>(514) 123 - 4567</p>
+                        </div>
+                    </div>
+    
+                    <div class="box">
+                        <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="text">
+                            <h2 class="email">Email</h2>
+                            <p>pokerent@gmail.com</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="box">
-                    <div class="icon"><i class="fa-solid fa-phone"></i></div>
-                    <div class="text">
-                        <h2 class="phone">Phone Number</h2>
-                        <p>(514) 123 - 4567</p>
-                    </div>
+    
+                <div class="contact-form">
+                    <form>
+                        <h2>Send Message</h2>
+                        <div class="input-box">
+                            <input type="text" required>
+                            <label>Full Name</label>
+                        </div>
+    
+                        <div class="input-box">
+                            <input type="email" required>
+                            <label>Email</label>
+                        </div>
+    
+                        <div class="input-box message-box">
+                            <textarea required></textarea>
+                            <label>Type your Message...</label>
+                        </div>
+    
+                        <div class="btn-box">
+                            <button class="btn">Send</button>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="box">
-                    <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-                    <div class="text">
-                        <h2 class="email">Email</h2>
-                        <p>pokerent@gmail.com</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <form>
-                    <h2>Send Message</h2>
-                    <div class="input-box">
-                        <input type="text" required>
-                        <label>Full Name</label>
-                    </div>
-
-                    <div class="input-box">
-                        <input type="email" required>
-                        <label>Email</label>
-                    </div>
-
-                    <div class="input-box message-box">
-                        <textarea required></textarea>
-                        <label>Type your Message...</label>
-                    </div>
-
-                    <div class="btn-box">
-                        <button class="btn">Send</button>
-                    </div>
-                </form>
             </div>
         </div>
     </section>
 
     <section class="footer">
-        <div class="icons">
-            <a href="https://www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://x.com/?lang=en"><i class="fa-brands fa-twitter"></i></a>
-            <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a> 
+        <div class="column follow-us">
+            <a class="socials-btn" href="https://www.facebook.com" role="button"><i class="fa-brands fa-facebook"></i></a>
+            <a class="socials-btn" href="https://x.com/?lang=en" role="button"><i class="fa-brands fa-twitter"></i></a>
+            <a class="socials-btn" href="https://www.instagram.com" role="button"><i class="fa-brands fa-instagram"></i></a> 
         </div>
-        <p>&copy Company Name 2024</p>
+
+        <div class="copyright">
+            <p>Copyright &copy 2024. All Rights Reserved.</p>
+        </div>
     </section>
 
     <script src="/javascript/navbar.js"></script>
     <script src="/javascript/slideshow.js"></scripts>
 </body>
-</html>
 </html>
