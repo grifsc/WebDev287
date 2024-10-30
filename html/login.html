@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Get Started</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="/css/navbar-styles.css">
     <link rel="stylesheet" href="/css/login-styles.css">
 </head>
 <body>
+    <!---------- NavBar Section ---------->
     <section class="header">
-        <a href="#" class="logo">Logo</a>
-
+        <div class="logo">
+            <img src="/images/logo.png" alt="404">
+            <h1>PokéRent</h1>
+        </div>
         <i class="fa-solid fa-bars toggle-btn"></i>
-
         <nav class="navbar">
             <a href="/html/home.html">Home</a>
             <a href="#">Services</a>
@@ -23,20 +25,20 @@
     </section>
 
     <section class="forms">
-        <!-- Log In Form -->
         <div class="wrapper">
+            <!-- Log In Form -->
             <div class="form-box login">
                 <h2>Log In</h2>
 
-                <form action="#">
+                <form id="loginForm" onsubmit="handleLogin(event)">
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                        <input type="email" required>
+                        <input type="email" id="email" required>
                         <label>Email</label>
                     </div>
                     <div class="input-box">
                         <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                        <input type="password" required>
+                        <input type="password" id="password" required>
                         <label>Password</label>
                     </div>
                     <div class="remember-forgot">
@@ -57,8 +59,8 @@
                 <h2>Registration</h2>
 
                 <div class="client-admin">
-                    <button class="client">Client</button>
-                    <button class="admin">Administrator</button>
+                    <label><input type="radio" name="user-type" value="client" class="client">Client</label>
+                    <label><input  type="radio" name="user-type" value="admin" class="admin">Administrator</label>
                 </div>
                 
                 <form action="#">
@@ -103,15 +105,19 @@
     </section>
 
     <section class="footer">
-        <div class="icons">
-            <a href="https://www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://x.com/?lang=en"><i class="fa-brands fa-twitter"></i></a>
-            <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a> 
+        <div class="column follow-us">
+            <a class="socials-btn" href="https://www.facebook.com" role="button"><i class="fa-brands fa-facebook"></i></a>
+            <a class="socials-btn" href="https://x.com/?lang=en" role="button"><i class="fa-brands fa-twitter"></i></a>
+            <a class="socials-btn" href="https://www.instagram.com" role="button"><i class="fa-brands fa-instagram"></i></a> 
         </div>
-        <p>&copy Company Name 2024</p>
+
+        <div class="copyright">
+            <p>Copyright &copy 2024. All Rights Reserved.</p>
+        </div>
     </section>
 
     <script src="/javascript/navbar.js"></script>
     <script src="/javascript/login.js"></script>
+    <script src="/javascript/sampleAccount.js"></script>
 </body>
 </html>
