@@ -59,7 +59,7 @@ body{
     width: 96%;
     margin: 0 auto;
     gap: 1.8rem;
-    grid-template-columns: 14rem 14rem auto;
+    grid-template-columns: 14rem auto;
 }
 
 /*----- Sidebar Styling -----*/
@@ -89,6 +89,7 @@ body{
     position: relative;
     height: 3.7rem;
     transition: all 0.03s ease;
+    text-decoration: none;
 }
 
 .sidebar a span{
