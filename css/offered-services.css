@@ -1,0 +1,22 @@
+li {
+    list-style-type: none;
+}
+
+label {
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+    align-self: top;
+}
+
+/* No longer in use due to switching to forms
+.horizontal-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+*/
