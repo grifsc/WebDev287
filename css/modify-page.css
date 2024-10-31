@@ -303,25 +303,40 @@ textarea {
 }
 
 /*----- All Popup Forms-----*/
-.popup-form{
+.overlay {
+    display: none;
     position: fixed;
-    top: 30%;
-    left: 30%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.popup-form {
+    position: fixed;
+    top: 50%;
+    left: 50%; 
     transform: translate(-50%, -50%);
-    background-color: red;
+    background-color: var(--color-white); 
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     z-index: 20;
+    display: none;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
 }
 
-.popup-form .active{
+.popup-form.active {
     display: block;
-    opacity: 1;
+    opacity: 1; 
 }
 
 .delete{
-    top: 40%;
-    left: 37%;
+    top: 50%;
+    left: 50%;
 }
 
 .confirm-msg{
