@@ -1,0 +1,41 @@
+*{
+    font-family: "Fredoka", sans-serif;
+}
+
+button {
+    background-color: #f44336;
+    color: white;
+    transition: background-color 0.3s ease;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+
+}
+
+button:hover {
+    background-color: #d32f2f;
+}
+
+
+li {
+    list-style-type: none;
+    margin: 1rem;
+}
+
+label {
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+    align-self: top;
+}
+
+.horizontal-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
