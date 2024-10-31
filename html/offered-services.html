@@ -6,55 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/default-client-sidebar.css">
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
     <link rel="stylesheet" href="/css/offered-services.css">
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="/images/logo.png" alt="404">
+                </div>
 
-            <!--Logo-->
-            <div class="logo">
-                <img src="/images/logo.png" alt="404">
+                <div class="close" id="close-btn">
+                    <span class="icons"><i class="fa-solid fa-xmark"></i></span>
+                </div>
             </div>
 
-            <!--Home-->
-            <a href="/html/client-home.html">
-                <span class="icons"><i class="fa-solid fa-house"></i></span>
-                <h3 href="#">Home</h3>
-            </a>
+            <div class="sidebar">
+                <a href="/html/client-home.html" class ="active">
+                    <span class="icons"><i class="fa-solid fa-house"></i></span>
+                    <h3 href="#">Home</h3>
+                </a>
+    
+                <!--Offered Services-->
+                <a href="/html/offered-services.html">
+                    <span class="icons"><i class="fa-solid fa-list-check"></i></span>
+                    <h3 href="#">Offered Services</h3>
+                </a>
+    
+                <!--Manage Orders-->
+                <a href="/html/manage-orders.html">
+                    <span class="icons"><i class="fa-solid fa-tags"></i></span>
+                    <h3 href="#">Manage Orders</h3>
+                </a>
+    
+                <!--Billing Overview-->
+                <a href="/html/client-finance.html">
+                    <span class="icons"><i class="fa-solid fa-money-check-dollar"></i></span>
+                    <h3 href="#">Billing Overview</h3>
+                </a>
+    
+                <!--Account Settings-->
+                <a href="#">
+                    <span class="icons"><i class="fa-solid fa-gear"></i></span>
+                    <h3 href="#">Account Settings</h3>
+                </a>
 
-            <!--Offered Services-->
-            <a href="offered-services.html">
-                <span class="icons"><i class="fa-solid fa-list-check"></i></span>
-                <h3 href="#">Offered Services</h3>
-            </a>
-
-            <!--Manage Orders-->
-            <a href="/html/manage-orders.html" class ="active">
-                <span class="icons"><i class="fa-solid fa-tags"></i></span>
-                <h3 href="#">Manage Orders</h3>
-            </a>
-
-            <!--Billing Overview-->
-            <a href="/html/client-finance.html">
-                <span class="icons"><i class="fa-solid fa-money-check-dollar"></i></span>
-                <h3 href="#">Billing Overview</h3>
-            </a>
-
-            <!--Account Settings-->
-            <a href="#">
-                <span class="icons"><i class="fa-solid fa-gear"></i></span>
-                <h3 href="#">Account Settings</h3>
-            </a>
-
-            <!--Log out-->
-            <a href="/html/home.html">
-                <span class="icons"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
-                <h3 href="#">Log Out</h3>
-            </a>
-        </div>
-
+                <!--Log out-->
+                <a href="/html/home.html">
+                    <span class="icons"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                    <h3 href="#">Log Out</h3>
+                </a>
+            </div>
+        </aside>
         <!--MAIN CONTENT-->
         <div style="overflow-x:auto;">
             <br>
