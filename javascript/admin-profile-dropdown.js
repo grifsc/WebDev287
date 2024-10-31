@@ -1,13 +1,7 @@
 // Function to toggle the profile dropdown menu
 function toggleDropdown() {
     const dropdownMenu = document.getElementById("profileDropdownMenu");
-    if (dropdownMenu.classList.contains("show-dropdown")) {
-        // Hide dropdown with transition
-        dropdownMenu.classList.remove("show-dropdown");
-    } else {
-        // Show dropdown with transition
-        dropdownMenu.classList.add("show-dropdown");
-    }
+    dropdownMenu.classList.toggle("show-dropdown");
 }
 
 // Close the dropdown if the user clicks outside of it

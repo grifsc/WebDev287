@@ -81,3 +81,17 @@ function closePopup() {
     // Remove overlay if it exists
     if (overlay) overlay.remove();
 }
+
+// Function to toggle the visibility of the sort dropdown menu
+function toggleSortDropdown() {
+    const sortDropdownMenu = document.getElementById("sortDropdownMenu");
+    sortDropdownMenu.classList.toggle("show-dropdown"); // Toggle the show-dropdown class
+}
+
+// Close the sort dropdown if the user clicks outside of it
+window.addEventListener("click", function (event) {
+    const sortDropdownMenu = document.getElementById("sortDropdownMenu");
+    if (!event.target.closest('.dropdown-sort') && sortDropdownMenu.classList.contains('show-dropdown')) {
+        sortDropdownMenu.classList.remove('show-dropdown');
+    }
+});
