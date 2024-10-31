@@ -1,3 +1,20 @@
+:root {
+    --color-primary: #00b4d8;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-dark: #363949;
+    --color-background: #f6f6f6;
+
+    --border-radius-1: 0.4rem;
+    --border-radius-3: 1.2rem;
+    --card-padding: 1.8rem;
+
+    --box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+}
+
 main .settings{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -7,7 +24,7 @@ main .settings{
 main .settings > div{
     background: var(--color-white);
     padding: var(--card-padding);
-    border-radius: var(--card-border-radius);
+    border-radius: var(--border-radius-3);
     margin-top: 1rem;
     box-shadow: var(--box-shadow);
     transition: all 0.03s ease;
@@ -123,7 +140,7 @@ button:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 20px;
+    padding: var(--card-padding);
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 20;
@@ -141,16 +158,16 @@ button:hover {
 .popup-form input[type="text"],
 .popup-form input[type="password"] {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+    padding: 1rem;
+    margin: 1rem 0;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
 /* Button styling inside the form */
 .popup-form button {
-    padding: 10px 20px;
-    margin: 10px;
+    padding: 1rem 1.5rem;
+    margin: 1rem;
     border: none;
     cursor: pointer;
 }
@@ -174,4 +191,3 @@ button:hover {
 .popup-form .cancel-btn:hover {
     background-color: #d32f2f;
 }
-

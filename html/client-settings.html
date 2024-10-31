@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Settings</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <link rel="stylesheet" href="/css/client-home.css">
     <link rel="stylesheet" href="/css/admin-settings.css">
     <link rel="stylesheet" href="/css/admin-profile-dropdown.css">
 </head>
@@ -64,11 +64,31 @@
 
 
         <main>
+            <div class="top">
+                <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>John</b></p>
+                        <small class="text-muted">Client</small>
+                    </div>
+                    <div class="profile-picture" onclick="toggleDropdown()">
+                        <img src="/images/profile-pic.webp">
+                    </div>
+            
+                    <!-- Profile dropdown menu -->
+                    <div class="dropdown">
+                        <div id="profileDropdownMenu" class="dropdown-content">
+                            <a href="admin-dashboard.html">Client Home</a>
+                            <a href="home.html">Settings</a>
+                            <a href="/html/home.html">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <h1>Settings</h1>
-
-
             <div class="settings">
-               
                 <div class="account-details">
                     <h1>My Account</h1>    
                     <!--Name Section-->
@@ -133,39 +153,12 @@
                 
                     <!-- Dimmed overlay -->
                     <div class="overlay" id="overlay"></div>
-                             
                 </div>      
             </div>
 
             
         </main>
-        
-        <!--Profile icon and name in top right-->
-        <div class="right">
-            <div class="top">
-                <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
-                <div class="profile">
-                    <div class="info">
-                        <p>Hey, <b>John</b></p>
-                        <small class="text-muted">Client</small>
-                    </div>
-                    <div class="profile-picture" onclick="toggleDropdown()">
-                        <img src="/images/profile-pic.webp">
-                    </div>
-            
-                    <!-- Profile dropdown menu -->
-                    <div class="dropdown">
-                        <div id="profileDropdownMenu" class="dropdown-content">
-                            <a href="client-home.html">Client Home</a>
-                            <a href="client-settings.html">Settings</a>
-                            <a href="/html/home.html">Log Out</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-       
-
+    </div>
     <script src="/javascript/bookings.js"></script>
     <script src="/javascript/admin-settings.js"></script>
     <script src="/javascript/admin-profile-dropdown.js"></script>
