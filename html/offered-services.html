@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Offered Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="/css/admin-dashboard.css">
     <link rel="stylesheet" href="/css/offered-services.css">
@@ -24,13 +24,13 @@
             </div>
 
             <div class="sidebar">
-                <a href="/html/client-home.html" class ="active">
+                <a href="/html/client-home.html">
                     <span class="icons"><i class="fa-solid fa-house"></i></span>
                     <h3 href="#">Home</h3>
                 </a>
     
                 <!--Offered Services-->
-                <a href="/html/offered-services.html">
+                <a href="/html/offered-services.html" class ="active">
                     <span class="icons"><i class="fa-solid fa-list-check"></i></span>
                     <h3 href="#">Offered Services</h3>
                 </a>
@@ -78,7 +78,7 @@
                 <label for="timeslot">Pick Your Timeslot: </label>
                 <br>
                 <br>
-                <select name="choose">
+                <select class="dropdown" name="choose">
                     <option>09:00 AM</option>
                     <option>10:00 AM</option>
                     <option>11:00 AM</option>
@@ -93,7 +93,7 @@
                 <label for="choose">Pick Your Service: </label>
                 <br>
                 <br>
-                <select name="choose">
+                <select class="dropdown" name="choose">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -106,7 +106,7 @@
                 <!--The devil is gone-->
                 <br>
                 <br>
-                <button type="submit">Submit</button>
+                <button type="submit" class="submit-btn">Submit</button>
                 <br>
                 <br>
             </form>
