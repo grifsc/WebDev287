@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="/css/client-home.css">
+    <link rel="stylesheet" href="/css/admin-profile-dropdown.css">
     <title>Client Home</title>
 </head>
 <body>
@@ -68,8 +69,17 @@
                         <p>Hey, <b>Matteo</b></p>
                         <small class="text-muted">Admin</small>
                     </div>
-                    <div class="profile-picture">
+                    <div class="profile-picture" onclick="toggleDropdown()">
                         <img src="/images/profile-pic.webp">
+                    </div>
+            
+                    <!-- Profile dropdown menu -->
+                    <div class="dropdown">
+                        <div id="profileDropdownMenu" class="dropdown-content">
+                            <a href="admin-dashboard.html">Dashboard</a>
+                            <a href="admin-settings.html">Settings</a>
+                            <a href="/html/home.html">Log Out</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,6 +120,7 @@
                 </table>
             </div>
         </main>
+        <script src="/javascript/admin-profile-dropdown.js"></script>
         <script src="/javascript/singleClientServices.js"></script>
         <script src="/javascript/clientHome.js"></script>
     </div>
