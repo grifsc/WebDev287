@@ -67,7 +67,7 @@ form {
     margin: 1rem 0;
 }
 
-.dropdown {
+.dropdown-option {
     display: inline-block;
     background: var(--color-light);
     border-radius: var(--border-radius-1);
