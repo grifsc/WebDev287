@@ -1,104 +1,104 @@
-// Function to show the popup and overlay with a smooth transition
+//Function to show the popup and overlay with a smooth transition
 function showPopup(type) {
-    // Get the overlay element that dims the background
+    //overlay element that dims the background
     const overlay = document.getElementById('overlay');
     
-    // Initialize variable to hold the selected popup element
+    //Initialize variable to hold the selected popup element
     let popup = null;
 
-    // Determine which popup to show based on the 'type' parameter
+    //determine which popup to show based on 'type' 
     if (type === 'name') {
-        popup = document.getElementById('popup-form-name');  // Get the 'Name' popup element
+        popup = document.getElementById('popup-form-name');  
     } else if (type === 'email') {
-        popup = document.getElementById('popup-form-email'); // Get the 'Email' popup element
+        popup = document.getElementById('popup-form-email'); 
     } else if (type === 'password') {
-        popup = document.getElementById('popup-form-password'); // Get the 'Password' popup element
+        popup = document.getElementById('popup-form-password'); 
     }
 
-    // Display the overlay by setting its display to 'block'
+    //set overlay display style to block
     overlay.style.display = 'block';
 
-    // Add 'active' class to the selected popup element for it to appear (typically this will trigger CSS styling/animations)
+    //add 'active' class to the selected popup element for it to appear
     popup.classList.add('active');
 
-    // Use setTimeout to trigger a smooth fade-in effect by setting opacity to 1 after display is set to 'block'
+    //smooth transition with time delay
     setTimeout(() => {
         overlay.style.opacity = '1';
-    }, 0);  // Delay is set to 0 to ensure display change happens before opacity transition
+    }, 0); 
 }
 
-// Function to hide the popup and overlay with a smooth transition
+//function to hide the popup and overlay
 function hidePopup() {
-    // Get the overlay element that dims the background
+    //overlay element that dims the background
     const overlay = document.getElementById('overlay');
 
-    // Select all popup forms to hide all open forms
+    //select all popup forms to hide all open forms
     const popups = document.querySelectorAll('.popup-form');
 
-    // Start fading out the overlay by setting its opacity to 0 (smooth transition via CSS)
+    //fade out by going to opacity 0
     overlay.style.opacity = '0';
 
-    // Remove 'active' class from all popups to hide them
+    //remove 'active' class from all popups to hide them
     popups.forEach(popup => {
-        popup.classList.remove('active');  // Remove class that shows the popup
+        popup.classList.remove('active'); 
     });
 
-    // After a short delay (300ms) to allow for the opacity transition, hide the overlay completely
+    //after a short delay (300ms) to allow for the opacity transition
     setTimeout(() => {
-        overlay.style.display = 'none';  // Set to 'none' to allow interaction with the page below
-    }, 300);  // Delay matches the duration of the CSS transition for opacity
+        //display none so it doesn't interfere with page interactions
+        overlay.style.display = 'none';  
+    }, 300); 
 }
 
-// Update the Name
-// Add an event listener to the name form's submit event
+//update the Name
+//add an event listener to the name form's submit event
 document.getElementById('nameForm').addEventListener('submit', function(event) {
-    // Prevent the default form submission behavior, which reloads the page
+    //prevent the default form submission behavior
     event.preventDefault();
     
-    // Retrieve the new name input by the user
+    //retrieve the new name input by the user
     var newName = document.getElementById('newName').value;
 
-    // Update the page's 'name' display element with the new name
+    //update the page's 'name' display element with the new name
     document.getElementById('name').innerText = newName;
 
-    // Close the popup and overlay after updating the name
+    //close the popup and overlay after updating the name
     hidePopup();
 });
 
-// Update the Email
-// Add an event listener to the email form's submit event
+//update the Email
+//add an event listener to the email form's submit event
 document.getElementById('emailForm').addEventListener('submit', function(event) {
-    // Prevent the default submission behavior
+    //prevent the default submission behavior
     event.preventDefault();
 
-    // Retrieve the new email input by the user
+    //retrieve the new email input by the user
     var newEmail = document.getElementById('newEmail').value;
 
-    // Update the page's 'email' display element with the new email
+    //update the page's 'email' display element with the new email
     document.getElementById('email').innerText = newEmail;
 
-    // Close the popup and overlay after updating the email
+    //close the popup and overlay after updating the email
     hidePopup();
 });
 
-// Update the Password
-// Add an event listener to the password form's submit event
+//update the Password
+//add an event listener to the password form's submit event
 document.getElementById('passwordForm').addEventListener('submit', function(event) {
     // Prevent the default form submission behavior
     event.preventDefault();
 
-    // Retrieve the new password input by the user
+    //retrieve the new password input by the user
     var newPassword = document.getElementById('newPassword').value;
 
-    // Display a masked version of the password on the page to protect privacy
+    //display a masked version of the password on the page to protect privacy
     document.getElementById('password').innerText = '********';
 
-    // Close the popup and overlay after updating the password
+    //close the popup and overlay after updating the password
     hidePopup();
 });
 
-// Hide popup when clicking on the overlay outside the popup form
+//hide popup when clicking on the overlay outside the popup form
 document.getElementById('overlay').addEventListener('click', function() {
-    // Call the hidePopup function to close the popup and hide the overlay
     hidePopup();
 });
