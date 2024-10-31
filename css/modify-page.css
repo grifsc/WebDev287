@@ -245,8 +245,12 @@ textarea {
     margin-bottom: 1rem;
 }
 
-.form-section .location .location-subtitle{
-    font-size: 1rem;
+.form-section p{
+    color: var(--color-info-dark);
+}
+
+.form-section .subtitle{
+    font-size: 1.2rem;
     margin: 0.4rem 0;
     font-weight: 500;
 }

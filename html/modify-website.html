@@ -13,7 +13,7 @@
         <aside>
             <div class="top">
                 <div class="logo">
-                    <h2>Logo</h2>
+                    <img src="/images/logo.png" alt="404">
                 </div>
 
                 <div class="close" id="close-btn">
@@ -78,15 +78,37 @@
                 <label for="welcome">Opening Message</label>
                 <input type="text" id="welcome" name="welcome" placeholder="Welcome to our cleaning services!">
 
-                <label for="description">Inital Short Hook</label>
-                <textarea id="description" name="description" placeholder="Enter descriptions..."></textarea>
+                <label for="description">Initial Short Hook</label>
+                <textarea id="description" name="description" placeholder="Enter description..."></textarea>
 
-                <label for="slideshow">Slideshow Display Images</label>
-                <input type="file" id="slideshow" name="slideshow" multiple>
+                <label for="welcome-background">Welcome Page Background Image</label>
+                <input type="file" id="welcome-background">
+
+                <div class="slideshow">
+                    <label for="location" class="subtitle">Slideshow</label>
+
+                    <label for="slideshow">Slideshow Display Images</label>
+                    <input type="file" id="slideshow" name="slideshow" multiple>
+
+                    <label for="slideshow">Caption for Image 1</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your caption" required>
+
+                    <label for="slideshow">Caption for Image 2</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your caption" required>
+
+                    <label for="slideshow">Caption for Image 3</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your caption" required>
+
+                    <label for="slideshow">Caption for Image 4</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your caption" required>
+                </div>
+
+                
 
                 <!-------- To be Change -------->
-                <label for="services">Services Offered</label>
-                <textarea id="services" name="services" placeholder="List your services..."></textarea>
+                <label for="services">Most Popular Services Offered</label>
+                <p>Select the services you want to display on the home page:</p>
+
             </div>
 
             <!-- Contact Page Section -->
@@ -100,7 +122,7 @@
                 <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
 
                 <div class="location">
-                    <label for="location" class="location-subtitle">Location</label>
+                    <label for="location" class="subtitle">Location</label>
 
                     <label for="address">Address</label>
                     <input type="text" id="address" name="address" placeholder="Enter your address" required>
@@ -117,28 +139,26 @@
             </div>
 
             <div class="form-section">
-                <h2>Contact Page</h2>
+                <h2>Modify Services Available</h2>
+            </div>
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="contact@example.com">
+            <div class="form-section">
+                <h2>Footer Elements</h2>
 
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                <label for="description">Brief About Us Description</label>
+                <textarea id="description" name="description" placeholder="Enter description..."></textarea>
 
-                <div class="location">
-                    <label for="location" class="location-subtitle">Location</label>
+                <div class="socials">
+                    <label for="socials" class="subtitle">Social Media Accounts</label>
 
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address" placeholder="Enter your address" required>
-                    
-                    <label for="city">City</label>
-                    <input type="text" id="city" name="city" placeholder="Enter your city" required>
-                    
-                    <label for="state">State/Province</label>
-                    <input type="text" id="state" name="state" placeholder="Enter your state or province" required>
-                    
-                    <label for="zip">Zip Code:</label>
-                    <input type="text" id="zip" name="zip" placeholder="Enter your zip code" required>
+                    <label for="social">Facebook Account Link</label>
+                    <input type="url" id="facebook-acc" class="facebook-acc" placeholder="Enter the link to the Facebook Account">
+
+                    <label for="social">Instagram Account Link</label>
+                    <input type="url" id="instagram-acc" class="instagram-acc" placeholder="Enter the link to the Instagram Account">
+
+                    <label for="social">Twitter Account Link</label>
+                    <input type="url" id="twitter-acc" class="twitter-acc" placeholder="Enter the link to the Twitter Account">
                 </div>
             </div>
 
