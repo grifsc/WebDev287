@@ -47,7 +47,7 @@
                 </a>
     
                 <!--Account Settings-->
-                <a href="#">
+                <a href="client-settings.html">
                     <span class="icons"><i class="fa-solid fa-gear"></i></span>
                     <h3 href="#">Account Settings</h3>
                 </a>
@@ -61,27 +61,30 @@
         </aside>
 
         <main>
+            <!--Profile icon and name in top right-->
+        <div class="right">
             <div class="top">
                 <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Matteo</b></p>
-                        <small class="text-muted">Admin</small>
+                        <p>Hey, <b>John</b></p>
+                        <small class="text-muted">Client</small>
                     </div>
                     <div class="profile-picture" onclick="toggleDropdown()">
                         <img src="/images/profile-pic.webp">
                     </div>
-
+            
                     <!-- Profile dropdown menu -->
                     <div class="dropdown">
                         <div id="profileDropdownMenu" class="dropdown-content">
-                            <a href="admin-dashboard.html">Dashboard</a>
-                            <a href="admin-settings.html">Settings</a>
+                            <a href="client-home.html">Client Home</a>
+                            <a href="client-settings.html">Settings</a>
                             <a href="/html/home.html">Log Out</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
             <div class="content-table">
                 <h1>Requested Services</h1>
