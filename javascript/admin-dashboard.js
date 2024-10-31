@@ -10,7 +10,6 @@ menuBtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
     sideMenu.style.display = 'none';
 });
-
 //Fill booking animations
 Bookings.forEach(booking => {
     const tr = document.createElement('tr');

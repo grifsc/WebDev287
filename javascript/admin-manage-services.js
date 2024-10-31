@@ -1,3 +1,17 @@
+//side menu
+const sideMenu = document.querySelector("aside");
+const menuBtn = document.querySelector("#menu-btn");
+const closeBtn = document.querySelector("#close-btn");
+
+menuBtn.addEventListener('click', () => {
+    sideMenu.style.display = 'block';
+});
+
+closeBtn.addEventListener('click', () => {
+    sideMenu.style.display = 'none';
+});
+
+
 // Wait until the entire document is loaded before running the code
 document.addEventListener('DOMContentLoaded', function () {
     //list of constants that will be used in the java script
