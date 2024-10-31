@@ -1,20 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 
-:root {
+:root{
     --color-primary: #00b4d8;
     --color-danger: #ff7782;
     --color-success: #41f1b6;
     --color-warning: #ffbb55;
     --color-white: #fff;
     --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
     --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
     --color-background: #f6f6f6;
 
+    --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
     --border-radius-3: 1.2rem;
-    --card-padding: 1.8rem;
 
-    --box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
 *{
@@ -278,6 +286,82 @@ textarea {
     box-shadow: none;
 }
 
+/*----- Current Service Display -----*/
+.service-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+.service-option img{
+    width: 50%;
+    border-radius: var(--border-radius-1);
+    margin-bottom: 1rem;
+}
+
+.service-option p{
+    line-height: 1.5rem;
+}
+
+/*----- All Popup Forms-----*/
+.popup-form{
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    background-color: red;
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    z-index: 20;
+}
+
+.popup-form .active{
+    display: block;
+    opacity: 1;
+}
+
+.delete{
+    top: 40%;
+    left: 37%;
+}
+
+.confirm-msg{
+    font-size: 1.4rem;
+}
+
+/*----- All Popup Buttons-----*/
+.add-service{
+    margin: 2rem 0;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: var(--color-primary);
+    font-weight: 800;
+    border-radius: var(--border-radius-2);
+    cursor: pointer;
+}
+
+.cancel-btn, .save-btn, .confirm-btn, .delete-btn, .edit-btn{
+    font-size: 0.9rem;
+    padding: 1rem;
+    background-color: var(--color-danger);
+    font-weight: 800;
+    border-radius: var(--border-radius-2);
+    cursor: pointer;
+}
+
+.save-btn{
+    background-color: var(--color-primary);
+}
+.confirm-btn{
+    background-color: var(--color-success);
+}
+
+.edit-btn{
+    background-color: var(--color-light);
+}
+
+.service-option .btn{
+    margin: 0.5rem 0.2rem;
+}
 
 @media screen and (max-width: 1200px){
     .container{
