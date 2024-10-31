@@ -179,12 +179,6 @@ aside .sidebar a span{
     transition: all 0.03s ease;
 }
 
-aside .sidebar a:last-child{
-    position: absolute;
-    bottom: 2rem;
-    width: 100%;
-}
-
 aside .sidebar a.active{
     background: var(--color-light);
     color: var(--color-primary);
@@ -210,7 +204,6 @@ aside .sidebar a:hover{
 aside .sidebar a:hover span{
     margin-left: 1rem;
 }
-
 /*----- Main Styling -----*/
 main{
     margin-top: 1.4rem;
