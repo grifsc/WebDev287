@@ -1,7 +1,7 @@
 const Clients = [
     {
         clientName: 'Alice Brown',
-        service: 'Service 2',
+        service: "Blastoise Car Cleaning",
         date: 'Oct. 31, 2024',
         time: '4:00 PM',
         status: 'Pending',
@@ -9,7 +9,7 @@ const Clients = [
     },
     {
         clientName: 'Sarah Knowles',
-        service: 'Service 1',
+        service: "Primeape's 1h boxing Lesson",
         date: 'Oct. 30, 2024',
         time: '12:00 PM',
         status: 'Pending',
@@ -17,7 +17,7 @@ const Clients = [
     },
     {
         clientName: 'Michael Turner',
-        service: 'Service 1',
+        service: "Sylveon's Medical Care",
         date: 'Oct. 29, 2024',
         time: '1:00 PM',
         status: 'Complete',
@@ -25,7 +25,7 @@ const Clients = [
     },
     {
         clientName: 'Rebecca Lee',
-        service: 'Service 2',
+        service: "Fishing with Cramorant",
         date: 'Oct. 28, 2024',
         time: '3:00 PM',
         status: 'Delayed',
@@ -33,7 +33,7 @@ const Clients = [
     },
     {
         clientName: 'John Doe',
-        service: 'Service 1',
+        service: "Roasting Smores with Cyndaquil",
         date: 'Oct. 25, 2024',
         time: '3:00 PM',
         status: 'Pending',
@@ -41,7 +41,7 @@ const Clients = [
     },
     {
         clientName: 'Chris Martin',
-        service: 'Service 3',
+        service: "Playing with Togepi",
         date: 'Oct. 22, 2024',
         time: '4:00 PM',
         status: 'Complete',
@@ -49,7 +49,7 @@ const Clients = [
     },
     {
         clientName: 'Lily West',
-        service: 'Service 3',
+        service: "Jigglypuff Singing a Lullaby",
         date: 'Oct. 16, 2024',
         time: '10:00 PM',
         status: 'Complete',
@@ -57,7 +57,7 @@ const Clients = [
     },
     {
         clientName: 'Jessica Adams',
-        service: 'Service 2',
+        service: "Bring Mr. Mime to your Party",
         date: 'Oct. 13, 2024',
         time: '9:00 AM',
         status: 'Pending',
@@ -65,7 +65,7 @@ const Clients = [
     },
     {
         clientName: 'Brad Smith',
-        service: 'Service 3',
+        service: "Blastoise Car Cleaning",
         date: 'Oct. 10, 2024',
         time: '2:00 PM',
         status: 'Delayed',
@@ -73,7 +73,7 @@ const Clients = [
     },
     {
         clientName: 'Theo Mannuel',
-        service: 'Service 3',
+        service: "Primeape's 1h Boxing Lesson",
         date: 'Oct. 8, 2024',
         time: '11:00 PM',
         status: 'Complete',
@@ -81,7 +81,7 @@ const Clients = [
     },
     {
         clientName: 'Evan Scott',
-        service: 'Service 1',
+        service: "Fishing with Cramorant",
         date: 'Oct. 2, 2024',
         time: '2:00 PM',
         status: 'Pending',
@@ -89,7 +89,7 @@ const Clients = [
     },
     {
         clientName: 'Jane Doe',
-        service: 'Service 3',
+        service: "Roasting Smores with Cyndaquil",
         date: 'Oct. 1, 2024',
         time: '12:00 PM',
         status: 'Complete',
