@@ -296,6 +296,7 @@ textarea {
 input[type="checkbox"] {
     all: unset;
     -webkit-appearance: checkbox;
+    appearance: checkbox; 
     accent-color: var(--color-primary);
     margin: 1rem;
 }
