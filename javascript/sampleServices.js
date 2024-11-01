@@ -8,22 +8,22 @@ const Services = [
     },
     {
         number: "2",
-        name: "Primeape's 1h Boxing Lesson",
-        description: "Join Primeape for an exhilarating one-hour boxing lesson, tailored for all skill levels. Whether you're a beginner looking to learn the basics or an experienced fighter wanting to refine your techniques, Primeape's energetic training will keep you motivated!",
+        name: "Primeapes 1h Boxing Lesson",
+        description: "Join Primeape for an exhilarating one-hour boxing lesson, tailored for all skill levels. Whether you are a beginner looking to learn the basics or an experienced fighter wanting to refine your techniques, Primeapes energetic training will keep you motivated!",
         image: "/images/57.png",
         price: "59.99"
     },
     {
         number: "3",
-        name: "Sylveon's Medical Care",
-        description: "Experience compassionate and gentle medical care with Sylveon's nurturing approach. Ideal for those seeking health services, Sylveon ensures a comfortable environment that promotes healing and well-being.",
+        name: "Sylveons Medical Care",
+        description: "Experience compassionate and gentle medical care with Sylveons nurturing approach. Ideal for those seeking health services, Sylveon ensures a comfortable environment that promotes healing and well-being.",
         image: "/images/700.png",
         price: "79.99"
     },
     {
         number: "4",
         name: "Fishing with Cramorant",
-        description: "Join Cramorant for an exciting fishing adventure, where you'll explore the best fishing spots while learning valuable techniques. Enjoy a day out in nature as Cramorant helps you catch unique fish and creates unforgettable memories!",
+        description: "Join Cramorant for an exciting fishing adventure, where you will explore the best fishing spots while learning valuable techniques. Enjoy a day out in nature as Cramorant helps you catch unique fish and creates unforgettable memories!",
         image: "/images/845.png",
         price: "39.99"
     },
