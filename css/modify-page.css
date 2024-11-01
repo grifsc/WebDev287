@@ -222,7 +222,13 @@ label {
     color: var(--color-info-dark);
 }
 
-input, textarea {
+input[type="text"], 
+input[type="email"], 
+input[type="password"], 
+input[type="tel"],
+input[type="url"],
+input[type="file"],
+textarea {
     width: 100%;
     padding: 0.5rem;
     border-radius: var(--border-radius-1);
@@ -284,6 +290,19 @@ textarea {
 .form-btn button:hover {
     opacity: 0.7;
     box-shadow: none;
+}
+
+/*----- Checkbox Display -----*/
+input[type="checkbox"] {
+    all: unset;
+    -webkit-appearance: checkbox;
+    accent-color: var(--color-primary);
+    margin: 1rem;
+}
+
+.checkbox-display label {
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 /*----- Current Service Display -----*/
@@ -390,6 +409,10 @@ textarea {
 
     aside .sidebar a{
         width: 5.6rem;
+    }
+
+    .service-list{
+        grid-template-columns: 1fr;
     }
 }
 
