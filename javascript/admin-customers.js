@@ -1,9 +1,9 @@
-// Iterate over each client in the Clients array to generate table rows dynamically
+//iterate over each client in the Clients array to generate table rows dynamically
 Clients.forEach(clients => {
-    // Create a new table row element for each client
+    //create a new table row element for each client
     const tr = document.createElement('tr');
 
-    // Define the inner HTML content for the row with table data (td) cells
+    //define the inner HTML content for the row with table data (td) cells
     const trContent = `
         <td>${clients.clientName}</td>    <!-- Displays client name -->
         <td>${clients.service}</td>       <!-- Displays service type -->
@@ -15,7 +15,7 @@ Clients.forEach(clients => {
             clients.status === 'Pending' ? 'warning' :
             clients.status === 'Delayed' ? 'danger' :
             clients.status === 'Complete' ? 'success' :
-            'primary'
+            'primary' //color
         }">${clients.status}</td>
 
         <!-- Paid status column with conditional classes for styling -->
@@ -23,7 +23,7 @@ Clients.forEach(clients => {
             clients.paid === 'Unserviced' ? 'warning' :
             clients.paid === 'Unpaid' ? 'danger' :
             clients.paid === 'Paid' ? 'success' :
-            'secondary'
+            'primary'
         }">${clients.paid}</td>
 
         <!-- Button to open the email popup for this client -->
@@ -32,26 +32,26 @@ Clients.forEach(clients => {
         </td>
     `;
 
-    //Assign the content to the row
+    //assign the content to the row
     tr.innerHTML = trContent;
 
-    //Append row to table body in the HTML document
+    //append row to table body in the HTML document
     document.querySelector('table tbody').appendChild(tr);
 });
 
 // Function to open the email popup along with an overlay to dim the background
 function openEmailPopup(clientName) {
-    // Create the overlay element to dim the background
+    //create the overlay element to dim the background
     const overlay = document.createElement('div');
-    //Add class to style the overlay
+    //add class to style the overlay
     overlay.classList.add('dim-overlay');   
     
-    //Attach closePopup() to close popup when overlay is clicked
+    //attach closePopup() to close popup when overlay is clicked
     overlay.onclick = closePopup;           
 
-    //Create the popup element for the email form
+    //create the popup element for the email form
     const popup = document.createElement('div');
-    //Add class to style  popup
+    //add class to style  popup
     popup.classList.add('email-popup');      
     
     //HTML for popup, client name, text area, send and cancel button
@@ -64,31 +64,31 @@ function openEmailPopup(clientName) {
         </div>
     `;
     
-    //Append the overlay and popup elements to the document body so they appear on the page
+    //append the overlay and popup elements to the document body so they appear on the page
     document.body.appendChild(overlay);
     document.body.appendChild(popup);
 }
 
 //Function to close the popup and remove the overlay from the DOM
 function closePopup() {
-    // Select the popup and overlay elements
+    //select the popup and overlay elements
     const popup = document.querySelector('.email-popup');
     const overlay = document.querySelector('.dim-overlay');
 
-    // Remove popup if it exists
+    //remove popup if it exists
     if (popup) popup.remove();
     
-    // Remove overlay if it exists
+    //remove overlay if it exists
     if (overlay) overlay.remove();
 }
 
-// Function to toggle the visibility of the sort dropdown menu
+//function to toggle the visibility of the sort dropdown menu
 function toggleSortDropdown() {
     const sortDropdownMenu = document.getElementById("sortDropdownMenu");
     sortDropdownMenu.classList.toggle("show-dropdown"); // Toggle the show-dropdown class
 }
 
-// Close the sort dropdown if the user clicks outside of it
+//close the sort dropdown if the user clicks outside of it
 window.addEventListener("click", function (event) {
     const sortDropdownMenu = document.getElementById("sortDropdownMenu");
     if (!event.target.closest('.dropdown-sort') && sortDropdownMenu.classList.contains('show-dropdown')) {
