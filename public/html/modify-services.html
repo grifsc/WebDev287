@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/modify-page.css">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="/images/logo.png" alt="404">
+                </div>
+
+                <div class="close" id="close-btn">
+                    <span class="icons"><i class="fa-solid fa-xmark"></i></span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="/html/admin-dashboard.html">
+                    <span class="icons"><i class="fa-solid fa-house"></i></span>
+                    <h3 href="#">Dashboard</h3>
+                </a>
+
+                <a href="admin-customers.html">
+                    <span class="icons"><i class="fa-solid fa-user"></i></span>
+                    <h3 href="#">Customers</h3>
+                </a>
+
+                <a href="admin-manage-services.html">
+                    <span class="icons"><i class="fa-solid fa-bars-progress"></i></span>
+                    <h3 href="#">Manage Services</h3>
+                </a>
+
+                <a href="modify-services.html" class="active">
+                    <span class="icons"><i class="fa-solid fa-window-restore"></i></span>
+                    <h3 href="#">Modify Services</h3>
+                </a>
+
+                <a href="/html/modify-website.html">
+                    <span class="icons" ><i class="fa-solid fa-window-restore"></i></span>
+                    <h3 href="#">Modify Website</h3>
+                </a>
+
+                <a href="admin-settings.html">
+                    <span class="icons"><i class="fa-solid fa-gear"></i></span>
+                    <h3 href="#">Setting</h3>
+                </a>
+
+                <a href="home.html">
+                    <span class="icons"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                    <h3 href="#">Log Out</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <div class="top">
+                <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Matteo</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-picture">
+                        <img src="/images/profile-pic.webp">
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <h1>Modify Website</h1>
+
+            <div class="form-section">
+                <div class="service-list">
+                    <!-- The services will appear dynamically -->
+                </div>
+
+                <!-- Popup Form to Add Service-->
+                <button class="btn add-service" onclick="openPopupForm('add')">Add Service</button>
+
+                <div id="popup-form-service" class="popup-form">
+                    <h2 class="popup-title">Add Service</h2>
+                    <input type="file" id="service-img" name="service-img" accept="image/*">
+                    <input type="text" id="service-name" name="service-name" placeholder="Enter service name">
+                    <textarea id="service-description" name="service-description" placeholder="Enter service description..."></textarea>
+                    <input type="number" id="service-price" placeholder="Enter service price">
+                
+                    <button class="cancel-btn" onclick="hidePopup()">Cancel</button>
+                    <button class="save-btn" onclick="">Save</button>
+                </div>
+
+                <!-- Delete Form Popup -->
+                <div id="popup-form-delete" class="popup-form">
+                    <h2>Confirm Delete</h2>
+                    <p class="confirm-msg">Are you sure you want to delete this service?</p>
+                    <br>
+                    <button class="cancel-btn" onclick="hidePopup()">Cancel</button>
+                    <button class="confirm-btn" onclick="">Confirm</button>
+                </div>
+
+                <!-- Overlay -->
+                <div class="overlay" id="overlay"></div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="/javascript/admin-dashboard.js"></script>
+    <script src="/javascript/modify-website.js"></script>
+    <script src="/javascript/sampleServices.js"></script>
+    <script src="/javascript/modifyWebsite.js"></script>
+</body>
+</html>

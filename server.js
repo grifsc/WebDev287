@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const path = require('path');
 const app = express();
-const PORT = 4000;
+const PORT = 8000;
 
 // Set up body parsers
 app.use(express.json());
@@ -75,6 +75,10 @@ app.get('/manage-orders', (req, res) => {
 
 app.get('/modify-website', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'modify-website.html'));
+});
+
+app.get('/modify-services', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'html', 'modify-services.html'));
 });
 
 app.get('/offered-services', (req, res) => {
