@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 19, 2024 at 05:23 PM
+-- Generation Time: Nov 19, 2024 at 10:03 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,21 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Bookings` (
   `id` int(50) NOT NULL,
-  `ClientID` int(50) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Service` varchar(100) NOT NULL,
-  `Status` varchar(50) NOT NULL,
-  `Payment` varchar(50) NOT NULL,
-  `Price` varchar(150) NOT NULL,
-  `Date` varchar(150) NOT NULL,
-  `Time` varchar(50) NOT NULL
+  `clientID` int(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `service` varchar(100) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `payment` varchar(50) NOT NULL,
+  `price` varchar(150) NOT NULL,
+  `date` varchar(150) NOT NULL,
+  `time` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Bookings`
 --
 
-INSERT INTO `Bookings` (`id`, `ClientID`, `Name`, `Service`, `Status`, `Payment`, `Price`, `Date`, `Time`) VALUES
+INSERT INTO `Bookings` (`id`, `clientID`, `name`, `service`, `status`, `payment`, `price`, `date`, `time`) VALUES
 (1, 3, 'Alice Brown', 'Blastoise Car Cleaning', 'Pending', 'Unpaid', '39.99', 'Mar. 28, 2024', '4:00 PM'),
 (2, 4, 'Sarah Knowles', 'Primeape\'s 1h boxing Lesson', 'Pending', 'Unpaid', '59.99', 'Dec. 30, 2024', '12:00 PM'),
 (3, 5, 'Michael Turner', 'Sylveon\'s Medical Care', 'Complete', 'Paid', '79.99', 'Oct. 29, 2024', '1:00 PM'),
@@ -65,20 +65,20 @@ INSERT INTO `Bookings` (`id`, `ClientID`, `Name`, `Service`, `Status`, `Payment`
 
 CREATE TABLE `Contact` (
   `id` int(50) NOT NULL,
-  `Description` varchar(500) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `Phone` varchar(50) NOT NULL,
-  `Adress` varchar(50) NOT NULL,
-  `City` varchar(50) NOT NULL,
-  `State` varchar(50) NOT NULL,
-  `ZipCode` varchar(50) NOT NULL
+  `description` varchar(500) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `adress` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `state` varchar(50) NOT NULL,
+  `zipcode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Contact`
 --
 
-INSERT INTO `Contact` (`id`, `Description`, `Email`, `Phone`, `Adress`, `City`, `State`, `ZipCode`) VALUES
+INSERT INTO `Contact` (`id`, `description`, `email`, `phone`, `adress`, `city`, `state`, `zipcode`) VALUES
 (1, ' We\'d love to hear from you! Whether you have questions about our Pokémon services, need assistance with a booking, or want to share your experience with Pokerent, our team is here to help. Reach out, and let\'s make your Pokémon adventure unforgettable! ', 'pokerent@gmail.com', '(514) 123 - 4567', '123 Made-Up Road', 'Montreal', 'Quebec', 'H1A 123');
 
 -- --------------------------------------------------------
@@ -89,17 +89,17 @@ INSERT INTO `Contact` (`id`, `Description`, `Email`, `Phone`, `Adress`, `City`, 
 
 CREATE TABLE `Footer` (
   `ID` int(50) NOT NULL,
-  `AboutUs` varchar(500) NOT NULL,
-  `Facebook` varchar(50) NOT NULL,
-  `Instagram` varchar(50) NOT NULL,
-  `Twitter` varchar(50) NOT NULL
+  `aboutUs` varchar(500) NOT NULL,
+  `facebook` varchar(50) NOT NULL,
+  `instagram` varchar(50) NOT NULL,
+  `twitter` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Footer`
 --
 
-INSERT INTO `Footer` (`ID`, `AboutUs`, `Facebook`, `Instagram`, `Twitter`) VALUES
+INSERT INTO `Footer` (`ID`, `aboutUs`, `facebook`, `instagram`, `twitter`) VALUES
 (1, 'PokéRent brings the magic of Pokémon to everyday life. From cleaning and healing to unforgettable events, our Pokémon partners are ready to lend a hand (or paw)! Rent your ideal Pokémon for any occasion and experience the wonder firsthand.', 'https://www.facebook.com', 'https://www.instagram.com', 'https://x.com/?lang=en');
 
 -- --------------------------------------------------------
@@ -110,33 +110,33 @@ INSERT INTO `Footer` (`ID`, `AboutUs`, `Facebook`, `Instagram`, `Twitter`) VALUE
 
 CREATE TABLE `HomePage` (
   `id` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Logo` varchar(150) NOT NULL,
-  `Welcome` varchar(150) NOT NULL,
-  `Hook` varchar(500) NOT NULL,
-  `Why` varchar(500) NOT NULL,
-  `Reason1` varchar(500) NOT NULL,
-  `Description1` varchar(500) NOT NULL,
-  `Reason2` varchar(500) NOT NULL,
-  `Description2` varchar(500) NOT NULL,
-  `Reason3` varchar(500) NOT NULL,
-  `Description3` varchar(500) NOT NULL,
-  `BackgroundImg` varchar(500) NOT NULL,
-  `Slide1` varchar(500) NOT NULL,
-  `Slide2` varchar(500) NOT NULL,
-  `Slide3` varchar(500) NOT NULL,
-  `Slide4` varchar(500) NOT NULL,
-  `Caption1` varchar(500) NOT NULL,
-  `Caption2` varchar(500) NOT NULL,
-  `Caption3` varchar(500) NOT NULL,
-  `Caption4` varchar(500) NOT NULL
+  `name` varchar(50) NOT NULL,
+  `logo` varchar(150) NOT NULL,
+  `welcome` varchar(150) NOT NULL,
+  `hook` varchar(500) NOT NULL,
+  `why` varchar(500) NOT NULL,
+  `reason1` varchar(500) NOT NULL,
+  `description1` varchar(500) NOT NULL,
+  `reason2` varchar(500) NOT NULL,
+  `description2` varchar(500) NOT NULL,
+  `reason3` varchar(500) NOT NULL,
+  `description3` varchar(500) NOT NULL,
+  `backgroundImg` varchar(500) NOT NULL,
+  `slide1` varchar(500) NOT NULL,
+  `slide2` varchar(500) NOT NULL,
+  `slide3` varchar(500) NOT NULL,
+  `slide4` varchar(500) NOT NULL,
+  `caption1` varchar(500) NOT NULL,
+  `caption2` varchar(500) NOT NULL,
+  `caption3` varchar(500) NOT NULL,
+  `caption4` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `HomePage`
 --
 
-INSERT INTO `HomePage` (`id`, `Name`, `Logo`, `Welcome`, `Hook`, `Why`, `Reason1`, `Description1`, `Reason2`, `Description2`, `Reason3`, `Description3`, `BackgroundImg`, `Slide1`, `Slide2`, `Slide3`, `Slide4`, `Caption1`, `Caption2`, `Caption3`, `Caption4`) VALUES
+INSERT INTO `HomePage` (`id`, `name`, `logo`, `welcome`, `hook`, `why`, `reason1`, `description1`, `reason2`, `description2`, `reason3`, `description3`, `backgroundImg`, `slide1`, `slide2`, `slide3`, `slide4`, `caption1`, `caption2`, `caption3`, `caption4`) VALUES
 (1, 'PokéRent', '/images/logo.png', 'Welcome to PokéRent!', 'Discover the magic of Pokémon-assisted services! From cleaning to healing, our friendly Pokémon are here to help you with a variety of tasks. Rent a Pokémon for your next project and experience the ease and efficiency of working alongside these amazing creatures. Let\'s make your life easier—one Pokémon at a time!', 'Why Choose Our PokéService Rentals?', 'Expert Assistance', 'Our Pokémon are specially trained to assist with various tasks, ensuring high-quality service every time. Whether it\'s cleaning or healing, our Pokémon have the skills you need!', 'Reliable and Trustworthy', 'We prioritize safety and trust. Each Pokémon in our service has been vetted and trained, so you can rest assured that they will handle your needs with care and professionalism.', 'Affordable Rentals', 'Enjoy competitive pricing on all our Pokémon rentals. We believe everyone should experience the magic of Pokémon assistance without breaking the bank!', '/images/background.jpg', '/images/blastoise-cleaning.jpg', '/images/cramorant-fishing.webp', '/images/togepi-playing.avif', '/images/jigglipuff-singing.webp', 'Your Personal Car Cleaning Champion! Let our water-blasting Pokémon handle the tough grime while you sit back and relax.', 'Casting Lines with Cramorant! Experience a unique fishing adventure as our skilled Pokémon swoops in to catch your dinner—just watch out for the occasional snack!', 'Playtime with Togepi! Experience joy and laughter as this little bundle of happiness brings fun and smiles to your day. Let\'s make magical memories together!', 'Jigglypuff\'s Serenade! Let the enchanting melodies of Jigglypuff soothe your soul as it fills the air with magical tunes. Get ready to sing along and drift into dreamland!');
 
 -- --------------------------------------------------------
@@ -175,18 +175,18 @@ INSERT INTO `Services` (`id`, `name`, `price`, `description`, `image`) VALUES
 
 CREATE TABLE `Users` (
   `id` int(10) NOT NULL,
-  `Admin` tinyint(1) NOT NULL,
-  `First` varchar(50) NOT NULL,
-  `Last` varchar(50) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Password` varchar(150) NOT NULL
+  `admin` tinyint(1) NOT NULL,
+  `first` varchar(50) NOT NULL,
+  `last` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Users`
 --
 
-INSERT INTO `Users` (`id`, `Admin`, `First`, `Last`, `Email`, `Password`) VALUES
+INSERT INTO `Users` (`id`, `admin`, `first`, `last`, `email`, `password`) VALUES
 (1, 1, 'Matteo', 'Admin', 'matteo@gmail.com', 'admin'),
 (2, 0, 'John', 'Doe', 'john.doe@gmail.com', 'client123'),
 (3, 0, 'Alice', 'Brown', 'alice.brown@gmail.com', 'client123'),

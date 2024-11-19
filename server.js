@@ -147,6 +147,62 @@ app.delete('/delete-service/:id', (req, res) => {
     });
 });
 
+/**
+ * 
+ * Bookings Access
+ * 
+*/
+// Get all services
+app.get('/services', (req, res) => {
+    const query = 'SELECT * FROM Bookings';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error retrieving bookings from database: ', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        res.json(results);
+    });
+});
+
+// Add new service
+app.post('/add-booking', (req, res) => {
+    const { id, clientID, name, service, status, payment, price, date, time} = req.body;
+    const query = 'INSERT INTO Bookings (id, clientID, name, service, status, payment, price, date, time) VALUES (?, ?, ?, ?)';
+    db.query(query, [clientID, name, service, status, payment, price, date, time, id], (err, result) => {
+        if (err) {
+            console.error('Error adding booking: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+// Edit booking
+app.post('/edit-booking', (req, res) => {
+    const { id, clientID, name, service, status, payment, price, date, time } = req.body;
+    const query = 'UPDATE Bookings SET clientID = ?, name = ?, service = ?, status = ?, payment = ?, price = ?, date = ?, time = ? WHERE id = ?';
+    db.query(query, [clientID, name, service, status, payment, price, date, time, id], (err, result) => {
+        if (err) {
+            console.error('Error updating booking: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+// Delete booking
+app.delete('/delete-booking/:id', (req, res) => {
+    const bookingId = req.params.id;
+    const query = 'DELETE FROM Bookings WHERE id = ?';
+    db.query(query, [bookingId], (err, result) => {
+        if (err) {
+            console.error('Error deleting booking: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
 
 // Start the server
 app.listen(PORT, () => {
