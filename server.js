@@ -152,8 +152,8 @@ app.delete('/delete-service/:id', (req, res) => {
  * Bookings Access
  * 
 */
-// Get all services
-app.get('/services', (req, res) => {
+// Get all booking
+app.get('/bookings', (req, res) => {
     const query = 'SELECT * FROM Bookings';
     db.query(query, (err, results) => {
         if (err) {
@@ -164,10 +164,10 @@ app.get('/services', (req, res) => {
     });
 });
 
-// Add new service
+// Add new booking
 app.post('/add-booking', (req, res) => {
     const { id, clientID, name, service, status, payment, price, date, time} = req.body;
-    const query = 'INSERT INTO Bookings (id, clientID, name, service, status, payment, price, date, time) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO Bookings (clientID, name, service, status, payment, price, date, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
     db.query(query, [clientID, name, service, status, payment, price, date, time, id], (err, result) => {
         if (err) {
             console.error('Error adding booking: ', err);
@@ -203,6 +203,61 @@ app.delete('/delete-booking/:id', (req, res) => {
     });
 });
 
+/**
+ * 
+ * Users Access
+ * 
+*/
+//Get all users
+app.get('/users', (req, res) => {
+    const query = 'SELECT * FROM Users';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error retrieving users from database: ', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        res.json(results);
+    });
+});
+
+// Add new user
+app.post('/add-user', (req, res) => {
+    const { id, admin, first, last, email, password } = req.body;
+    const query = 'INSERT INTO Users (admin, first, last, email, password) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [admin, first, last, email, password, id], (err, result) => {
+        if (err) {
+            console.error('Error adding user: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+// Edit booking
+app.post('/edit-user', (req, res) => {
+    const { id, admin, first, last, email, password} = req.body;
+    const query = 'UPDATE Users SET admin = ?, first = ?, last = ?, email = ?, password = ? WHERE id = ?';
+    db.query(query, [admin, first, last, email, password, id], (err, result) => {
+        if (err) {
+            console.error('Error updating user: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+// Delete booking
+app.delete('/delete-user/:id', (req, res) => {
+    const userId = req.params.id;
+    const query = 'DELETE FROM Users WHERE id = ?';
+    db.query(query, [userId], (err, result) => {
+        if (err) {
+            console.error('Error deleting user: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
 
 // Start the server
 app.listen(PORT, () => {
