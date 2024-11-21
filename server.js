@@ -111,7 +111,7 @@ app.get('/services', (req, res) => {
 // Add new service
 app.post('/add-service', (req, res) => {
     const { name, price, description, image} = req.body;
-    const query = 'INSERT INTO Services (name, price, description, image) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO Services (name, popular, price, description, image) VALUES (?, ?, ?, ?, ?)';
     db.query(query, [name, price, description, image], (err, result) => {
         if (err) {
             console.error('Error adding service: ', err);
@@ -124,7 +124,7 @@ app.post('/add-service', (req, res) => {
 // Edit service
 app.post('/edit-service', (req, res) => {
     const { id, name, price, description, image } = req.body;
-    const query = 'UPDATE Services SET name = ?, price = ?, description = ?, image = ? WHERE id = ?';
+    const query = 'UPDATE Services SET name = ?, popular = ?, price = ?, description = ?, image = ? WHERE id = ?';
     db.query(query, [name, price, description, image, id], (err, result) => {
         if (err) {
             console.error('Error updating service: ', err);
@@ -233,7 +233,7 @@ app.post('/add-user', (req, res) => {
     });
 });
 
-// Edit booking
+// Edit user
 app.post('/edit-user', (req, res) => {
     const { id, admin, first, last, email, password} = req.body;
     const query = 'UPDATE Users SET admin = ?, first = ?, last = ?, email = ?, password = ? WHERE id = ?';
@@ -246,13 +246,117 @@ app.post('/edit-user', (req, res) => {
     });
 });
 
-// Delete booking
+// Delete user
 app.delete('/delete-user/:id', (req, res) => {
     const userId = req.params.id;
     const query = 'DELETE FROM Users WHERE id = ?';
     db.query(query, [userId], (err, result) => {
         if (err) {
             console.error('Error deleting user: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+/**
+ * 
+ * Website Access
+ * 
+*/
+
+//Home Page Access
+//Get all home page information
+app.get('/home-page-info/:id', (req, res) => {
+    const { id } = req.params; 
+    const query = 'SELECT * FROM HomePage WHERE id = ?';
+
+    db.query(query, [id], (err, results) => {
+        if (err) {
+            console.error('Error retrieving home page information from database: ', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        if (results.length > 0) {
+            res.json(results[0]);
+        } else {
+            res.status(404).json({ message: 'Home page information not found' });
+        }
+    });
+});
+
+
+// Edit home page information
+app.post('/edit-home-page', (req, res) => {
+    const { id, name, logo, welcome, hook, why, reason1, description1, reason2, description2, reason3, description3, reason4, description4, backgroundImg, slide1, slide2, slide3, slide4, caption1, caption2, caption3, caption4 } = req.body;
+    const query = 'UPDATE HomePage SET name = ?, logo = ?, welcome = ?, hook = ?, why = ?, reason1 = ?, description1 = ?, reason2 = ?, description2 = ?, reason3 = ?, description3 = ?, reason4 = ?, description4 = ?, backgroundImg = ?, slide1 = ?, slide2 = ?, slide3 = ?, slide4 = ?, caption1 = ?, caption2 = ?, caption3 = ?, caption4 = ? WHERE id = ?';
+    db.query(query, [name, logo, welcome, hook, why, reason1, description1, reason2, description2, reason3, description3, reason4, description4, backgroundImg, slide1, slide2, slide3, slide4, caption1, caption2, caption3, caption4, id], (err, result) => {
+        if (err) {
+            console.error('Error updating home page: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+//Contact 
+//Get all contact information
+app.get('/contact-info/:id', (req, res) => {
+    const { id } = req.params; 
+    const query = 'SELECT * FROM Contact WHERE id = ?';
+    db.query(query,[id], (err, results) => {
+        if (err) {
+            console.error('Error retrieving contact information from database: ', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        if (results.length > 0) {
+            res.json(results[0]);
+        } else {
+            res.status(404).json({ message: 'Contact information not found' });
+        }
+    });
+});
+
+//Edit contact information
+app.post('/edit-contact', (req, res) => {
+    const { id, description, email, phone, address, city, state, zipcode } = req.body;
+    const query = 'UPDATE Contact SET description = ?, email = ?, phone = ?, address = ?, city = ?, state = ?, zipcode = ? WHERE id = ?';
+    db.query(query, [description, email, phone, address, city, state, zipcode, id], (err, result) => {
+        if (err) {
+            console.error('Error updating contact information: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+//Footer Information
+//Get all footer information
+app.get('/footer-info/:id', (req, res) => {
+    const { id } = req.params; 
+    const query = 'SELECT * FROM Footer WHERE id = ?';
+    db.query(query,[id], (err, results) => {
+        if (err) {
+            console.error('Error retrieving footer information from database: ', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        if (results.length > 0) {
+            res.json(results[0]);
+        } else {
+            res.status(404).json({ message: 'Footer information not found' });
+        }
+    });
+});
+
+// Edit user
+app.post('/edit-footer', (req, res) => {
+    const { id, aboutUs, facebook, instagram, twitter} = req.body;
+    const query = 'UPDATE Footer SET aboutUs = ?, facebook = ?, instagram = ?, twitter = ? WHERE id = ?';
+    db.query(query, [aboutUs, facebook, instagram, twitter, id], (err, result) => {
+        if (err) {
+            console.error('Error updating footer information: ', err);
             return res.status(500).json({ success: false });
         }
         res.json({ success: true });

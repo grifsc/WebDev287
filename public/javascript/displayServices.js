@@ -1,5 +1,18 @@
 // Load and display services
 function loadServices() {
+    //Display the logo and company name
+    fetch('/home-page-info/1')  
+        .then(response => response.json())
+        .then(data => {
+            const logoContainer = document.querySelector('.logo');
+            logoContainer.innerHTML = `
+                    <img src="${data.logo}" alt="Logo">
+                    <h1>${data.name}</h1>
+                `;
+        })
+        .catch(error => console.error('Error loading services:', error));
+
+    //Display the services
     fetch('/services')
         .then(response => response.json())
         .then(services => {
