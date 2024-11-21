@@ -78,7 +78,7 @@ CREATE TABLE `Contact` (
 -- Dumping data for table `Contact`
 --
 
-INSERT INTO `Contact` (`id`, `description`, `email`, `phone`, `adress`, `city`, `state`, `zipcode`) VALUES
+INSERT INTO `Contact` (`id`, `description`, `email`, `phone`, `address`, `city`, `state`, `zipcode`) VALUES
 (1, ' We\'d love to hear from you! Whether you have questions about our Pokémon services, need assistance with a booking, or want to share your experience with Pokerent, our team is here to help. Reach out, and let\'s make your Pokémon adventure unforgettable! ', 'pokerent@gmail.com', '(514) 123 - 4567', '123 Made-Up Road', 'Montreal', 'Quebec', 'H1A 123');
 
 -- --------------------------------------------------------
@@ -99,7 +99,7 @@ CREATE TABLE `Footer` (
 -- Dumping data for table `Footer`
 --
 
-INSERT INTO `Footer` (`ID`, `aboutUs`, `facebook`, `instagram`, `twitter`) VALUES
+INSERT INTO `Footer` (`id`, `aboutUs`, `facebook`, `instagram`, `twitter`) VALUES
 (1, 'PokéRent brings the magic of Pokémon to everyday life. From cleaning and healing to unforgettable events, our Pokémon partners are ready to lend a hand (or paw)! Rent your ideal Pokémon for any occasion and experience the wonder firsthand.', 'https://www.facebook.com', 'https://www.instagram.com', 'https://x.com/?lang=en');
 
 -- --------------------------------------------------------
