@@ -33,10 +33,6 @@
     color: var(--color-dark);
 }
 
-body{
-    overflow: hidden;
-}
-
 .header{
     position: absolute;
     top: 0;
