@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
 const path = require('path');
+const session = require('express-session')
 const app = express();
 const PORT = 8000;
 
@@ -27,6 +28,14 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve static files (CSS, JS, images)
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Set up the session
+app.use(session({
+    secret: 'key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: false}
+}));
 
 // Home page route
 app.get('/', (req, res) => {
@@ -70,7 +79,7 @@ app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'home.html'));
 });
 
-app.get('/login', (req, res) => {
+app.get('/login-page', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'login.html'));
 });
 
@@ -82,13 +91,52 @@ app.get('/modify-website', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'modify-website.html'));
 });
 
-//Connect external file for modify-services
 app.get('/modify-services', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'modify-services.html'));
 });
 
 app.get('/offered-services', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'offered-services.html'));
+});
+
+/**
+ * 
+ * Using session for the login
+ */
+app.post('/login', (req,res) => {
+    const { email, paswword} = req.body;
+    const query = 'SELECT * FROM Users WHERE email = ? and password = ?';
+    db.query(query, [email, password], (err,results) => {
+        if(err){
+            console.error('Error logging in: ', err);
+            return res.status(500).json({success: false});
+        }
+
+        if(result.length > 0){
+            const user = result[0];
+            req.session.userId = user.id;
+            req.session.isAdmin = user.admin;
+
+            //Redirect depending on role
+            if(user.admin){
+                return res.redirect('/html/admin-dashboard.html');
+            }else{
+                return res.redirect('/html/client-home.html');
+            }
+        }else{
+            res.status(401).json({messsage: 'Invalid email or password'});
+        }
+    });
+});
+
+//Logout
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if(err){
+            return res.status(500).json({success: false});
+        }
+        res.redirect('/html/home.html')
+    }); 
 });
 
 /**
