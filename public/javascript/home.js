@@ -16,6 +16,10 @@ function loadHomePage() {
                 <p>${data.hook}</p>
             `;
 
+            //Modify the background set in css for the welcome view
+            const welcomeBackgroundImg = document.querySelector('.initial-description')
+            welcomeBackgroundImg.style.backgroundImage = `url(${data.backgroundImg})`;
+
             // Display the benefits view
             const benefitsContainer = document.querySelector('.why-us');
             benefitsContainer.innerHTML = `
