@@ -26,10 +26,11 @@ function loadServices() {
                     
                     let thisimage = "";
                     for (let index = 0; index < serviceimage.length; index++) {
-                        if (serviceimage[index][0] == booking.name) {
+                        if (serviceimage[index][0] == booking.service) {
                             thisimage = serviceimage[index][1];
                             break;
                         }
+                    
                     }
 
                     const bookingsInfo = `

@@ -1,3 +1,113 @@
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const userTableContainer = document.getElementById("userTableContainer");
+
+    // Fetch users from the API
+    fetch("/users")
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch user data.");
+            }
+            return response.json();
+        })
+        .then((users) => {
+            if (users.length === 0) {
+                userTableContainer.innerHTML = "<p>No users found.</p>";
+                return;
+            }
+
+            const table = document.createElement("table");
+            table.classList.add("user-table");
+
+            // Add table headers
+            const thead = document.createElement("thead");
+            const headerRow = document.createElement("tr");
+
+            const headers = ["ID", "Name", "Email", "Send Email", "Remove"];
+            headers.forEach((header) => {
+                const th = document.createElement("th");
+                th.textContent = header;
+                headerRow.appendChild(th);
+            });
+
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Add table body
+            const tbody = document.createElement("tbody");
+
+            users.forEach((user) => {
+                const row = document.createElement("tr");
+
+                // ID column
+                const idCell = document.createElement("td");
+                idCell.textContent = user.id;
+                row.appendChild(idCell);
+
+                // Name column (First name + Last name)
+                const nameCell = document.createElement("td");
+                nameCell.textContent = `${user.first}  ${user.last}`;
+                row.appendChild(nameCell);
+
+                // Email column
+                const emailCell = document.createElement("td");
+                emailCell.textContent = user.email;
+                row.appendChild(emailCell);
+
+                // Actions column
+                const actionsCell = document.createElement("td");
+
+                // Contact button
+                const contactButton = document.createElement("button");
+                contactButton.textContent = "Contact";
+                contactButton.classList.add("contact-button");
+                contactButton.addEventListener("click", () => {
+                    window.location.href = `mailto:${user.email}`;
+                });
+
+                // Delete button
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.classList.add("delete-button");
+                deleteButton.addEventListener("click", () => deleteUser(user.id, row));
+
+                actionsCell.appendChild(contactButton);
+                actionsCell.appendChild(deleteButton);
+                row.appendChild(actionsCell);
+
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(tbody);
+            userTableContainer.appendChild(table);
+        })
+        .catch((error) => {
+            console.error(error);
+            userTableContainer.innerHTML = "<p>Error loading user data.</p>";
+        });
+
+    // Function to delete a user
+    function deleteUser(userId, tableRow) {
+        if (confirm("Are you sure you want to delete this user?")) {
+            fetch(`/delete-user/${userId}`, { method: "DELETE" })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Failed to delete user.");
+                    }
+                    // Remove row from table
+                    tableRow.remove();
+                    alert("User deleted successfully.");
+                })
+                .catch((error) => {
+                    console.error(error);
+                    alert("Error deleting user.");
+                });
+        }
+    }
+});
+
+
 //iterate over each client in the Clients array to generate table rows dynamically
 Clients.forEach(clients => {
     //create a new table row element for each client
@@ -5,7 +115,7 @@ Clients.forEach(clients => {
 
     //define the inner HTML content for the row with table data (td) cells
     const trContent = `
-        <td>${clients.clientName}</td>    <!-- Displays client name -->
+        <td>${clients.clientName} ${clients.clientName}</td>    <!-- Displays client name -->
         <td>${clients.service}</td>       <!-- Displays service type -->
         <td>${clients.date}</td>          <!-- Displays appointment date -->
         <td>${clients.time}</td>          <!-- Displays appointment time -->
