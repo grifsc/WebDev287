@@ -23,6 +23,10 @@
     --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
+body{
+    overflow: visible;
+}
+
 /*make table scrollable*/
 main .recent-bookings{
     margin-top: 2rem;
@@ -42,7 +46,6 @@ main .recent-bookings table th{
     background: var(--color-white);
     z-index: 10;
     padding: 1.1rem;
-   
 }
 
 /*Create a layer to cover everything*/
