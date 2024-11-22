@@ -110,9 +110,9 @@ app.get('/services', (req, res) => {
 
 // Add new service
 app.post('/add-service', (req, res) => {
-    const { name, price, description, image} = req.body;
+    const { name, popular, price, description, image} = req.body;
     const query = 'INSERT INTO Services (name, popular, price, description, image) VALUES (?, ?, ?, ?, ?)';
-    db.query(query, [name, price, description, image], (err, result) => {
+    db.query(query, [name, popular, price, description, image], (err, result) => {
         if (err) {
             console.error('Error adding service: ', err);
             return res.status(500).json({ success: false });
@@ -123,9 +123,9 @@ app.post('/add-service', (req, res) => {
 
 // Edit service
 app.post('/edit-service', (req, res) => {
-    const { id, name, price, description, image } = req.body;
+    const { id, name, popular, price, description, image } = req.body;
     const query = 'UPDATE Services SET name = ?, popular = ?, price = ?, description = ?, image = ? WHERE id = ?';
-    db.query(query, [name, price, description, image, id], (err, result) => {
+    db.query(query, [name, popular, price, description, image, id], (err, result) => {
         if (err) {
             console.error('Error updating service: ', err);
             return res.status(500).json({ success: false });
@@ -144,6 +144,18 @@ app.delete('/delete-service/:id', (req, res) => {
             return res.status(500).json({ success: false });
         }
         res.json({ success: true });
+    });
+});
+
+//Extra method to check how many popular service is checked
+app.get('/get-popular-services', (req,res) => {
+    const query = 'SELECT COUNT(*) AS popularCount FROM Services Where popular = 1';
+    db.query(query, (err, results) => {
+        if(err){
+            console.error('Error getting popular service count');
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true, popularCount: results[0].popularCount });
     });
 });
 

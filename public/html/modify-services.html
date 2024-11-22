@@ -87,13 +87,14 @@
                 <div id="popup-form-service" class="popup-form">
                     <h2 class="popup-title">Add Service</h2>
                     <form id="add-service-form">
+                        <h2><input type="checkbox" id="service-checkbox" name="service-checkbox">Popular</h2>
                         <input type="file" id="service-img" name="service-img" required>
                         <input type="text" id="service-name" name="service-name" placeholder="Enter service name" required>
                         <textarea id="service-description" name="service-description" placeholder="Enter service description..." required></textarea>
-                        <input type="number" id="service-price" placeholder="Enter service price" required>
+                        <input type="number" id="service-price" placeholder="Enter service price" step="0.01" required>
                     
                         <button class="cancel-btn" onclick="hidePopup()">Cancel</button>
-                        <button class="save-btn" onclick="saveService(event)">Save</button>
+                        <button class="save-btn" type="submit">Save</button>
                     </form>
                 </div>
 
