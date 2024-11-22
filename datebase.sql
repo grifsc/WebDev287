@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 21, 2024 at 11:27 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Nov 22, 2024 at 08:07 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,16 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `WebDev287`
+-- Database: `webdev287`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Bookings`
+-- Table structure for table `bookings`
 --
 
-CREATE TABLE `Bookings` (
+CREATE TABLE `bookings` (
   `id` int(50) NOT NULL,
   `clientID` int(50) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -40,10 +40,10 @@ CREATE TABLE `Bookings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Bookings`
+-- Dumping data for table `bookings`
 --
 
-INSERT INTO `Bookings` (`id`, `clientID`, `name`, `service`, `status`, `payment`, `price`, `date`, `time`) VALUES
+INSERT INTO `bookings` (`id`, `clientID`, `name`, `service`, `status`, `payment`, `price`, `date`, `time`) VALUES
 (1, 3, 'Alice Brown', 'Cleaning with Blastoise', 'Pending', 'Unpaid', '39.99', 'Mar. 28, 2024', '4:00 PM'),
 (2, 4, 'Sarah Knowles', 'Primeapes 1h Boxing Lesson', 'Pending', 'Unpaid', '59.99', 'Dec. 30, 2024', '12:00 PM'),
 (3, 5, 'Michael Turner', 'Sylveons Medical Care', 'Complete', 'Paid', '79.99', 'Oct. 29, 2024', '1:00 PM'),
@@ -60,10 +60,10 @@ INSERT INTO `Bookings` (`id`, `clientID`, `name`, `service`, `status`, `payment`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Contact`
+-- Table structure for table `contact`
 --
 
-CREATE TABLE `Contact` (
+CREATE TABLE `contact` (
   `id` int(50) NOT NULL,
   `description` varchar(500) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -75,19 +75,19 @@ CREATE TABLE `Contact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Contact`
+-- Dumping data for table `contact`
 --
 
-INSERT INTO `Contact` (`id`, `description`, `email`, `phone`, `address`, `city`, `state`, `zipcode`) VALUES
+INSERT INTO `contact` (`id`, `description`, `email`, `phone`, `address`, `city`, `state`, `zipcode`) VALUES
 (1, ' We\'d love to hear from you! Whether you have questions about our Pokémon services, need assistance with a booking, or want to share your experience with Pokerent, our team is here to help. Reach out, and let\'s make your Pokémon adventure unforgettable! ', 'pokerent@gmail.com', '(514) 123 - 4567', '123 Made-Up Road', 'Montreal', 'Quebec', 'H1A 123');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Footer`
+-- Table structure for table `footer`
 --
 
-CREATE TABLE `Footer` (
+CREATE TABLE `footer` (
   `id` int(50) NOT NULL,
   `aboutUs` varchar(500) NOT NULL,
   `facebook` varchar(50) NOT NULL,
@@ -96,19 +96,19 @@ CREATE TABLE `Footer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Footer`
+-- Dumping data for table `footer`
 --
 
-INSERT INTO `Footer` (`id`, `aboutUs`, `facebook`, `instagram`, `twitter`) VALUES
+INSERT INTO `footer` (`id`, `aboutUs`, `facebook`, `instagram`, `twitter`) VALUES
 (1, 'PokéRent brings the magic of Pokémon to everyday life. From cleaning and healing to unforgettable events, our Pokémon partners are ready to lend a hand (or paw)! Rent your ideal Pokémon for any occasion and experience the wonder firsthand.', 'https://www.facebook.com', 'https://www.instagram.com', 'https://x.com/?lang=en');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `HomePage`
+-- Table structure for table `homepage`
 --
 
-CREATE TABLE `HomePage` (
+CREATE TABLE `homepage` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `logo` varchar(150) NOT NULL,
@@ -135,19 +135,19 @@ CREATE TABLE `HomePage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `HomePage`
+-- Dumping data for table `homepage`
 --
 
-INSERT INTO `HomePage` (`id`, `name`, `logo`, `welcome`, `hook`, `why`, `reason1`, `description1`, `reason2`, `description2`, `reason3`, `description3`, `reason4`, `description4`, `backgroundImg`, `slide1`, `slide2`, `slide3`, `slide4`, `caption1`, `caption2`, `caption3`, `caption4`) VALUES
+INSERT INTO `homepage` (`id`, `name`, `logo`, `welcome`, `hook`, `why`, `reason1`, `description1`, `reason2`, `description2`, `reason3`, `description3`, `reason4`, `description4`, `backgroundImg`, `slide1`, `slide2`, `slide3`, `slide4`, `caption1`, `caption2`, `caption3`, `caption4`) VALUES
 (1, 'PokéRent', '/images/logo.png', 'Welcome to PokéRent!', 'Discover the magic of Pokémon-assisted services! From cleaning to healing, our friendly Pokémon are here to help you with a variety of tasks. Rent a Pokémon for your next project and experience the ease and efficiency of working alongside these amazing creatures. Let\'s make your life easier—one Pokémon at a time!', 'Why Choose Our PokéService Rentals?', 'Expert Assistance', 'Our Pokémon are specially trained to assist with various tasks, ensuring high-quality service every time. Whether it\'s cleaning or healing, our Pokémon have the skills you need!', 'Reliable and Trustworthy', 'We prioritize safety and trust. Each Pokémon in our service has been vetted and trained, so you can rest assured that they will handle your needs with care and professionalism.', 'Affordable Rentals', 'Enjoy competitive pricing on all our Pokémon rentals. We believe everyone should experience the magic of Pokémon assistance without breaking the bank!', 'Flexible Options', 'Whether you need a Pokémon for a one-time service or ongoing assistance, we offer flexible rental options to fit your needs. Choose the service that works best for you!', '/images/background.jpg', '/images/blastoise-cleaning.jpg', '/images/cramorant-fishing.webp', '/images/togepi-playing.avif', '/images/jigglipuff-singing.webp', 'Your Personal Car Cleaning Champion! Let our water-blasting Pokémon handle the tough grime while you sit back and relax.', 'Casting Lines with Cramorant! Experience a unique fishing adventure as our skilled Pokémon swoops in to catch your dinner—just watch out for the occasional snack!', 'Playtime with Togepi! Experience joy and laughter as this little bundle of happiness brings fun and smiles to your day. Let\'s make magical memories together!', 'Jigglypuff\'s Serenade! Let the enchanting melodies of Jigglypuff soothe your soul as it fills the air with magical tunes. Get ready to sing along and drift into dreamland!');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Services`
+-- Table structure for table `services`
 --
 
-CREATE TABLE `Services` (
+CREATE TABLE `services` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `popular` tinyint(1) NOT NULL,
@@ -157,10 +157,10 @@ CREATE TABLE `Services` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Services`
+-- Dumping data for table `services`
 --
 
-INSERT INTO `Services` (`id`, `name`, `popular`, `price`, `description`, `image`) VALUES
+INSERT INTO `services` (`id`, `name`, `popular`, `price`, `description`, `image`) VALUES
 (1, 'Cleaning with Blastoise', 1, '39.99', 'Let Blastoise take care of your cleaning needs with its powerful water jets, ensuring a spotless home while creating a fun and engaging atmosphere. Experience a clean like never before, as Blastoise tackles dirt and grime with ease!', '/images/9.png'),
 (2, 'Primeapes 1h Boxing Lesson', 0, '59.99', 'Join Primeape for an exhilarating one-hour boxing lesson, tailored for all skill levels. Whether you are a beginner looking to learn the basics or an experienced fighter wanting to refine your techniques, Primeapes energetic training will keep you motivated!', '/images/57.png'),
 (3, 'Sylveons Medical Care', 1, '79.99', 'Experience compassionate and gentle medical care with Sylveons nurturing approach. Ideal for those seeking health services, Sylveon ensures a comfortable environment that promotes healing and well-being.', '/images/700.png'),
@@ -173,10 +173,10 @@ INSERT INTO `Services` (`id`, `name`, `popular`, `price`, `description`, `image`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Users`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `Users` (
+CREATE TABLE `users` (
   `id` int(10) NOT NULL,
   `admin` tinyint(1) NOT NULL,
   `first` varchar(50) NOT NULL,
@@ -186,10 +186,10 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `Users` (`id`, `admin`, `first`, `last`, `email`, `password`) VALUES
+INSERT INTO `users` (`id`, `admin`, `first`, `last`, `email`, `password`) VALUES
 (1, 1, 'Matteo', 'Admin', 'matteo@gmail.com', 'admin'),
 (2, 0, 'John', 'Doe', 'john.doe@gmail.com', 'client123'),
 (3, 0, 'Alice', 'Brown', 'alice.brown@gmail.com', 'client123'),
@@ -209,39 +209,39 @@ INSERT INTO `Users` (`id`, `admin`, `first`, `last`, `email`, `password`) VALUES
 --
 
 --
--- Indexes for table `Bookings`
+-- Indexes for table `bookings`
 --
-ALTER TABLE `Bookings`
+ALTER TABLE `bookings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Contact`
+-- Indexes for table `contact`
 --
-ALTER TABLE `Contact`
+ALTER TABLE `contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Footer`
+-- Indexes for table `footer`
 --
-ALTER TABLE `Footer`
+ALTER TABLE `footer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `HomePage`
+-- Indexes for table `homepage`
 --
-ALTER TABLE `HomePage`
+ALTER TABLE `homepage`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Services`
+-- Indexes for table `services`
 --
-ALTER TABLE `Services`
+ALTER TABLE `services`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Users`
+-- Indexes for table `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -249,39 +249,39 @@ ALTER TABLE `Users`
 --
 
 --
--- AUTO_INCREMENT for table `Bookings`
+-- AUTO_INCREMENT for table `bookings`
 --
-ALTER TABLE `Bookings`
+ALTER TABLE `bookings`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `Contact`
+-- AUTO_INCREMENT for table `contact`
 --
-ALTER TABLE `Contact`
+ALTER TABLE `contact`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `Footer`
+-- AUTO_INCREMENT for table `footer`
 --
-ALTER TABLE `Footer`
+ALTER TABLE `footer`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `HomePage`
+-- AUTO_INCREMENT for table `homepage`
 --
-ALTER TABLE `HomePage`
+ALTER TABLE `homepage`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `Services`
+-- AUTO_INCREMENT for table `services`
 --
-ALTER TABLE `Services`
+ALTER TABLE `services`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `Users`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
