@@ -12,20 +12,29 @@ closeBtn.addEventListener('click', () => {
 });
 
 //Fill services bill table
-Services.forEach(service => {
-    const tr = document.createElement('tr');
-    const trContent = `
-        <td>${service.description}</td>
-        <td class="${
-            service.status === 'Upcoming' ? 'warning' :
-            service.status === 'Completed' ? 'success' :
-            'primary'
-        }">${service.status}</td>
-        <td>${service.date}</td>
-        <td>${service.time}</td>
-        <td>${service.amount}</td>
-    `;
+fetch('/bookings')
+    .then(response => response.json())
+    .then(services => {
+        services.forEach(service => {
+            const tr = document.createElement('tr');
+            const trContent = `
+                <td>${service.name}</td>
+                <td class="${
+                    service.status === 'Pending' ? 'warning' :
+                    service.status === 'Complete' ? 'success' :
+                    service.status === 'Cancelled' ? 'danger' :
+                    'primary'
+                }">${service.status}</td>
+                <td>${service.date}</td>
+                <td>${service.time}</td>
+                <td  class="${
+                    service.payment === 'Paid' ? 'success' :
+                    service.payment === 'Unpaid' ? 'danger' :
+                    'primary'
+                }">${service.payment}</td>
+            `;
 
-    tr.innerHTML = trContent;
-    document.querySelector('table tbody').appendChild(tr);
-});
+            tr.innerHTML = trContent;
+            document.querySelector('table tbody').appendChild(tr);
+        });
+    }).catch(error => console.error('Error loading bookings'));

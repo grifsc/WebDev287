@@ -111,6 +111,10 @@ b{
     color: var(--color-warning);
 }
 
+.danger{
+    color: var(--color-danger);
+}
+
 .success{
     color: var(--color-success);
 }
@@ -386,7 +390,7 @@ main .content-table a{
 
     .bill{
         font-size: 1rem;
-     }
+    }
 
     main .top{
         position: fixed;
@@ -427,7 +431,7 @@ main .content-table a{
 
 @media screen and (max-width: 595px){
     main .content-table table{
-       font-size: .7rem
+        font-size: .7rem
     }
 
     .bill{
