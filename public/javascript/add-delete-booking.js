@@ -12,7 +12,6 @@ function insertBooking(clientID, serviceID, date, time) {
     const data = {
         id,
         clientID,
-        name,
         service,
         status,
         payment,
