@@ -104,7 +104,7 @@ app.get('/offered-services', (req, res) => {
  * Using session for the login
  */
 app.post('/login', (req,res) => {
-    const { email, paswword} = req.body;
+    const { email, password} = req.body;
     const query = 'SELECT * FROM Users WHERE email = ? and password = ?';
     db.query(query, [email, password], (err,results) => {
         if(err){
