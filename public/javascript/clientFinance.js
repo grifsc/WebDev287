@@ -17,8 +17,9 @@ fetch('/bookings')
     .then(services => {
         services.forEach(service => {
             const tr = document.createElement('tr');
+            // Changed service.payment to service.price and service.name to service.service
             const trContent = `
-                <td>${service.name}</td>
+                <td>${service.service}</td>
                 <td class="${
                     service.status === 'Pending' ? 'warning' :
                     service.status === 'Complete' ? 'success' :
@@ -31,7 +32,7 @@ fetch('/bookings')
                     service.payment === 'Paid' ? 'success' :
                     service.payment === 'Unpaid' ? 'danger' :
                     'primary'
-                }">${service.payment}</td>
+                }">${service.price}</td>
             `;
 
             tr.innerHTML = trContent;
