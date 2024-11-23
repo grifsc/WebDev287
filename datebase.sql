@@ -43,19 +43,19 @@ CREATE TABLE `bookings` (
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `clientID`, `name`, `service`, `status`, `payment`, `price`, `date`, `time`) VALUES
-(1, 3, 'Alice Brown', 'Cleaning with Blastoise', 'Pending', 'Unpaid', '39.99', 'Mar. 28, 2024', '4:00 PM'),
-(2, 4, 'Sarah Knowles', 'Primeapes 1h Boxing Lesson', 'Pending', 'Unpaid', '59.99', 'Dec. 30, 2024', '12:00 PM'),
-(3, 5, 'Michael Turner', 'Sylveons Medical Care', 'Complete', 'Paid', '79.99', 'Oct. 29, 2024', '1:00 PM'),
-(4, 6, 'Rebecca Lee', 'Fishing with Cramorant', 'Cancelled', 'Unpaid', '39.99', 'Oct. 28, 2024', '3:00 PM'),
-(5, 2, 'John Doe', 'Roasting Smores with Cyndaquil', 'Pending', 'Unpaid', '29.99', 'Dec. 12, 2024', '3:00 PM'),
-(6, 7, 'Chris Martin', 'Playing with Togepi', 'Complete', 'Paid', '49.99', 'Oct. 22, 2024', '4:00 PM'),
-(7, 8, 'Lily West', 'Jigglypuff Singing a Lullaby', 'Complete', 'Unpaid', '39.99', 'Nov. 16, 2024', '10:00 AM'),
-(8, 9, 'Jessica Adams', 'Bring Mr. Mime to your Party', 'Pending', 'Unpaid', '79.99', 'Dec. 30, 2024', '9:00 AM'),
-(9, 10, 'Brad Smith', 'Cleaning with Blastoise', 'Cancelled', 'Unpaid', '39.99', 'Oct. 10, 2024', '2:00 PM'),
-(10, 12, 'Evan Scott', 'Fishing with Cramorant', 'Complete', 'Paid', '39.99', 'Oct. 2, 2024', '2:00 PM'),
-(11, 11, 'Theo Mannuel', 'Primeapes 1h Boxing Lesson', 'Complete', 'Paid', '59.99', 'Oct. 8, 2024', '11:00 AM'),
-(12, 13, 'Jane Doe', 'Roasting Smores with Cyndaquil', 'Complete', 'Paid', '29.99', 'Oct. 1, 2024', '12:00 PM');
+INSERT INTO `bookings` (`id`, `clientID`, `service`, `status`, `payment`, `price`, `date`, `time`) VALUES
+(1, 3, 'Cleaning with Blastoise', 'Pending', 'Unpaid', '39.99', 'Mar. 28, 2024', '4:00 PM'),
+(2, 4, 'Primeapes 1h Boxing Lesson', 'Pending', 'Unpaid', '59.99', 'Dec. 30, 2024', '12:00 PM'),
+(3, 5, 'Sylveons Medical Care', 'Complete', 'Paid', '79.99', 'Oct. 29, 2024', '1:00 PM'),
+(4, 6, 'Fishing with Cramorant', 'Cancelled', 'Unpaid', '39.99', 'Oct. 28, 2024', '3:00 PM'),
+(5, 2, 'Roasting Smores with Cyndaquil', 'Pending', 'Unpaid', '29.99', 'Dec. 12, 2024', '3:00 PM'),
+(6, 7, 'Playing with Togepi', 'Complete', 'Paid', '49.99', 'Oct. 22, 2024', '4:00 PM'),
+(7, 8, 'Jigglypuff Singing a Lullaby', 'Complete', 'Unpaid', '39.99', 'Nov. 16, 2024', '10:00 AM'),
+(8, 9, 'Bring Mr. Mime to your Party', 'Pending', 'Unpaid', '79.99', 'Dec. 30, 2024', '9:00 AM'),
+(9, 10, 'Cleaning with Blastoise', 'Cancelled', 'Unpaid', '39.99', 'Oct. 10, 2024', '2:00 PM'),
+(10, 12, 'Fishing with Cramorant', 'Complete', 'Paid', '39.99', 'Oct. 2, 2024', '2:00 PM'),
+(11, 11, 'Primeapes 1h Boxing Lesson', 'Complete', 'Paid', '59.99', 'Oct. 8, 2024', '11:00 AM'),
+(12, 13, 'Roasting Smores with Cyndaquil', 'Complete', 'Paid', '29.99', 'Oct. 1, 2024', '12:00 PM');
 
 -- --------------------------------------------------------
 
