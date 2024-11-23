@@ -226,9 +226,9 @@ app.get('/bookings', (req, res) => {
 
 // Add new booking
 app.post('/add-booking', (req, res) => {
-    const { id, clientID, name, service, status, payment, price, date, time} = req.body;
-    const query = 'INSERT INTO Bookings (clientID, name, service, status, payment, price, date, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-    db.query(query, [clientID, name, service, status, payment, price, date, time, id], (err, result) => {
+    const { id, clientID, service, status, payment, price, date, time} = req.body;
+    const query = 'INSERT INTO Bookings (clientID, service, status, payment, price, date, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    db.query(query, [clientID, service, status, payment, price, date, time, id], (err, result) => {
         if (err) {
             console.error('Error adding booking: ', err);
             return res.status(500).json({ success: false });
@@ -239,9 +239,9 @@ app.post('/add-booking', (req, res) => {
 
 // Edit booking
 app.post('/edit-booking', (req, res) => {
-    const { id, clientID, name, service, status, payment, price, date, time } = req.body;
-    const query = 'UPDATE Bookings SET clientID = ?, name = ?, service = ?, status = ?, payment = ?, price = ?, date = ?, time = ? WHERE id = ?';
-    db.query(query, [clientID, name, service, status, payment, price, date, time, id], (err, result) => {
+    const { id, clientID, service, status, payment, price, date, time } = req.body;
+    const query = 'UPDATE Bookings SET clientID = ?, service = ?, status = ?, payment = ?, price = ?, date = ?, time = ? WHERE id = ?';
+    db.query(query, [clientID, service, status, payment, price, date, time, id], (err, result) => {
         if (err) {
             console.error('Error updating booking: ', err);
             return res.status(500).json({ success: false });
