@@ -40,7 +40,7 @@
                 <!--Scheduled Services-->
                 <a href="admin-manage-services.html" class="active">
                     <span class="icons"><i class="fa-solid fa-bars-progress"></i></span>
-                    <h3 href="#">Manage Services</h3>
+                    <h3 href="#">Manage Bookings</h3>
                 </a>
 
                 <!--Edit Services-->
@@ -92,149 +92,14 @@
                 </div>
             </div>
 
-            <h1 style="text-align: left;">Manage Services</h1>
+            <h1 style="text-align: left;">Bookings</h1>
 
+            <div class = admin-bookings-table>
+                <!-- Bookings Table generated using JS -->
+            </div>
             
-            <table class="calendar">
-                <caption><h1>October 2024 Calendar</h1></caption>
-                <thead>
-                    <!--Header with weekdays-->
-                    <tr>
-                        <th>Sunday</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednesday</th>
-                        <th>Thursday</th>
-                        <th>Friday</th>
-                        <th>Saturday</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!--Calendar of Oct, empty cells are days from other months -->
-                    <tr>
-                        <td></td> 
-                        <td></td> 
-                        <td class="day" data-day="1">1</td> 
-                        <td class="day" data-day="2">2</td>
-                        <td class="day" data-day="3">3</td>
-                        <td class="day" data-day="4">4</td>
-                        <td class="day" data-day="5">5</td>
-                    </tr>
-                    <tr>
-                        <td class="day" data-day="6">6</td>
-                        <td class="day" data-day="7">7</td>
-                        <td class="day" data-day="8">8</td>
-                        <td class="day" data-day="9">9</td>
-                        <td class="day" data-day="10">10</td>
-                        <td class="day" data-day="11">11</td>
-                        <td class="day" data-day="12">12</td>
-                    </tr>
-                    <tr>
-                        <td class="day" data-day="13">13</td>
-                        <td class="day" data-day="14">14</td>
-                        <td class="day" data-day="15">15</td>
-                        <td class="day" data-day="16">16</td>
-                        <td class="day" data-day="17">17</td>
-                        <td class="day" data-day="18">18</td>
-                        <td class="day" data-day="19">19</td>
-                    </tr>
-                    <tr>
-                        <td class="day" data-day="20">20</td>
-                        <td class="day" data-day="21">21</td>
-                        <td class="day" data-day="22">22</td>
-                        <td class="day" data-day="23">23</td>
-                        <td class="day" data-day="24">24</td>
-                        <td class="day" data-day="25">25</td>
-                        <td class="day" data-day="26">26</td>
-                    </tr>
-                    <tr>
-                        <td class="day" data-day="27">27</td>
-                        <td class="day" data-day="28">28</td>
-                        <td class="day" data-day="29">29</td>
-                        <td class="day" data-day="30">30</td>
-                        <td class="day" data-day="31">31</td>
-                        <td></td> <!-- Empty after last day -->
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- Popup Schedule Form -->
-            <div class="overlay" id="overlay"></div>
-            <div class="popup" id="popup">
-                <h3>Schedule for <span id="selectedDay"></span></h3>
-                <table class="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Booked</th>
-                            <th>Fulfilled</th>
-                            <th>Payment Recieved</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Schedule rows from 9 AM to 5 PM -->
-                        <tr>
-                            <td>9:00 AM</td>
-                            <td class="slot" data-time="9am"></td>
-                            <td class="fulfilled" data-time="9am"></td> 
-                            <td class="status" data-time="9am"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>10:00 AM</td>
-                            <td class="slot" data-time="10am"></td>
-                            <td class="fulfilled" data-time="10am"></td>
-                            <td class="status" data-time="10am"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>11:00 AM</td>
-                            <td class="slot" data-time="11am"></td>
-                            <td class="fulfilled" data-time="11am"></td>
-                            <td class="status" data-time="11am"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>12:00 AM</td>
-                            <td class="slot" data-time="12am"></td>
-                            <td class="fulfilled" data-time="12am"></td>
-                            <td class="status" data-time="12am"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>1:00 PM</td>
-                            <td class="slot" data-time="1pm"></td>
-                            <td class="fulfilled" data-time="1pm"></td>
-                            <td class="status" data-time="1pm"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>2:00 PM</td>
-                            <td class="slot" data-time="2pm"></td>
-                            <td class="fulfilled" data-time="2pm"></td>
-                            <td class="status" data-time="2pm"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>3:00 PM</td>
-                            <td class="slot" data-time="3pm"></td>
-                            <td class="fulfilled" data-time="3pm"></td> 
-                            <td class="status" data-time="3pm"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>4:00 PM</td>
-                            <td class="slot" data-time="3pm"></td>
-                            <td class="fulfilled" data-time="3pm"></td> 
-                            <td class="status" data-time="3pm"></td>
-                            
-                        </tr>
-
-                    </tbody>
-                </table>
-                <button class="close-btn" onclick="closePopup()">Close</button>
-            </div>         
+            
+                
         </main>
 
     <script src="/javascript/bookings.js"></script>

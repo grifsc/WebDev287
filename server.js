@@ -1,7 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
 const path = require('path');
-const session = require('express-session')
 const app = express();
 const PORT = 8000;
 
@@ -28,14 +27,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve static files (CSS, JS, images)
 app.use(express.static(path.join(__dirname, 'public')));
-
-//Set up the session
-app.use(session({
-    secret: 'key',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {secure: false}
-}));
 
 // Home page route
 app.get('/', (req, res) => {
@@ -79,7 +70,7 @@ app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'home.html'));
 });
 
-app.get('/login-page', (req, res) => {
+app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'login.html'));
 });
 
@@ -91,52 +82,13 @@ app.get('/modify-website', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'modify-website.html'));
 });
 
+//Connect external file for modify-services
 app.get('/modify-services', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'modify-services.html'));
 });
 
 app.get('/offered-services', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'offered-services.html'));
-});
-
-/**
- * 
- * Using session for the login
- */
-app.post('/login', (req,res) => {
-    const { email, password} = req.body;
-    const query = 'SELECT * FROM Users WHERE email = ? and password = ?';
-    db.query(query, [email, password], (err,results) => {
-        if(err){
-            console.error('Error logging in: ', err);
-            return res.status(500).json({success: false});
-        }
-
-        if(result.length > 0){
-            const user = result[0];
-            req.session.userId = user.id;
-            req.session.isAdmin = user.admin;
-
-            //Redirect depending on role
-            if(user.admin){
-                return res.redirect('/html/admin-dashboard.html');
-            }else{
-                return res.redirect('/html/client-home.html');
-            }
-        }else{
-            res.status(401).json({messsage: 'Invalid email or password'});
-        }
-    });
-});
-
-//Logout
-app.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if(err){
-            return res.status(500).json({success: false});
-        }
-        res.redirect('/html/home.html')
-    }); 
 });
 
 /**
@@ -158,9 +110,9 @@ app.get('/services', (req, res) => {
 
 // Add new service
 app.post('/add-service', (req, res) => {
-    const { name, popular, price, description, image} = req.body;
+    const { name, price, description, image} = req.body;
     const query = 'INSERT INTO Services (name, popular, price, description, image) VALUES (?, ?, ?, ?, ?)';
-    db.query(query, [name, popular, price, description, image], (err, result) => {
+    db.query(query, [name, price, description, image], (err, result) => {
         if (err) {
             console.error('Error adding service: ', err);
             return res.status(500).json({ success: false });
@@ -171,9 +123,9 @@ app.post('/add-service', (req, res) => {
 
 // Edit service
 app.post('/edit-service', (req, res) => {
-    const { id, name, popular, price, description, image } = req.body;
+    const { id, name, price, description, image } = req.body;
     const query = 'UPDATE Services SET name = ?, popular = ?, price = ?, description = ?, image = ? WHERE id = ?';
-    db.query(query, [name, popular, price, description, image, id], (err, result) => {
+    db.query(query, [name, price, description, image, id], (err, result) => {
         if (err) {
             console.error('Error updating service: ', err);
             return res.status(500).json({ success: false });
@@ -192,18 +144,6 @@ app.delete('/delete-service/:id', (req, res) => {
             return res.status(500).json({ success: false });
         }
         res.json({ success: true });
-    });
-});
-
-//Extra method to check how many popular service is checked
-app.get('/get-popular-services', (req,res) => {
-    const query = 'SELECT COUNT(*) AS popularCount FROM Services Where popular = 1';
-    db.query(query, (err, results) => {
-        if(err){
-            console.error('Error getting popular service count');
-            return res.status(500).json({ success: false });
-        }
-        res.json({ success: true, popularCount: results[0].popularCount });
     });
 });
 

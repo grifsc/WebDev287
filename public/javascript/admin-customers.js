@@ -107,6 +107,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// Load and display services
+function loadBookings() {
+    fetch('/services')
+        .then(response => response.json())
+        .then(services => {
+            const serviceList = document.querySelector('.admin-bookings-list');
+            //Clear the list to update it
+            serviceList.innerHTML = '';  
+
+            //Dynamically display each service saved in DB
+            services.forEach(service => {
+                const serviceDiv = document.createElement('div');
+                serviceDiv.classList.add('service-option');
+                serviceDiv.id = 'service-' + service.id;
+
+                const serviceInfo = `
+                    <img src="${service.image}">
+                    <p><b>Service Name:</b> <span class="service-name">${service.name}</span></p>
+                    <p><b>Description:</b> <br><span class="service-description">${service.description}</span></p>
+                    <p><b>Price:</b> $<span class="service-price">${service.price}</span></p>
+                    <button class="btn edit-btn" onclick="openPopupForm('edit', '${service.id}', '${service.name}', '${service.description}', ${service.price}, '${service.image}')">Edit</button>
+                    <button class="btn delete-btn" onclick="openDeleteForm('${service.id}', '${service.name}')">Remove</button>
+                `;
+
+                serviceDiv.innerHTML = serviceInfo;
+                serviceList.appendChild(serviceDiv);
+            });
+        })
+        .catch(error => console.error('Error loading services:', error));
+}
 
 //iterate over each client in the Clients array to generate table rows dynamically
 Clients.forEach(clients => {
