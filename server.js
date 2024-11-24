@@ -214,11 +214,39 @@ app.get('/get-popular-services', (req,res) => {
 */
 // Get all booking
 app.get('/bookings', (req, res) => {
-    const query = 'SELECT * FROM Bookings';
+    const sortBy = req.query.sortBy;
+    let query = 'SELECT * FROM Bookings';
+
+    switch (sortBy) {
+        case 'name':
+            query += ' ORDER BY name ASC';
+            break;
+        case 'service':
+            query += ' ORDER BY service ASC';
+            break;
+        case 'oldestDate':
+            query += ' ORDER BY date ASC';
+            break;
+        case 'newestDate':
+            query += ' ORDER BY date DESC';
+            break;
+        case 'price':
+            query += ' ORDER BY price ASC';
+            break;
+        case 'status':
+            query += ' ORDER BY status ASC';
+            break;
+        case 'payment':
+            query += ' ORDER BY payment ASC';
+            break;
+        default:
+            break; //no sorting
+    }
+
     db.query(query, (err, results) => {
         if (err) {
-            console.error('Error retrieving bookings from database: ', err);
-            return res.status(500).send('Internal Server Error');
+            console.error('Error fetching bookings:', err);
+            return res.status(500).json({ success: false });
         }
         res.json(results);
     });
