@@ -140,7 +140,7 @@ function getUserEmail(clientID) {
     return user ? user[2] : "";
 }
 
-//function to parse date string in month, day, year format
+//function to parse date information to create a Date object
 function parseDate(dateStr) {
     const months = {
         'Jan.': 1, 'Feb.': 2, 'Mar.': 3, 'Apr.': 4, 'May.': 5, 'Jun.': 6,
