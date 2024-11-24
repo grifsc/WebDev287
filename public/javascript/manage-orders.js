@@ -1,5 +1,5 @@
 // Load and display bookingss
-function displayOfferedServices() {
+function loadServices() {
     let serviceimage = []; // TEMPORARY IMAGE
     fetch('/services')
         .then(response => response.json())
@@ -49,4 +49,4 @@ function displayOfferedServices() {
         })
         .catch(error => console.error('Error loading bookingss:', error));
 }
-window.onload=displayOfferedServices;
+window.onload=loadServices;
