@@ -219,7 +219,7 @@ app.get('/bookings', (req, res) => {
 
     switch (sortBy) {
         case 'name':
-            query += ' ORDER BY name ASC';
+            //originally was ORDER BY name but name doesnt exist still need this
             break;
         case 'service':
             query += ' ORDER BY service ASC';
