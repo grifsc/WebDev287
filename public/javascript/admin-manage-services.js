@@ -24,71 +24,80 @@ fetch('/users')
     })
     .catch(error => console.error('error loading users:', error));
 
-//function to fetch and display bookings based on sort type
-function fetchAndDisplayBookings(sortBy = '') {
+//function to fetch and display bookings based on sort type and search input
+function fetchAndDisplayBookings(sortBy = '', searchInput = '') {
     let url = '/bookings';
-    if (sortBy) url += `?sortBy=${sortBy}`; //append sort query if provided
+    if (sortBy) url += `?sortBy=${sortBy}`; // Append sort query if provided
 
     fetch(url)
         .then(response => response.json())
         .then(bookings => {
+            //filter bookings based on search input
+            const filteredBookings = bookings.filter(booking => {
+                const clientName = getUserName(booking.clientID).toLowerCase();
+                const serviceName = booking.service.toLowerCase();
+                const searchTerm = searchInput.toLowerCase();
+                return (
+                    clientName.includes(searchTerm) || serviceName.includes(searchTerm)
+                );
+            });
+
             //sorting logic based on the selected sort type
             if (sortBy === 'price') {
-                //sort by highest price first
-                bookings.sort((prevBooking, currentBooking) => currentBooking.price - prevBooking.price); 
-            
+                //sort by price in descending order
+                filteredBookings.sort((prevBooking, currentBooking) => currentBooking.price - prevBooking.price);
             } else if (sortBy === 'status') {
-                //sort by status priority
+                //sort by status based on predefined priority
                 const statusPriority = { 'Pending': 1, 'Cancelled': 2, 'Complete': 3 };
-                bookings.sort((prevBooking, currentBooking) => statusPriority[prevBooking.status] - statusPriority[currentBooking.status]); 
-           
+                filteredBookings.sort((prevBooking, currentBooking) =>
+                    statusPriority[prevBooking.status] - statusPriority[currentBooking.status]
+                );
             } else if (sortBy === 'name') {
                 //sort by client name alphabetically
-                bookings.sort((prevBooking, currentBooking) => {
+                filteredBookings.sort((prevBooking, currentBooking) => {
                     let prevUser = getUserName(prevBooking.clientID);
                     let currentUser = getUserName(currentBooking.clientID);
-                    return prevUser.localeCompare(currentUser); 
+                    return prevUser.localeCompare(currentUser);
                 });
-            
             } else if (sortBy === 'payment') {
-                //sort by payment status (Unpaid first)
-                bookings.sort((prevBooking, currentBooking) => {
+                //sort by payment status with unpaid first
+                filteredBookings.sort((prevBooking, currentBooking) => {
                     if (prevBooking.payment === 'Unpaid' && currentBooking.payment !== 'Unpaid') return -1;
                     if (prevBooking.payment !== 'Unpaid' && currentBooking.payment === 'Unpaid') return 1;
-                    return 0; 
+                    return 0;
                 });
-            
             } else if (sortBy === 'oldestDate') {
-                //sort by oldest date (year, month, day)
-                bookings.sort((prevBooking, currentBooking) => {
+                //sort by date with oldest first
+                filteredBookings.sort((prevBooking, currentBooking) => {
                     let prevDate = parseDate(prevBooking.date);
                     let currentDate = parseDate(currentBooking.date);
-                    return prevDate - currentDate; 
+                    return prevDate - currentDate;
                 });
-            
             } else if (sortBy === 'newestDate') {
-                //sort by newest date (year, month, day)
-                bookings.sort((prevBooking, currentBooking) => {
+                //sort by date with newest first
+                filteredBookings.sort((prevBooking, currentBooking) => {
                     let prevDate = parseDate(prevBooking.date);
-                    let currentDate = parseDate(currentBooking.date);             
-                    return currentDate - prevDate; 
+                    let currentDate = parseDate(currentBooking.date);
+                    return currentDate - prevDate;
                 });
-            
             } else if (sortBy === 'service') {
                 //sort by service name alphabetically
-                bookings.sort((prevBooking, currentBooking) => {
-                    return prevBooking.service.localeCompare(currentBooking.service); 
-                });
+                filteredBookings.sort((prevBooking, currentBooking) =>
+                    prevBooking.service.localeCompare(currentBooking.service)
+                );
             }
 
-            const tableBody = document.querySelector('table tbody');
-            tableBody.innerHTML = ''; //clear existing rows
 
-            bookings.forEach(booking => {
+            const tableBody = document.querySelector('table tbody');
+            //clear exisiting rows
+            tableBody.innerHTML = ''; 
+
+            filteredBookings.forEach(booking => {
                 let currentUserName = getUserName(booking.clientID);
                 let currentUserEmail = getUserEmail(booking.clientID);
 
-                //create a new table row
+                //create a new table row and fill the table data
+                //client name, service name, date, service status, payment status, price, email button, delete button
                 const tr = document.createElement('tr');
                 const trContent = `
                     <td>${currentUserName}</td>
@@ -105,7 +114,7 @@ function fetchAndDisplayBookings(sortBy = '') {
                     }">${booking.payment}</td>
                     <td>$${booking.price}</td>
                     <td>
-                        <button onclick="window.location.href='mailto:${currentUserEmail}?subject=Appointment%20Details&body=Hello%20${currentUserName},%0A%0AYour%20appointment%20details%20are%20as%20follows:%0A%0AService:%20${booking.service}%0ADate:%20${booking.date}%0AStatus:%20${booking.status}%0APayment%20Status:%20${booking.payment}%0APrice:%20$${booking.price}'">
+                        <button onclick="window.location.href='mailto:${currentUserEmail}?subject=Appointment Details&body=Hey ${currentUserName},%0A%0AYour appointment details are as follows:%0A%0AService: ${booking.service}%0ADate: ${booking.date}%0AStatus: ${booking.status}%0APayment%20Status: ${booking.payment}%0APrice: $${booking.price}'">
                             Email
                         </button>
                     </td>
@@ -117,7 +126,7 @@ function fetchAndDisplayBookings(sortBy = '') {
                 tableBody.appendChild(tr);
             });
 
-            //reattach delete event listeners
+            //attach event listeners to delete buttons
             document.querySelectorAll('.delete-btn').forEach(button => {
                 button.addEventListener('click', () => {
                     const bookingID = button.getAttribute('data-id');
@@ -148,8 +157,7 @@ function parseDate(dateStr) {
     };
 
     const [month, day, year] = dateStr.split(' ');
-    //convert to Date object for sorting
-    return new Date(year, months[month] - 1, parseInt(day)); 
+    return new Date(year, months[month] - 1, parseInt(day));
 }
 
 //function to delete a booking
@@ -186,14 +194,22 @@ function setSortDropdown(selectedOption) {
 //event listener for sorting
 document.getElementById('sort-options').addEventListener('change', () => {
     const sortOption = document.getElementById('sort-options').value;
-    //update the URL and reload the page with the selected sort type
-    window.location.href = `?sortBy=${sortOption}`;
+    const searchInput = document.querySelector('.search-input').value.trim();
+    //if sort type selected redisplay page
+    //fetch and display with sort and search
+    fetchAndDisplayBookings(sortOption, searchInput);
 });
 
-//initial load
-//get current sort from URL query
-const currentSort = getQueryParam('sortBy') || ''; 
-//set dropdown based on current sort
-setSortDropdown(currentSort); 
-//fetch and display bookings with the current sort option
-fetchAndDisplayBookings(currentSort); 
+//event listener for search
+document.querySelector('.search-input').addEventListener('input', () => {
+    const searchInput = document.querySelector('.search-input').value.trim();
+    const sortOption = getQueryParam('sortBy') || '';
+    //if search input recieved redisplay page
+    //fetch and display with search and sort
+    fetchAndDisplayBookings(sortOption, searchInput);
+});
+
+// Initial load
+const currentSort = getQueryParam('sortBy') || '';
+setSortDropdown(currentSort);
+fetchAndDisplayBookings(currentSort);

@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Customers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
-    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <link rel="stylesheet" href="/css/admin-manage-services.css">
     <link rel="stylesheet" href="/css/admin-profile-dropdown.css">
-    <link rel="stylesheet" href="/css/admin-customers.css">
     <link rel="stylesheet" href="/css/admin-settings.css">
+    <link rel="stylesheet" href="/css/admin-customers.css">
+    <title>Admin Customers</title>
 </head>
+
 <body>
     <div class="container">
         <aside>
@@ -34,7 +34,7 @@
                 </a>
 
                 <!--List of Customers-->
-                <a href="admin-customers.html" class="active">
+                <a href="admin-customers.html">
                     <span class="icons"><i class="fa-solid fa-user"></i></span>
                     <h3 href="#">Customers</h3>
                 </a>
@@ -72,80 +72,14 @@
         </aside>
 
         <main>
-            <h1>Customers</h1>
-
-            <div class="date">
-                <input type="date">
-            </div>
-
-            <div class="customers">
-               
-                <div id="userTableContainer"></div>
-                <div class="account-details">
-
-                    <div class="recent-bookings">
-                        <h2>Appointments</h2>
-                        <div class="search-sort-container">
-                            <form>
-                                <div class="search">
-                                    <span class="search-icon material-symbols-outlined">search</span>
-                                    <input class="search-input" type="search" placeholder="Enter Client Email">
-                                </div>
-                            </form>
-                            <button class="dropdown-sort" onclick="toggleSortDropdown()">Sort By</button>
-                            <!-- Sort options dropdown menu -->
-                            <div class="dropdown">
-                                <div id="sortDropdownMenu" class="sort-dropdown">
-                                    <a href="#">Upcoming</a>
-                                    <a href="#">Oldest</a>
-                                    <a href="#">End of Month</a>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Client Name</th>
-                                    <th>Service</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Service <br> Status</th>
-                                    <th>Payement <br> Status</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-        
-                            <tbody>
-                                <!-- <tr>
-                                    <td>John Doe</td>
-                                    <td>Service 1</td>
-                                    <td>Oct 25, 2024</td>
-                                    <td>3:00 PM</td>
-                                    <td class="warning">Pending</td>
-                                    <td class="primary">Details</td>
-                                </tr>        -->
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="popup-form" id="popup-form-name">
-                        <h3>Edit Name</h3>
-                        <form id="nameForm">
-                            <input type="text" id="newName" name="newName" placeholder="Enter new name" required>
-                            <!-- Two buttons: Save and Cancel -->
-                            <button type="button" class="cancel-btn" onclick="hidePopup()">Cancel</button>
-                            <button type="submit" class="save-btn">Save</button>
-                        </form>
-                    </div>
-        </main>
-
+            <!--Profile icon and name in top right-->
         <div class="right">
             <div class="top">
                 <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Matteo</b></p>
-                        <small class="text-muted">Admin</small>
+                        <p>Hey, <b>John</b></p>
+                        <small class="text-muted">Client</small>
                     </div>
                     <div class="profile-picture" onclick="toggleDropdown()">
                         <img src="/images/profile-pic.webp">
@@ -154,19 +88,56 @@
                     <!-- Profile dropdown menu -->
                     <div class="dropdown">
                         <div id="profileDropdownMenu" class="dropdown-content">
-                            <a href="admin-dashboard.html">Dashboard</a>
-                            <a href="admin-settings.html">Settings</a>
+                            <a href="client-home.html">Client Home</a>
+                            <a href="client-settings.html">Settings</a>
                             <a href="/html/home.html">Log Out</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="search-sort-container">
+            <form>
+                <div class="search">
+                    <span class="search-icon material-symbols-outlined">search</span>
+                    <input class="search-input" type="search" placeholder="Enter Client Name">
+                </div>
+            </form>
+        </div>
+
+            <div class="content-table">
+                <!-- Dropdown Menu for Sorting -->
+                <div>
+                    <label for="sort-options"></label>
+                    <select id="sort-options">
+                        
+                    </select>
+                </div>
+
+                <!-- Table for displaying bookings -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Client Name</th>
+                            <th>Client Email</th>
+                            <th>Send Email</th>
+                            <th>Remove Client</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows are dynamically generated -->
+                    </tbody>
+                </table>
+            </div>
+
+          
+            </div>
+        </main>
     </div>
 
-    <script src="/javascript/clientBookings.js"></script>
-    <script src="/javascript/admin-dashboard.js"></script>
-    <script src="/javascript/admin-profile-dropdown.js"></script>
+   
     <script src="/javascript/admin-customers.js"></script>
+    <script src="/javascript/admin-profile-dropdown.js"></script>
+    <script src="/javascript/admin-dashboard.js"></script>
 </body>
 </html>

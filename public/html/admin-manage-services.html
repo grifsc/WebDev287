@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
     <link rel="stylesheet" href="/css/admin-manage-services.css">
     <link rel="stylesheet" href="/css/admin-profile-dropdown.css">
     <link rel="stylesheet" href="/css/admin-settings.css">
@@ -95,40 +96,48 @@
                 </div>
             </div>
         </div>
+        <div class="search-sort-container">
+            <form>
+                <div class="search">
+                    <span class="search-icon material-symbols-outlined">search</span>
+                    <input class="search-input" type="search" placeholder="Search">
+                </div>
+            </form>
+        </div>
 
             <div class="content-table">
                 <!-- Dropdown Menu for Sorting -->
-<div>
-    <label for="sort-options">Sort by:</label>
-    <select id="sort-options">
-        <option value="name">Client Name</option>
-        <option value="service">Service</option>
-        <option value="oldestDate">Oldest Date</option>
-        <option value="newestDate">Newest Date</option>
-        <option value="price">Price</option>
-        <option value="status">Status</option>
-        <option value="payment">Payment</option>
-    </select>
-</div>
+                <div>
+                    <label for="sort-options">Sort by:</label>
+                    <select id="sort-options">
+                        <option value="name">Client Name</option>
+                        <option value="service">Service</option>
+                        <option value="oldestDate">Oldest Date</option>
+                        <option value="newestDate">Newest Date</option>
+                        <option value="price">Price</option>
+                        <option value="status">Status</option>
+                        <option value="payment">Payment</option>
+                    </select>
+                </div>
 
-<!-- Table for displaying bookings -->
-<table>
-    <thead>
-        <tr>
-            <th>Client Name</th>
-            <th>Service</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Payment</th>
-            <th>Price</th>
-            <th>Email</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Rows are dynamically generated -->
-    </tbody>
-</table>
+                <!-- Table for displaying bookings -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Client Name</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Payment</th>
+                            <th>Price</th>
+                            <th>Email</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows are dynamically generated -->
+                    </tbody>
+                </table>
             </div>
 
           
