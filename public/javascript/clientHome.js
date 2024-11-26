@@ -42,6 +42,7 @@ function loadHome(){
             }
         }).catch(error => console.error('Error loading client name:', error));
 
+    //Load the rest of the home page
     fetch('/clientbookings')
         .then(response => response.json())
         .then(bookings => {
