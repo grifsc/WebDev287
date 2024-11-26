@@ -10,7 +10,7 @@ const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "WebDev287" 
+    database: "webdev287" 
 });
 
 // Handles error if database is not properly connected
@@ -99,35 +99,34 @@ app.get('/offered-services', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'html', 'offered-services.html'));
 });
 
-/**
- * 
- * Using session for the login
- */
-app.post('/login', (req,res) => {
-    const { email, paswword} = req.body;
-    const query = 'SELECT * FROM Users WHERE email = ? and password = ?';
-    db.query(query, [email, password], (err,results) => {
-        if(err){
+
+//Login Brandons code
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    const query = 'SELECT * FROM Users WHERE email = ? AND password = ?';
+    db.query(query, [email, password], (err, results) => {
+        if (err) {
             console.error('Error logging in: ', err);
-            return res.status(500).json({success: false});
+            return res.status(500).json({ success: false, message: 'Server error' });
         }
 
-        if(result.length > 0){
-            const user = result[0];
+        if (results.length > 0) {
+            const user = results[0];
             req.session.userId = user.id;
             req.session.isAdmin = user.admin;
 
-            //Redirect depending on role
-            if(user.admin){
-                return res.redirect('/html/admin-dashboard.html');
-            }else{
-                return res.redirect('/html/client-home.html');
-            }
-        }else{
-            res.status(401).json({messsage: 'Invalid email or password'});
+            // Send JSON response to frontend with role
+            return res.status(200).json({ role: user.admin ? 'admin' : 'client' });
+        } else {
+            // Send invalid login response
+            return res.status(401).json({ success: false, message: 'Invalid email or password' });
         }
     });
 });
+
+
+
 
 //Logout
 app.get('/logout', (req, res) => {
@@ -215,6 +214,17 @@ app.get('/get-popular-services', (req,res) => {
 // Get all booking
 app.get('/bookings', (req, res) => {
     const query = 'SELECT * FROM Bookings';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error retrieving bookings from database: ', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        res.json(results);
+    });
+});
+// Route for clientFinance Brandon code 
+app.get('/clientbookings', (req, res) => {
+    const query = `SELECT * FROM Bookings WHERE clientID = ${req.session.userId}`;
     db.query(query, (err, results) => {
         if (err) {
             console.error('Error retrieving bookings from database: ', err);
@@ -422,6 +432,37 @@ app.post('/edit-footer', (req, res) => {
         res.json({ success: true });
     });
 });
+
+
+
+//Brandons code
+app.post('/register', (req, res) => {
+    console.log(req.body);  // Should now show the parsed JSON body correctly
+    const { firstName, lastName, email, password, userType } = req.body;
+    console.log("Received firstName:", firstName);
+    console.log("Received lastName:", lastName);
+    console.log("Received email:", email);
+    console.log("Received password:", password);
+    console.log("Received userType:", userType);
+
+    if (!firstName || !lastName || !email || !password || !userType) {
+        console.log("Missing fields:", { firstName, lastName, email, password, userType });
+        return res.status(400).json({ success: false, message: 'All fields are required' });
+    }
+
+    const admin = userType === 'admin' ? 1 : 0;
+    const query = 'INSERT INTO users (admin, first, last, email, password) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [admin, firstName, lastName, email, password], (err, result) => {
+        if (err) {
+            console.error("Database query error:", err);
+            return res.status(500).json({ success: false, message: 'Error registering user: ' + err.message });
+        }
+        res.json({ success: true, message: 'Registration successful', redirect: '/login-page' });
+    });
+});
+
+
+
 
 // Start the server
 app.listen(PORT, () => {

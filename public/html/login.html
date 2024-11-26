@@ -56,22 +56,24 @@
             <div class="form-box register">
                 <h2>Registration</h2>
 
+                <form id="registerForm" method="post" action="/register" onsubmit="return registerUser(event)">
+
                 <div class="client-admin">
-                    <label><input type="radio" name="user-type" value="client" class="client">Client</label>
-                    <label><input  type="radio" name="user-type" value="admin" class="admin">Administrator</label>
+                    <label><input type="radio" name="userType" value="client" class="client">Client</label>
+                    <label><input  type="radio" name="userType" value="admin" class="admin">Administrator</label>
                 </div>
                 
-                <form action="#">
+    
                     <div class="user-info">
                         <div class="input-box">
                             <span class="icon"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" required>
+                            <input type="text" name="firstName" required>
                             <label>First Name</label>
                         </div>
 
                         <div class="input-box">
                             <span class="icon"><i class="fa-solid fa-user"></i></span>
-                            <input type="email" required>
+                            <input type="text" name="lastName" required>
                             <label>Last Name</label>
                         </div>
                     </div>
@@ -79,18 +81,18 @@
                     <div class="account-info">
                         <div class="input-box">
                             <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                            <input type="email" required>
+                            <input type="email" name="email" required>
                             <label>Email</label>
                         </div>
                         <div class="input-box">
                             <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                            <input type="password" required>
+                            <input type="password" name="password" required>
                             <label>Password</label>
                         </div>
                         <div class="remember-forgot">
                             <label><input type="checkbox">&nbsp I agree to the terms & conditions</label>
                         </div>
-                        <button type="submit" class="btn">Log In</button>
+                        <button type="submit" class="btn" onlclick="">Register</button>
                         <div class="login-register">
                             <p>Already have an account?
                                 <a href="#" class="login-link">Log in</a>
