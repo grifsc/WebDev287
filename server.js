@@ -126,9 +126,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-
-
-
 //Logout
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => {
@@ -492,8 +489,6 @@ app.post('/edit-footer', (req, res) => {
     });
 });
 
-
-
 //Brandons code
 app.post('/register', (req, res) => {
     console.log(req.body);  // Should now show the parsed JSON body correctly
@@ -520,11 +515,6 @@ app.post('/register', (req, res) => {
     });
 });
 
-
-
-
-
-
 //Brandons code
 app.post('/register', (req, res) => {
     console.log(req.body);  // Should now show the parsed JSON body correctly
@@ -550,9 +540,6 @@ app.post('/register', (req, res) => {
         res.json({ success: true, message: 'Registration successful', redirect: '/login-page' });
     });
 });
-
-
-
 
 //Start the server
 app.listen(PORT, () => {

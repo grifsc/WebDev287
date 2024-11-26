@@ -49,9 +49,6 @@ async function handleLogin(event) {
     }
 }
 
-
-
-
 function loadLogin(){
     fetch('/home-page-info/1') 
     .then(response => response.json())
