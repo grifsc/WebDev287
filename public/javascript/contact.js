@@ -35,6 +35,11 @@ function loadContact(){
 
             //Display email
             const emailContainer = document.querySelector('.email-info');
+            emailContainer.innerHTML = `
+                <h2 class="phone">Email</h2>
+                <p>${data.email}</p>
+            `;
+
 
             //Send email to business
             const emailForm = document.querySelector('.email-form');
