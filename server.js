@@ -1,7 +1,8 @@
 const express = require('express');
 const mysql = require('mysql');
 const path = require('path');
-const session = require('express-session')
+const session = require('express-session');
+const { createReadStream } = require('fs');
 const app = express();
 const PORT = 8000;
 
@@ -104,7 +105,7 @@ app.get('/offered-services', (req, res) => {
  * Using session for the login
  */
 app.post('/login', (req,res) => {
-    const { email, password} = req.body;
+    const { email, password } = req.body;
     const query = 'SELECT * FROM Users WHERE email = ? and password = ?';
     db.query(query, [email, password], (err,results) => {
         if(err){
@@ -112,10 +113,10 @@ app.post('/login', (req,res) => {
             return res.status(500).json({success: false});
         }
 
-        if(result.length > 0){
-            const user = result[0];
+        if(results.length > 0){
+            const user = results[0];
             req.session.userId = user.id;
-            req.session.isAdmin = user.admin;
+            req.session.isAdmin = user.admin === 1;
 
             //Redirect depending on role
             if(user.admin){
@@ -144,7 +145,7 @@ app.get('/logout', (req, res) => {
  * Services Access
  * 
 */
-// Get all services
+//Get all services
 app.get('/services', (req, res) => {
     const query = 'SELECT * FROM Services';
     db.query(query, (err, results) => {
@@ -156,7 +157,7 @@ app.get('/services', (req, res) => {
     });
 });
 
-// Add new service
+//Add new service
 app.post('/add-service', (req, res) => {
     const { name, popular, price, description, image} = req.body;
     const query = 'INSERT INTO Services (name, popular, price, description, image) VALUES (?, ?, ?, ?, ?)';
@@ -169,7 +170,7 @@ app.post('/add-service', (req, res) => {
     });
 });
 
-// Edit service
+//Edit service
 app.post('/edit-service', (req, res) => {
     const { id, name, popular, price, description, image } = req.body;
     const query = 'UPDATE Services SET name = ?, popular = ?, price = ?, description = ?, image = ? WHERE id = ?';
@@ -182,7 +183,7 @@ app.post('/edit-service', (req, res) => {
     });
 });
 
-// Delete service
+//Delete service
 app.delete('/delete-service/:id', (req, res) => {
     const serviceId = req.params.id;
     const query = 'DELETE FROM Services WHERE id = ?';
@@ -212,7 +213,7 @@ app.get('/get-popular-services', (req,res) => {
  * Bookings Access
  * 
 */
-// Get all booking
+//Get all booking
 app.get('/bookings', (req, res) => {
     const sortBy = req.query.sortBy;
     let query = 'SELECT * FROM Bookings';
@@ -252,7 +253,7 @@ app.get('/bookings', (req, res) => {
     });
 });
 
-// Add new booking
+//Add new booking
 app.post('/add-booking', (req, res) => {
     const { id, clientID, service, status, payment, price, date, time} = req.body;
     const query = 'INSERT INTO Bookings (clientID, service, status, payment, price, date, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
@@ -265,7 +266,7 @@ app.post('/add-booking', (req, res) => {
     });
 });
 
-// Edit booking
+//Edit booking
 app.post('/edit-booking', (req, res) => {
     const { id, clientID, service, status, payment, price, date, time } = req.body;
     const query = 'UPDATE Bookings SET clientID = ?, service = ?, status = ?, payment = ?, price = ?, date = ?, time = ? WHERE id = ?';
@@ -278,13 +279,31 @@ app.post('/edit-booking', (req, res) => {
     });
 });
 
-// Delete booking
+//Delete booking
 app.delete('/delete-booking/:id', (req, res) => {
     const bookingId = req.params.id;
     const query = 'DELETE FROM Bookings WHERE id = ?';
     db.query(query, [bookingId], (err, result) => {
         if (err) {
             console.error('Error deleting booking: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+//Client-Bookings 
+app.get('/client-bookings', (req, res) => {
+    //Check if the user is login
+    if(!req.session.userId){
+        return res.status(401).json({ success: false });
+    }
+
+    const clientID = req.session.userId;
+    const query = 'SELECT * FROM Bookings WHERE clientID = ?';
+    db.query(query, [clientID], (err, results) => {
+        if(err){
+            console.error('Error fetching client bookings: ', err);
             return res.status(500).json({ success: false });
         }
         res.json({ success: true });
@@ -308,7 +327,7 @@ app.get('/users', (req, res) => {
     });
 });
 
-// Add new user
+//Add new user
 app.post('/add-user', (req, res) => {
     const { id, admin, first, last, email, password } = req.body;
     const query = 'INSERT INTO Users (admin, first, last, email, password) VALUES (?, ?, ?, ?, ?)';
@@ -321,7 +340,7 @@ app.post('/add-user', (req, res) => {
     });
 });
 
-// Edit user
+//Edit user
 app.post('/edit-user', (req, res) => {
     const { id, admin, first, last, email, password} = req.body;
     const query = 'UPDATE Users SET admin = ?, first = ?, last = ?, email = ?, password = ? WHERE id = ?';
@@ -334,7 +353,7 @@ app.post('/edit-user', (req, res) => {
     });
 });
 
-// Delete user
+//Delete user
 app.delete('/delete-user/:id', (req, res) => {
     const userId = req.params.id;
     const query = 'DELETE FROM Users WHERE id = ?';
@@ -374,7 +393,7 @@ app.get('/home-page-info/:id', (req, res) => {
 });
 
 
-// Edit home page information
+//Edit home page information
 app.post('/edit-home-page', (req, res) => {
     const { id, name, logo, welcome, hook, why, reason1, description1, reason2, description2, reason3, description3, reason4, description4, backgroundImg, slide1, slide2, slide3, slide4, caption1, caption2, caption3, caption4 } = req.body;
     const query = 'UPDATE HomePage SET name = ?, logo = ?, welcome = ?, hook = ?, why = ?, reason1 = ?, description1 = ?, reason2 = ?, description2 = ?, reason3 = ?, description3 = ?, reason4 = ?, description4 = ?, backgroundImg = ?, slide1 = ?, slide2 = ?, slide3 = ?, slide4 = ?, caption1 = ?, caption2 = ?, caption3 = ?, caption4 = ? WHERE id = ?';
@@ -438,7 +457,7 @@ app.get('/footer-info/:id', (req, res) => {
     });
 });
 
-// Edit user
+//Edit user
 app.post('/edit-footer', (req, res) => {
     const { id, aboutUs, facebook, instagram, twitter} = req.body;
     const query = 'UPDATE Footer SET aboutUs = ?, facebook = ?, instagram = ?, twitter = ? WHERE id = ?';
@@ -451,7 +470,7 @@ app.post('/edit-footer', (req, res) => {
     });
 });
 
-// Start the server
+//Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
