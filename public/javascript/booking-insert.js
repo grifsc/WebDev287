@@ -9,7 +9,8 @@ function bookingForm(e) {
     const hardcodedClientID = 2;
 
     const clientID = hardcodedClientID;
-    const service = document.getElementById('pickService').value;
+    // const service = document.getElementById('pickService').value;
+    const service = "Hardcoded service"
     const status = "Pending"; // Pending by default when creating a booking
     const payment = "Unpaid"; // Unpaid by default when creating a booking
     // TODO: FETCH PRICE FROM SERVICES!!!
@@ -25,7 +26,8 @@ function bookingForm(e) {
         .catch(error => console.error('Error editing service:', error));;
 
     const price = staticServicePrice;
-    const date = document.getElementById('date').value;
+    // const date = document.getElementById('date').value;
+    const date = "1999";
     const time = "unused"; // Deprecated
 
     const data = {
@@ -39,7 +41,8 @@ function bookingForm(e) {
     }
 
     // Take the data and insert a booking
-    insertBooking(data);
+    alert(data.service);
+    //insertBooking(data);
 }
 
 // Insert a booking to the database
@@ -56,7 +59,7 @@ function insertBooking(data) {
         if (result.success) {
             alert('Booking Successful');
         } else {
-            alert('Booking Error');
+            alert(`Booking Error: ${result.message}`);
         }
     })
     .catch(error => console.error('Error adding booking:', error));
