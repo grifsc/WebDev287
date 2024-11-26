@@ -1,12 +1,14 @@
 // Delete a booking from the database
 function deleteBooking(bookingID) {
-    fetch('/delete-service/' + bookingID, {
+    fetch('/delete-booking/' + bookingID, {
         method: 'DELETE',
     })
     .then(response => response.json())
     .then(result => {
         if (result.success) {
-            alert('Booking Deletion Succesfully');
+            // Refresh the page
+            window.location = window.location.href;
+            alert('Booking Deletion Success');
         } else {
             alert('Booking Deletion Error');
         }

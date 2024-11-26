@@ -39,7 +39,7 @@ function loadServices() {
                         </h3>
                         <img src="${thisimage}" alt="404">
                         <!--Button-->
-                        <button>Cancel</button>
+                        <button onclick="deleteBooking(${booking.id})">Cancel</button>
                     `;
 
                     bookingsDiv.innerHTML = bookingsInfo;

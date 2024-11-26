@@ -14,21 +14,20 @@ function bookingForm(e) {
     alert(service);
     const status = "Pending"; // Pending by default when creating a booking
     const payment = "Unpaid"; // Unpaid by default when creating a booking
+    let price = "20 DOLLAHS GOTTA FIX THIS LATER";
     // TODO: FETCH PRICE FROM SERVICES!!!
     fetch('/services')
         .then(response => response.json())
         .then(services => {
             services.forEach(service => {
                 if (service.name == service) { // If the service's name corresponds to the current service selected
-                    let staticServicePrice = service.price;
+                    price = service.price;
                 }
             })
         })
         .catch(error => console.error('Error editing service:', error));;
-
-    const price = staticServicePrice;
-    // const date = document.getElementById('date').value;
-    const date = "1999";
+    const date = document.getElementById('date').value;
+    // const date = "1999";
     const time = "unused"; // Deprecated
 
     const data = {
