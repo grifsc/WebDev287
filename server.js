@@ -375,6 +375,28 @@ app.delete('/delete-user/:id', (req, res) => {
     });
 });
 
+//Get admin 
+app.get('/admin', (req, res) => {
+    //Ensure that the account exist
+    if (!req.session.userId) {
+        return res.status(401).send('Unauthorized: No session found');
+    }
+
+    const query = `SELECT * FROM Users WHERE id = ?`;
+    db.query(query, [req.session.userId], (err, results) => {
+        if (err) {
+            console.error('Error retrieving admin from database:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        if (results.length === 0) {
+            return res.status(404).send('Admin not found');
+        }
+
+        res.json(results[0]);
+    });
+});
+
 /**
  * 
  * Website Access
