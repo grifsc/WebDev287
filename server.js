@@ -248,17 +248,7 @@ app.get('/bookings', (req, res) => {
         res.json(results);
     });
 });
-// Route for clientFinance Brandon code 
-app.get('/clientbookings', (req, res) => {
-    const query = `SELECT * FROM Bookings WHERE clientID = ${req.session.userId}`;
-    db.query(query, (err, results) => {
-        if (err) {
-            console.error('Error retrieving bookings from database: ', err);
-            return res.status(500).send('Internal Server Error');
-        }
-        res.json(results);
-    });
-});
+
 // Route for clientFinance Brandon code 
 app.get('/clientbookings', (req, res) => {
     const query = `SELECT * FROM Bookings WHERE clientID = ${req.session.userId}`;
