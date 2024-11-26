@@ -253,11 +253,12 @@ app.get('/bookings', (req, res) => {
     });
 });
 
-//Add new booking
+// vvv Problems with adding bookings
+// Add new booking
 app.post('/add-booking', (req, res) => {
-    const { id, clientID, service, status, payment, price, date, time} = req.body;
-    const query = 'INSERT INTO Bookings (clientID, service, status, payment, price, date, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-    db.query(query, [clientID, service, status, payment, price, date, time, id], (err, result) => {
+    const { clientID, service, status, payment, price, date, time} = req.body;
+    const query = 'INSERT INTO Bookings (clientID, service, status, payment, price, date, time) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    db.query(query, [clientID, service, status, payment, price, date, time], (err, result) => {
         if (err) {
             console.error('Error adding booking: ', err);
             return res.status(500).json({ success: false });
