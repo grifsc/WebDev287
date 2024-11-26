@@ -1,8 +1,9 @@
-//side menu
+//variables for side menu
 const sideMenu = document.querySelector("aside");
 const menuBtn = document.querySelector("#menu-btn");
 const closeBtn = document.querySelector("#close-btn");
 
+//side menu toggle
 menuBtn.addEventListener('click', () => {
     sideMenu.style.display = 'block';
 });
@@ -11,160 +12,204 @@ closeBtn.addEventListener('click', () => {
     sideMenu.style.display = 'none';
 });
 
+//load users and bookings data
+let userNames = [];
+fetch('/users')
+    .then(response => response.json())
+    .then(users => {
+        users.forEach(user => {
+            let currentUserName = [user.id, user.first + " " + user.last, user.email];
+            userNames.push(currentUserName);
+        });
+    })
+    .catch(error => console.error('error loading users:', error));
 
-// Wait until the entire document is loaded before running the code
-document.addEventListener('DOMContentLoaded', function () {
-    //list of constants that will be used in the java script
-    //overlay to dim background
-    const overlay = document.getElementById('overlay');               
-    //popup form
-    const popup = document.getElementById('popup');                   
-    //for when user clicks a day on the calendar
-    const selectedDayElement = document.getElementById('selectedDay'); 
-    //all the days on the calendar
-    const days = document.querySelectorAll('.day');                   
-    //close 
-    const closeBtn = document.querySelector('.close-btn');            
+//function to fetch and display bookings based on sort type and search input
+function fetchAndDisplayBookings(sortBy = '', searchInput = '') {
+    let url = '/bookings';
+    if (sortBy) url += `?sortBy=${sortBy}`; // Append sort query if provided
 
-    //object to store scheduled data for each day, with keys for slots, statuses, and fulfilled selections
-    const scheduleData = {};
+    fetch(url)
+        .then(response => response.json())
+        .then(bookings => {
+            //filter bookings based on search input
+            const filteredBookings = bookings.filter(booking => {
+                const clientName = getUserName(booking.clientID).toLowerCase();
+                const serviceName = booking.service.toLowerCase();
+                const searchTerm = searchInput.toLowerCase();
+                return (
+                    clientName.includes(searchTerm) || serviceName.includes(searchTerm)
+                );
+            });
 
-    //function to open the popup and show the selected day number
-    function openPopup(dayNumber) {
-        //day for the header
-        selectedDayElement.textContent = `October ${dayNumber}, 2024`; 
-        //Turn on background dim and bring up the form
-        overlay.classList.add('active');                               
-        popup.classList.add('active');
-        //track any changes made to the form                                 
-        loadSchedule(dayNumber);                                       
+            //sorting logic based on the selected sort type
+            if (sortBy === 'price') {
+                //sort by price in descending order
+                filteredBookings.sort((prevBooking, currentBooking) => currentBooking.price - prevBooking.price);
+            } else if (sortBy === 'status') {
+                //sort by status based on predefined priority
+                const statusPriority = { 'Pending': 1, 'Cancelled': 2, 'Complete': 3 };
+                filteredBookings.sort((prevBooking, currentBooking) =>
+                    statusPriority[prevBooking.status] - statusPriority[currentBooking.status]
+                );
+            } else if (sortBy === 'name') {
+                //sort by client name alphabetically
+                filteredBookings.sort((prevBooking, currentBooking) => {
+                    let prevUser = getUserName(prevBooking.clientID);
+                    let currentUser = getUserName(currentBooking.clientID);
+                    return prevUser.localeCompare(currentUser);
+                });
+            } else if (sortBy === 'payment') {
+                //sort by payment status with unpaid first
+                filteredBookings.sort((prevBooking, currentBooking) => {
+                    if (prevBooking.payment === 'Unpaid' && currentBooking.payment !== 'Unpaid') return -1;
+                    if (prevBooking.payment !== 'Unpaid' && currentBooking.payment === 'Unpaid') return 1;
+                    return 0;
+                });
+            } else if (sortBy === 'oldestDate') {
+                //sort by date with oldest first
+                filteredBookings.sort((prevBooking, currentBooking) => {
+                    let prevDate = parseDate(prevBooking.date);
+                    let currentDate = parseDate(currentBooking.date);
+                    return prevDate - currentDate;
+                });
+            } else if (sortBy === 'newestDate') {
+                //sort by date with newest first
+                filteredBookings.sort((prevBooking, currentBooking) => {
+                    let prevDate = parseDate(prevBooking.date);
+                    let currentDate = parseDate(currentBooking.date);
+                    return currentDate - prevDate;
+                });
+            } else if (sortBy === 'service') {
+                //sort by service name alphabetically
+                filteredBookings.sort((prevBooking, currentBooking) =>
+                    prevBooking.service.localeCompare(currentBooking.service)
+                );
+            }
+
+
+            const tableBody = document.querySelector('table tbody');
+            //clear exisiting rows
+            tableBody.innerHTML = ''; 
+
+            filteredBookings.forEach(booking => {
+                let currentUserName = getUserName(booking.clientID);
+                let currentUserEmail = getUserEmail(booking.clientID);
+
+                //create a new table row and fill the table data
+                //client name, service name, date, service status, payment status, price, email button, delete button
+                const tr = document.createElement('tr');
+                const trContent = `
+                    <td>${currentUserName}</td>
+                    <td>${booking.service}</td>
+                    <td>${booking.date}</td>
+                    <td class="${
+                        booking.status === 'Pending' ? 'warning' :
+                        booking.status === 'Cancelled' ? 'danger' :
+                        booking.status === 'Complete' ? 'success' : 'primary'
+                    }">${booking.status}</td>
+                    <td class="${
+                        booking.payment === 'Paid' ? 'success' :
+                        booking.payment === 'Unpaid' ? 'danger' : 'primary'
+                    }">${booking.payment}</td>
+                    <td>$${booking.price}</td>
+                    <td>
+                        <button onclick="window.location.href='mailto:${currentUserEmail}?subject=Appointment Details&body=Hey ${currentUserName},%0A%0AYour appointment details are as follows:%0A%0AService: ${booking.service}%0ADate: ${booking.date}%0AStatus: ${booking.status}%0APayment%20Status: ${booking.payment}%0APrice: $${booking.price}'">
+                            Email
+                        </button>
+                    </td>
+                    <td>
+                        <button class="delete-btn" data-id="${booking.id}">Delete</button>
+                    </td>
+                `;
+                tr.innerHTML = trContent;
+                tableBody.appendChild(tr);
+            });
+
+            //attach event listeners to delete buttons
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const bookingID = button.getAttribute('data-id');
+                    deleteBooking(bookingID);
+                });
+            });
+        })
+        .catch(error => console.error('error loading bookings:', error));
+}
+
+//function to get the user's name by client ID
+function getUserName(clientID) {
+    const user = userNames.find(user => user[0] === clientID);
+    return user ? user[1] : "Unknown";
+}
+
+//function to get the user's email by client ID
+function getUserEmail(clientID) {
+    const user = userNames.find(user => user[0] === clientID);
+    return user ? user[2] : "";
+}
+
+//function to parse date information to create a Date object
+function parseDate(dateStr) {
+    const months = {
+        'Jan.': 1, 'Feb.': 2, 'Mar.': 3, 'Apr.': 4, 'May.': 5, 'Jun.': 6,
+        'Jul.': 7, 'Aug.': 8, 'Sep.': 9, 'Oct.': 10, 'Nov.': 11, 'Dec.': 12
+    };
+
+    const [month, day, year] = dateStr.split(' ');
+    return new Date(year, months[month] - 1, parseInt(day));
+}
+
+//function to delete a booking
+function deleteBooking(bookingID) {
+    if (confirm('Are you sure you want to delete this booking?')) {
+        fetch(`/delete-booking/${bookingID}`, {
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Booking deleted successfully');
+                    document.querySelector(`.delete-btn[data-id="${bookingID}"]`).closest('tr').remove();
+                } else {
+                    alert('Failed to delete booking.');
+                }
+            })
+            .catch(error => console.error('error deleting booking:', error));
     }
+}
 
-    //remove the dim effect and close the popup 
-    function closePopup() {
-        overlay.classList.remove('active');  
-        popup.classList.remove('active');     
-    }
+//function to get the value of a URL query parameter
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
 
-    //load saved schedule data for a specific day and display selections
-    function loadSchedule(dayNumber) {
-        //Get all time slot, fulfilled, and status elements in the popup form
-        const slots = document.querySelectorAll('.slot');
-        const fulfilledSlots = document.querySelectorAll('.fulfilled');
-        const statuses = document.querySelectorAll('.status');
+//set the selected sort option in the dropdown
+function setSortDropdown(selectedOption) {
+    const sortDropdown = document.getElementById('sort-options');
+    sortDropdown.value = selectedOption;
+}
 
-        //clear previous selections made on the form
-        slots.forEach(slot => slot.classList.remove('selected'));
-        fulfilledSlots.forEach(fulfilled => fulfilled.classList.remove('selected'));
-        statuses.forEach(status => status.classList.remove('selected'));
-
-        //get selections from the form of the chosen day schedule
-        //Or initialize day if no previous selections
-        const daySchedule = scheduleData[dayNumber] || { slots: [], fulfilled: [], statuses: [] };
-
-        //apply 'slot' selections from selected day
-        daySchedule.slots.forEach(time => {
-            const slot = document.querySelector(`.slot[data-time="${time}"]`);
-            if (slot) slot.classList.add('selected');
-        });
-
-        //apply 'fulfilled' selections from selected day
-        daySchedule.fulfilled.forEach(time => {
-            const fulfilled = document.querySelector(`.fulfilled[data-time="${time}"]`);
-            if (fulfilled) fulfilled.classList.add('selected');
-        });
-
-        //apply 'payment status' selections from selected day
-        daySchedule.statuses.forEach(time => {
-            const status = document.querySelector(`.status[data-time="${time}"]`);
-            if (status) status.classList.add('selected');
-        });
-
-        // Store the current day number in the popup for easy reference
-        popup.setAttribute('data-day', dayNumber);
-    }
-
-    //function for storing changes made to day
-    function saveSchedule(dayNumber) {
-        //arrays to store the selected slots, fulfilled states, and payment statuses
-        const selectedSlots = [];
-        const selectedFulfilled = [];
-        const selectedStatuses = [];
-
-        //iterate through and note which time slots selected
-        document.querySelectorAll('.slot.selected').forEach(slot => {
-            selectedSlots.push(slot.getAttribute('data-time'));
-        });
-
-        //iterate through and note which fufilled services slots selected
-        document.querySelectorAll('.fulfilled.selected').forEach(fulfilled => {
-            selectedFulfilled.push(fulfilled.getAttribute('data-time'));
-        });
-
-        //iterate through and note which payment statuses slots selected
-        document.querySelectorAll('.status.selected').forEach(status => {
-            selectedStatuses.push(status.getAttribute('data-time'));
-        });
-
-        //save selections made for slots, fulfilled, and statuses for the selected day in scheduleData
-        scheduleData[dayNumber] = {
-            slots: selectedSlots,
-            fulfilled: selectedFulfilled,
-            statuses: selectedStatuses
-        };
-    }
-
-    //event listeners for when a user clicks
-    //---------------------------
-    //iterate through every day and give them an event listner to call popup form on click
-    days.forEach(day => {
-        day.addEventListener('click', function () {
-            //note chosen day
-            const dayNumber = this.getAttribute('data-day');
-            //open form
-            openPopup(dayNumber);                             
-        });
-    });
-
-    //close the popup when clicking outside of the form/on the overlay
-    overlay.addEventListener('click', closePopup);
-
-    //iterate through all 'slots' and give them an event listener
-    document.querySelectorAll('.slot').forEach(slot => {
-        //when clicked
-        slot.addEventListener('click', function () {
-            //fill in the slot
-            this.classList.toggle('selected');                
-            //get the day and save it
-            const currentDay = popup.getAttribute('data-day'); 
-            saveSchedule(currentDay);                          
-        });
-    });
-
-    //iterate through all 'fulfilled services' and give them an event listener
-    document.querySelectorAll('.fulfilled').forEach(fulfilled => {
-        //when clicked
-        fulfilled.addEventListener('click', function () {
-            //fill the slot
-            this.classList.toggle('selected');                 
-            //get the day and save it
-            const currentDay = popup.getAttribute('data-day'); 
-            saveSchedule(currentDay);                         
-        });
-    });
-
-    //iterate through all 'payment statuses' and give them an event listener
-    document.querySelectorAll('.status').forEach(status => {
-        //when clicked
-        status.addEventListener('click', function () {
-            //fill the slot
-            this.classList.toggle('selected');                 
-            //get the day and save it
-            const currentDay = popup.getAttribute('data-day'); 
-            saveSchedule(currentDay);                        
-        });
-    });
-
-    //attach closePopup() to the close button in the popup form
-    closeBtn.addEventListener('click', closePopup);
+//event listener for sorting
+document.getElementById('sort-options').addEventListener('change', () => {
+    const sortOption = document.getElementById('sort-options').value;
+    const searchInput = document.querySelector('.search-input').value.trim();
+    //if sort type selected redisplay page
+    //fetch and display with sort and search
+    fetchAndDisplayBookings(sortOption, searchInput);
 });
+
+//event listener for search
+document.querySelector('.search-input').addEventListener('input', () => {
+    const searchInput = document.querySelector('.search-input').value.trim();
+    const sortOption = getQueryParam('sortBy') || '';
+    //if search input recieved redisplay page
+    //fetch and display with search and sort
+    fetchAndDisplayBookings(sortOption, searchInput);
+});
+
+// Initial load
+const currentSort = getQueryParam('sortBy') || '';
+setSortDropdown(currentSort);
+fetchAndDisplayBookings(currentSort);

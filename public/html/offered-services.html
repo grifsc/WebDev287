@@ -68,13 +68,14 @@
             <br>
             <br>
 
-            <form id="formid">
+            <form id="bookingForm">
                 <br>
                 <label for="schedule">Pick Your Appointment Day: </label>
                 <br>
                 <input type="date" class="date" id="date">
                 <br>
                 <br>
+                <!--
                 <label for="timeslot">Pick Your Timeslot: </label>
                 <br>
                 <br>
@@ -90,10 +91,11 @@
                 </select>
                 <br>
                 <br>
+                -->
                 <label for="choose">Pick Your Service: </label>
                 <br>
-                <br>
-                <select class="dropdown-option" name="choose">
+                <select id="pickService" class="dropdown-option" name="choose">
+                    <!--
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -102,6 +104,7 @@
                     <option>6</option>
                     <option>7</option>
                     <option>8</option>
+                    -->
                 </select>
                 <!--The devil is gone-->
                 <br>
@@ -112,6 +115,7 @@
             </form>
             
             <ol class="horizontal-list">
+                <!--
                 <li>
                     <h2>1. Blastoise Car Cleaning
                         <br>$39.99
@@ -160,6 +164,7 @@
                     </h2>
                     <img src="/images/122.png" alt="404">
                 </li>
+                -->
         </div>
 
         <!--Profile icon and name in top right-->
@@ -192,6 +197,8 @@
     <script src="/javascript/admin-settings.js"></script>
     <script src="/javascript/admin-profile-dropdown.js"></script>
     <script src="/javascript/admin-dashboard.js"></script>
+    <script src="/javascript/offered-services-display.js"></script>
+    <script src="/javascript/booking-insert.js"></script>
 
 </body>
 </html>

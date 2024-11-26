@@ -1,7 +1,8 @@
 const express = require('express');
 const mysql = require('mysql');
 const path = require('path');
-const session = require('express-session')
+const session = require('express-session');
+const { createReadStream } = require('fs');
 const app = express();
 const PORT = 8000;
 
@@ -114,7 +115,7 @@ app.post('/login', (req, res) => {
         if (results.length > 0) {
             const user = results[0];
             req.session.userId = user.id;
-            req.session.isAdmin = user.admin;
+            req.session.isAdmin = user.admin === 1;
 
             // Send JSON response to frontend with role
             return res.status(200).json({ role: user.admin ? 'admin' : 'client' });
@@ -143,7 +144,7 @@ app.get('/logout', (req, res) => {
  * Services Access
  * 
 */
-// Get all services
+//Get all services
 app.get('/services', (req, res) => {
     const query = 'SELECT * FROM Services';
     db.query(query, (err, results) => {
@@ -155,7 +156,7 @@ app.get('/services', (req, res) => {
     });
 });
 
-// Add new service
+//Add new service
 app.post('/add-service', (req, res) => {
     const { name, popular, price, description, image} = req.body;
     const query = 'INSERT INTO Services (name, popular, price, description, image) VALUES (?, ?, ?, ?, ?)';
@@ -168,7 +169,7 @@ app.post('/add-service', (req, res) => {
     });
 });
 
-// Edit service
+//Edit service
 app.post('/edit-service', (req, res) => {
     const { id, name, popular, price, description, image } = req.body;
     const query = 'UPDATE Services SET name = ?, popular = ?, price = ?, description = ?, image = ? WHERE id = ?';
@@ -181,7 +182,7 @@ app.post('/edit-service', (req, res) => {
     });
 });
 
-// Delete service
+//Delete service
 app.delete('/delete-service/:id', (req, res) => {
     const serviceId = req.params.id;
     const query = 'DELETE FROM Services WHERE id = ?';
@@ -211,9 +212,48 @@ app.get('/get-popular-services', (req,res) => {
  * Bookings Access
  * 
 */
-// Get all booking
+//Get all booking
 app.get('/bookings', (req, res) => {
-    const query = 'SELECT * FROM Bookings';
+    const sortBy = req.query.sortBy;
+    let query = 'SELECT * FROM Bookings';
+
+    switch (sortBy) {
+        case 'name':
+            //originally was ORDER BY name but name doesnt exist still need this
+            break;
+        case 'service':
+            query += ' ORDER BY service ASC';
+            break;
+        case 'oldestDate':
+            query += ' ORDER BY date ASC';
+            break;
+        case 'newestDate':
+            query += ' ORDER BY date DESC';
+            break;
+        case 'price':
+            query += ' ORDER BY price ASC';
+            break;
+        case 'status':
+            query += ' ORDER BY status ASC';
+            break;
+        case 'payment':
+            query += ' ORDER BY payment ASC';
+            break;
+        default:
+            break; //no sorting
+    }
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching bookings:', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json(results);
+    });
+});
+// Route for clientFinance Brandon code 
+app.get('/clientbookings', (req, res) => {
+    const query = `SELECT * FROM Bookings WHERE clientID = ${req.session.userId}`;
     db.query(query, (err, results) => {
         if (err) {
             console.error('Error retrieving bookings from database: ', err);
@@ -234,11 +274,12 @@ app.get('/clientbookings', (req, res) => {
     });
 });
 
+// vvv Problems with adding bookings
 // Add new booking
 app.post('/add-booking', (req, res) => {
-    const { id, clientID, name, service, status, payment, price, date, time} = req.body;
-    const query = 'INSERT INTO Bookings (clientID, name, service, status, payment, price, date, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-    db.query(query, [clientID, name, service, status, payment, price, date, time, id], (err, result) => {
+    const { clientID, service, status, payment, price, date, time} = req.body;
+    const query = 'INSERT INTO Bookings (clientID, service, status, payment, price, date, time) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    db.query(query, [clientID, service, status, payment, price, date, time], (err, result) => {
         if (err) {
             console.error('Error adding booking: ', err);
             return res.status(500).json({ success: false });
@@ -247,11 +288,11 @@ app.post('/add-booking', (req, res) => {
     });
 });
 
-// Edit booking
+//Edit booking
 app.post('/edit-booking', (req, res) => {
-    const { id, clientID, name, service, status, payment, price, date, time } = req.body;
-    const query = 'UPDATE Bookings SET clientID = ?, name = ?, service = ?, status = ?, payment = ?, price = ?, date = ?, time = ? WHERE id = ?';
-    db.query(query, [clientID, name, service, status, payment, price, date, time, id], (err, result) => {
+    const { id, clientID, service, status, payment, price, date, time } = req.body;
+    const query = 'UPDATE Bookings SET clientID = ?, service = ?, status = ?, payment = ?, price = ?, date = ?, time = ? WHERE id = ?';
+    db.query(query, [clientID, service, status, payment, price, date, time, id], (err, result) => {
         if (err) {
             console.error('Error updating booking: ', err);
             return res.status(500).json({ success: false });
@@ -260,13 +301,31 @@ app.post('/edit-booking', (req, res) => {
     });
 });
 
-// Delete booking
+//Delete booking
 app.delete('/delete-booking/:id', (req, res) => {
     const bookingId = req.params.id;
     const query = 'DELETE FROM Bookings WHERE id = ?';
     db.query(query, [bookingId], (err, result) => {
         if (err) {
             console.error('Error deleting booking: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+//Client-Bookings 
+app.get('/client-bookings', (req, res) => {
+    //Check if the user is login
+    if(!req.session.userId){
+        return res.status(401).json({ success: false });
+    }
+
+    const clientID = req.session.userId;
+    const query = 'SELECT * FROM Bookings WHERE clientID = ?';
+    db.query(query, [clientID], (err, results) => {
+        if(err){
+            console.error('Error fetching client bookings: ', err);
             return res.status(500).json({ success: false });
         }
         res.json({ success: true });
@@ -290,7 +349,7 @@ app.get('/users', (req, res) => {
     });
 });
 
-// Add new user
+//Add new user
 app.post('/add-user', (req, res) => {
     const { id, admin, first, last, email, password } = req.body;
     const query = 'INSERT INTO Users (admin, first, last, email, password) VALUES (?, ?, ?, ?, ?)';
@@ -303,7 +362,7 @@ app.post('/add-user', (req, res) => {
     });
 });
 
-// Edit user
+//Edit user
 app.post('/edit-user', (req, res) => {
     const { id, admin, first, last, email, password} = req.body;
     const query = 'UPDATE Users SET admin = ?, first = ?, last = ?, email = ?, password = ? WHERE id = ?';
@@ -316,7 +375,7 @@ app.post('/edit-user', (req, res) => {
     });
 });
 
-// Delete user
+//Delete user
 app.delete('/delete-user/:id', (req, res) => {
     const userId = req.params.id;
     const query = 'DELETE FROM Users WHERE id = ?';
@@ -356,7 +415,7 @@ app.get('/home-page-info/:id', (req, res) => {
 });
 
 
-// Edit home page information
+//Edit home page information
 app.post('/edit-home-page', (req, res) => {
     const { id, name, logo, welcome, hook, why, reason1, description1, reason2, description2, reason3, description3, reason4, description4, backgroundImg, slide1, slide2, slide3, slide4, caption1, caption2, caption3, caption4 } = req.body;
     const query = 'UPDATE HomePage SET name = ?, logo = ?, welcome = ?, hook = ?, why = ?, reason1 = ?, description1 = ?, reason2 = ?, description2 = ?, reason3 = ?, description3 = ?, reason4 = ?, description4 = ?, backgroundImg = ?, slide1 = ?, slide2 = ?, slide3 = ?, slide4 = ?, caption1 = ?, caption2 = ?, caption3 = ?, caption4 = ? WHERE id = ?';
@@ -420,7 +479,7 @@ app.get('/footer-info/:id', (req, res) => {
     });
 });
 
-// Edit user
+//Edit user
 app.post('/edit-footer', (req, res) => {
     const { id, aboutUs, facebook, instagram, twitter} = req.body;
     const query = 'UPDATE Footer SET aboutUs = ?, facebook = ?, instagram = ?, twitter = ? WHERE id = ?';
@@ -464,7 +523,38 @@ app.post('/register', (req, res) => {
 
 
 
-// Start the server
+
+
+//Brandons code
+app.post('/register', (req, res) => {
+    console.log(req.body);  // Should now show the parsed JSON body correctly
+    const { firstName, lastName, email, password, userType } = req.body;
+    console.log("Received firstName:", firstName);
+    console.log("Received lastName:", lastName);
+    console.log("Received email:", email);
+    console.log("Received password:", password);
+    console.log("Received userType:", userType);
+
+    if (!firstName || !lastName || !email || !password || !userType) {
+        console.log("Missing fields:", { firstName, lastName, email, password, userType });
+        return res.status(400).json({ success: false, message: 'All fields are required' });
+    }
+
+    const admin = userType === 'admin' ? 1 : 0;
+    const query = 'INSERT INTO users (admin, first, last, email, password) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [admin, firstName, lastName, email, password], (err, result) => {
+        if (err) {
+            console.error("Database query error:", err);
+            return res.status(500).json({ success: false, message: 'Error registering user: ' + err.message });
+        }
+        res.json({ success: true, message: 'Registration successful', redirect: '/login-page' });
+    });
+});
+
+
+
+
+//Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

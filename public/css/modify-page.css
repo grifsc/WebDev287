@@ -276,6 +276,7 @@ textarea {
 }
 
 .form-btn button {
+    font-size: 1rem;
     padding: 0.8rem 1.6rem;
     border-radius: var(--border-radius-3);
     border: none;
@@ -283,8 +284,6 @@ textarea {
     color: var(--color-white);
     cursor: pointer;
     margin-right: 1rem;
-    margin-bottom: 2rem;
-    box-shadow: 0  0.1rem 0.7rem 0.24rem rgba(132, 139, 200, 0.5);
     transition: all 0.03s ease;
 }
 

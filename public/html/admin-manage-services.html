@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Manage Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/client-home.css">
-    <link rel="stylesheet" href="/css/admin-profile-dropdown.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
     <link rel="stylesheet" href="/css/admin-manage-services.css">
+    <link rel="stylesheet" href="/css/admin-profile-dropdown.css">
+    <link rel="stylesheet" href="/css/admin-settings.css">
+    <link rel="stylesheet" href="/css/admin-customers.css">
+    <title>Admin Manage Booking</title>
 </head>
+
 <body>
     <div class="container">
         <aside>
@@ -40,7 +42,7 @@
                 <!--Scheduled Services-->
                 <a href="admin-manage-services.html" class="active">
                     <span class="icons"><i class="fa-solid fa-bars-progress"></i></span>
-                    <h3 href="#">Manage Services</h3>
+                    <h3 href="#">Manage Bookings</h3>
                 </a>
 
                 <!--Edit Services-->
@@ -70,177 +72,82 @@
         </aside>
 
         <main>
+            <!--Profile icon and name in top right-->
+        <div class="right">
             <div class="top">
                 <button id="menu-btn"><i class="fa-solid fa-bars"></i></button>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Matteo</b></p>
-                        <small class="text-muted">Admin</small>
+                        <p>Hey, <b>John</b></p>
+                        <small class="text-muted">Client</small>
                     </div>
                     <div class="profile-picture" onclick="toggleDropdown()">
                         <img src="/images/profile-pic.webp">
                     </div>
             
-                    <!--Profile dropdown menu-->
+                    <!-- Profile dropdown menu -->
                     <div class="dropdown">
                         <div id="profileDropdownMenu" class="dropdown-content">
-                            <a href="admin-dashboard.html">Dashboard</a>
-                            <a href="admin-settings.html">Settings</a>
+                            <a href="client-home.html">Client Home</a>
+                            <a href="client-settings.html">Settings</a>
                             <a href="/html/home.html">Log Out</a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="search-sort-container">
+            <form>
+                <div class="search">
+                    <span class="search-icon material-symbols-outlined">search</span>
+                    <input class="search-input" type="search" placeholder="Search">
+                </div>
+            </form>
+        </div>
 
-            <h1 style="text-align: left;">Manage Services</h1>
+            <div class="content-table">
+                <!-- Dropdown Menu for Sorting -->
+                <div>
+                    <label for="sort-options">Sort by:</label>
+                    <select id="sort-options">
+                        <option value="name">Client Name</option>
+                        <option value="service">Service</option>
+                        <option value="oldestDate">Oldest Date</option>
+                        <option value="newestDate">Newest Date</option>
+                        <option value="price">Price</option>
+                        <option value="status">Status</option>
+                        <option value="payment">Payment</option>
+                    </select>
+                </div>
 
-            
-            <table class="calendar">
-                <caption><h1>October 2024 Calendar</h1></caption>
-                <thead>
-                    <!--Header with weekdays-->
-                    <tr>
-                        <th>Sunday</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednesday</th>
-                        <th>Thursday</th>
-                        <th>Friday</th>
-                        <th>Saturday</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!--Calendar of Oct, empty cells are days from other months -->
-                    <tr>
-                        <td></td> 
-                        <td></td> 
-                        <td class="day" data-day="1">1</td> 
-                        <td class="day" data-day="2">2</td>
-                        <td class="day" data-day="3">3</td>
-                        <td class="day" data-day="4">4</td>
-                        <td class="day" data-day="5">5</td>
-                    </tr>
-                    <tr>
-                        <td class="day" data-day="6">6</td>
-                        <td class="day" data-day="7">7</td>
-                        <td class="day" data-day="8">8</td>
-                        <td class="day" data-day="9">9</td>
-                        <td class="day" data-day="10">10</td>
-                        <td class="day" data-day="11">11</td>
-                        <td class="day" data-day="12">12</td>
-                    </tr>
-                    <tr>
-                        <td class="day" data-day="13">13</td>
-                        <td class="day" data-day="14">14</td>
-                        <td class="day" data-day="15">15</td>
-                        <td class="day" data-day="16">16</td>
-                        <td class="day" data-day="17">17</td>
-                        <td class="day" data-day="18">18</td>
-                        <td class="day" data-day="19">19</td>
-                    </tr>
-                    <tr>
-                        <td class="day" data-day="20">20</td>
-                        <td class="day" data-day="21">21</td>
-                        <td class="day" data-day="22">22</td>
-                        <td class="day" data-day="23">23</td>
-                        <td class="day" data-day="24">24</td>
-                        <td class="day" data-day="25">25</td>
-                        <td class="day" data-day="26">26</td>
-                    </tr>
-                    <tr>
-                        <td class="day" data-day="27">27</td>
-                        <td class="day" data-day="28">28</td>
-                        <td class="day" data-day="29">29</td>
-                        <td class="day" data-day="30">30</td>
-                        <td class="day" data-day="31">31</td>
-                        <td></td> <!-- Empty after last day -->
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- Popup Schedule Form -->
-            <div class="overlay" id="overlay"></div>
-            <div class="popup" id="popup">
-                <h3>Schedule for <span id="selectedDay"></span></h3>
-                <table class="schedule-table">
+                <!-- Table for displaying bookings -->
+                <table>
                     <thead>
                         <tr>
-                            <th>Time</th>
-                            <th>Booked</th>
-                            <th>Fulfilled</th>
-                            <th>Payment Recieved</th>
+                            <th>Client Name</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Payment</th>
+                            <th>Price</th>
+                            <th>Email</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Schedule rows from 9 AM to 5 PM -->
-                        <tr>
-                            <td>9:00 AM</td>
-                            <td class="slot" data-time="9am"></td>
-                            <td class="fulfilled" data-time="9am"></td> 
-                            <td class="status" data-time="9am"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>10:00 AM</td>
-                            <td class="slot" data-time="10am"></td>
-                            <td class="fulfilled" data-time="10am"></td>
-                            <td class="status" data-time="10am"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>11:00 AM</td>
-                            <td class="slot" data-time="11am"></td>
-                            <td class="fulfilled" data-time="11am"></td>
-                            <td class="status" data-time="11am"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>12:00 AM</td>
-                            <td class="slot" data-time="12am"></td>
-                            <td class="fulfilled" data-time="12am"></td>
-                            <td class="status" data-time="12am"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>1:00 PM</td>
-                            <td class="slot" data-time="1pm"></td>
-                            <td class="fulfilled" data-time="1pm"></td>
-                            <td class="status" data-time="1pm"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>2:00 PM</td>
-                            <td class="slot" data-time="2pm"></td>
-                            <td class="fulfilled" data-time="2pm"></td>
-                            <td class="status" data-time="2pm"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>3:00 PM</td>
-                            <td class="slot" data-time="3pm"></td>
-                            <td class="fulfilled" data-time="3pm"></td> 
-                            <td class="status" data-time="3pm"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>4:00 PM</td>
-                            <td class="slot" data-time="3pm"></td>
-                            <td class="fulfilled" data-time="3pm"></td> 
-                            <td class="status" data-time="3pm"></td>
-                            
-                        </tr>
-
+                        <!-- Rows are dynamically generated -->
                     </tbody>
                 </table>
-                <button class="close-btn" onclick="closePopup()">Close</button>
-            </div>         
+            </div>
+
+          
+            </div>
         </main>
+    </div>
 
-    <script src="/javascript/bookings.js"></script>
-    <script src="/javascript/admin-profile-dropdown.js"></script>
+   
     <script src="/javascript/admin-manage-services.js"></script>
-    
-
+    <script src="/javascript/admin-profile-dropdown.js"></script>
+    <script src="/javascript/admin-dashboard.js"></script>
 </body>
 </html>

@@ -18,8 +18,8 @@ function loadServices() {
 
             //Dynamically display each bookings saved in DB
             bookings.forEach(booking => {
-                const hardcoded = 2;
-                
+                const hardcodedClientID = 2;
+                if (booking.clientID == hardcodedClientID) {
                     const bookingsDiv = document.createElement('li');
                     bookingsDiv.classList.add('bookings-option');
                     bookingsDiv.id = 'bookings-' + booking.id;
@@ -30,22 +30,21 @@ function loadServices() {
                             thisimage = serviceimage[index][1];
                             break;
                         }
-                    
                     }
 
                     const bookingsInfo = `
                         <h2>${booking.date}</h2>
-                        <h3>${booking.name}
+                        <h3>${booking.service}
                         <br>${booking.price}
                         </h3>
                         <img src="${thisimage}" alt="404">
                         <!--Button-->
-                        <button>Cancel</button>
+                        <button onclick="deleteBooking(${booking.id})">Cancel</button>
                     `;
 
                     bookingsDiv.innerHTML = bookingsInfo;
                     bookingsList.appendChild(bookingsDiv);
-                
+                }
             });
         })
         .catch(error => console.error('Error loading bookingss:', error));
