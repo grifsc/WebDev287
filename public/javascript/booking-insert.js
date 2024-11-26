@@ -9,8 +9,9 @@ function bookingForm(e) {
     const hardcodedClientID = 2;
 
     const clientID = hardcodedClientID;
-    // const service = document.getElementById('pickService').value;
-    const service = "Hardcoded service";
+    const dropdown = document.getElementById('pickService');
+    const service = dropdown.value;
+    alert(service);
     const status = "Pending"; // Pending by default when creating a booking
     const payment = "Unpaid"; // Unpaid by default when creating a booking
     // TODO: FETCH PRICE FROM SERVICES!!!
@@ -19,7 +20,7 @@ function bookingForm(e) {
         .then(services => {
             services.forEach(service => {
                 if (service.name == service) { // If the service's name corresponds to the current service selected
-                    staticServicePrice = service.price;
+                    let staticServicePrice = service.price;
                 }
             })
         })

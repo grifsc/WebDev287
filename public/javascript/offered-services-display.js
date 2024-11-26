@@ -1,5 +1,6 @@
 
 function loadServices() {
+
     // Display All Services on the Horizontal List
     fetch('/services')
         .then(response => response.json())
@@ -26,14 +27,8 @@ function loadServices() {
                 serviceList.appendChild(serviceListIndex);
                 
                 const dropdownListOption = document.createElement('option');
-                dropdownListOption.classList.add('service-option');
-                dropdownListOption.id = 'option-' + service.id;
-
-                const optionInfo = `
-                    <option>${service.name}</option>
-                `;
-
-                dropdownListOption.innerHTML = optionInfo;
+                dropdownListOption.value = service.name; // Set value as service name
+                dropdownListOption.innerText = service.name; // Set text as service name
                 dropdownList.appendChild(dropdownListOption);
             });
         })
