@@ -30,39 +30,40 @@ function loadHomePageInfo(){
     
 }
 
-function forceImagePath(inputImg){
-    let image = '';  
-    if (inputImg) {
-        image = '/images/' + inputImg;
-    }
-    return image;
-}
-
 function saveHomePageInfo(event){
     event.preventDefault();
 
     const name = document.getElementById('name').value;
-    const logo = forceImagePath(document.getElementById('logo').src);
+    const logoFile = document.getElementById('logo').files[0];
     const welcome = document.getElementById('welcome').value;
-    const hook = document.getElementById('hook').value ;
+    const hook = document.getElementById('hook').value;
     const why = document.getElementById('benefit-title').value;
-    const backgroundImg = forceImagePath(document.getElementById('welcome-background').src);
-    const benefit1 = document.getElementById('benefit-1').value;
-    const benefit2 = document.getElementById('benefit-2').value;
-    const benefit3 = document.getElementById('benefit-3').value;
-    const benefit4 = document.getElementById('benefit-4').value;
+    const backgroundFile = document.getElementById('welcome-background').files[0];
+    const reason1 = document.getElementById('benefit-1').value;
+    const reason2 = document.getElementById('benefit-2').value;
+    const reason3 = document.getElementById('benefit-3').value;
+    const reason4 = document.getElementById('benefit-4').value;
     const description1 = document.getElementById('benefit-description-1').value;
     const description2 = document.getElementById('benefit-description-2').value;
     const description3 = document.getElementById('benefit-description-3').value;
     const description4 = document.getElementById('benefit-description-4').value;
-    const slide1 = forceImagePath(document.getElementById('slideshow-1').src);
-    const slide2 = forceImagePath(document.getElementById('slideshow-2').src);
-    const slide3 = forceImagePath(document.getElementById('slideshow-3').src);
-    const slide4 = forceImagePath(document.getElementById('slideshow-4').src);
+    const slideFile1 = document.getElementById('slideshow-1').files[0];
+    const slideFile2 = document.getElementById('slideshow-2').files[0];
+    const slideFile3 = document.getElementById('slideshow-3').files[0];
+    const slideFile4 = document.getElementById('slideshow-4').files[0];
     const caption1 = document.getElementById('caption-1').value;
     const caption2 = document.getElementById('caption-2').value;
     const caption3 = document.getElementById('caption-3').value;
     const caption4 = document.getElementById('caption-4').value;
+
+    //Force the image path
+    const logo = logoFile ? '/images/' + logoFile.name : '';
+    const backgroundImg = backgroundFile ? '/images/' + backgroundFile.name : '';
+    const slide1 = slideFile1 ? '/images/' + slideFile1.name : '';
+    const slide2 = slideFile2 ? '/images/' + slideFile2.name : '';
+    const slide3 = slideFile3 ? '/images/' + slideFile3.name : '';
+    const slide4 = slideFile4 ? '/images/' + slideFile4.name : '';
+
 
     const data = {
         id : 1,
@@ -71,13 +72,13 @@ function saveHomePageInfo(event){
         welcome,
         hook,
         why,
-        benefit1,
+        reason1,
         description1,
-        benefit2,
+        reason2,
         description2,
-        benefit3,
+        reason3,
         description3,
-        benefit4,
+        reason4,
         description4,
         backgroundImg,
         slide1,
@@ -220,7 +221,12 @@ window.onload = function() {
     loadFooterInfo();
 };
 
-//Attach event listener to the forms
+//Attach event listener to the save button
 document.getElementById('save-home-page').addEventListener('click', saveHomePageInfo);
 document.getElementById('save-contact').addEventListener('click', saveContactInfo);
 document.getElementById('save-footer').addEventListener('click', saveFooterInfo);
+
+//Attach event listener to the client's view button
+document.getElementById('client-view-home').addEventListener('click', () => {window.open('/html/home.html', '_blank')});
+document.getElementById('client-view-contact').addEventListener('click', () => {window.open('/html/contact.html', '_blank')});
+document.getElementById('client-view-footer').addEventListener('click', () => {window.open('/html/home.html', '_blank')});
