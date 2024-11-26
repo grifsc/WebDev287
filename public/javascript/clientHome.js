@@ -8,35 +8,54 @@ function loadHome(){
             const numBookings = bookings.length;
             document.getElementById('num-bookings').textContent = `${numBookings}`;
 
-            //Save the amount due to display
+            //Display the amount due
             let amountDue = 0;
 
             bookings.forEach(booking => {
-                //Calculate the amount due
-                if(booking.payment == 'Unpaid' && booking.status !== 'Cancelled'){
-                    let price = booking.price;
-                    price = parseFloat(price);
+                if (booking.payment === 'Unpaid' && booking.status !== 'Cancelled') {
+                    let price = parseFloat(booking.price);
                     amountDue += price;
                 }
+            });
+            document.getElementById('amount-due').textContent = `$${amountDue.toFixed(2)}`;
 
-                //Find the next pending booking
-                let pendingBookings = bookings.filter(booking => booking.status === 'Pending');
-                let mostRecent = null;
-    
-                pendingBookings.forEach(booking => {
+            //Display the upcoming booking
+            const now = new Date();
+            let nextBooking = null;
+
+            bookings.forEach(booking => {
+                if(booking.status === 'Pending'){
                     const bookingDate = parseDate(booking.date);
-                    if (!mostRecent || parseDate(mostRecent.date) < bookingDate) {
-                        mostRecent = booking;
-                    }
-                });
-    
-                if (mostRecent) {
-                    const date = formatDate(parseDate(mostRecent.date));
-                    document.getElementById('next-booking').textContent = `${date}`;
-                } else {
-                    document.getElementById('next-booking').textContent = `No upcoming bookings`;
-                }
 
+                    //Find the earliest date
+                    if(bookingDate > now && (!nextBooking || bookingDate < parseDate(nextBooking.date))){
+                        nextBooking = booking;
+                    }
+                }
+            });
+
+            if(nextBooking){
+                const date = formatDate(parseDate(nextBooking.date));
+                document.getElementById('next-booking').textContent = `${date}`;
+                document.getElementById('next-service').textContent = `${nextBooking.service}`;
+            }else{ 
+                document.getElementById('next-booking').textContent = `No Upcoming Service`;
+                document.getElementById('next-service').textContent = ``;
+            }
+
+            //Create the recent bookings
+            //Limit the table (caps 10)
+            let recentBookings;
+            if(bookings.length > 10){
+                recentBookings = bookings.split(-10).reverse();
+            }else{
+                recentBookings = bookings;
+            }
+            
+            const tbody = document.querySelector('table tbody');
+            tbody.innerHTML = '';
+
+            recentBookings.forEach(booking => {
                 const tr = document.createElement('tr');
                 const trContent = `
                     <td>${booking.service}</td>
@@ -49,13 +68,9 @@ function loadHome(){
                         'primary'
                     }">${booking.status}</td>
                 `;
-            
                 tr.innerHTML = trContent;
-                document.querySelector('table tbody').appendChild(tr);
+                tbody.appendChild(tr);
             });
-
-            //Display amount due for analytics
-            document.getElementById('amount-due').textContent = `$${amountDue.toFixed(2)}`;
         })
         .catch(error => console.log('Error loading the recent client bookings: ', error));
 }
