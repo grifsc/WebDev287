@@ -65,6 +65,7 @@ function saveHomePageInfo(event){
     const caption4 = document.getElementById('caption-4').value;
 
     const data = {
+        id : 1,
         name,
         logo,
         welcome,
@@ -99,6 +100,7 @@ function saveHomePageInfo(event){
     .then(response => response.json())
     .then(result => {
         if (result.success) {
+            loadHomePageInfo();
             alert('Home Page saved successfully');
         } else {
             alert('Error saving Home Page');
@@ -135,6 +137,7 @@ function saveContactInfo(event){
     const zipcode = document.getElementById('zip').value;
 
     const data = {
+        id : 1,
         description,
         email,
         phone,
@@ -154,6 +157,7 @@ function saveContactInfo(event){
     .then(response => response.json())
     .then(result => {
         if (result.success) {
+            loadContactInfo();
             alert('Contact Page saved successfully');
         } else {
             alert('Error saving Contact Page');
@@ -183,6 +187,7 @@ function saveFooterInfo(event){
     const twitter = document.getElementById('twitter-acc').value;
 
     const data = {
+        id : 1,
         aboutUs,
         facebook,
         instagram,
@@ -199,6 +204,7 @@ function saveFooterInfo(event){
     .then(response => response.json())
     .then(result => {
         if (result.success) {
+            loadFooterInfo();
             alert('Footer saved successfully');
         } else {
             alert('Error saving Footer');
@@ -214,7 +220,7 @@ window.onload = function() {
     loadFooterInfo();
 };
 
- //Attach event listener to the forms
-document.getElementById('save-home-page').addEventListener('submit', saveHomePageInfo);
-document.getElementById('save-contact').addEventListener('submit', saveContactInfo);
-document.getElementById('save-footer').addEventListener('submit', saveFooterInfo);
+//Attach event listener to the forms
+document.getElementById('save-home-page').addEventListener('click', saveHomePageInfo);
+document.getElementById('save-contact').addEventListener('click', saveContactInfo);
+document.getElementById('save-footer').addEventListener('click', saveFooterInfo);
