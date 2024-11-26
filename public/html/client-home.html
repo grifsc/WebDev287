@@ -88,17 +88,17 @@
             <div class="dashboard-cards">
                 <div class="card">
                     <h3>Total Services</h3>
-                    <p><span>3</span></p>
-                    <small class="text-muted">Last 30 Days</small>
+                    <p><span id="num-bookings"></span></p>
+                    <small class="text-muted">Total</small>
                 </div>
                 <div class="card">
                     <h3>Upcoming Payments</h3>
-                    <p><span>$245</span></p>
+                    <p><span id="amount-due"></span></p>
                     <small class="text-muted">Due Next Month</small>
                 </div>
                 <div class="card">
                     <h3>Next Booking</h3>
-                    <p><span>Oct 30, 2024</span></p>
+                    <p><span id="next-booking"></span></p>
                     <small class="text-muted">Blastoise Car Cleaning</small>
                 </div>
             </div>
@@ -112,7 +112,6 @@
                             <th>Date</th>
                             <th>Time</th>
                             <th>Status</th>
-                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
