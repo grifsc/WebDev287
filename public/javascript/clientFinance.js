@@ -81,7 +81,7 @@ fetch('http://localhost:8000/clientbookings').then(response => {
         tr.innerHTML = trContent;
         document.querySelector('table tbody').appendChild(tr);
     });
-})
+}).catch(error => console.error('Error loading bookings:', error));
 
 //Completed Services Receipts
 fetch('http://localhost:8000/clientbookings')
@@ -121,7 +121,7 @@ fetch('http://localhost:8000/clientbookings')
             container.appendChild(billDiv);
         }
     });
-})
+}).catch(error => console.error('Error loading client booking:', error));
 
 // Upcoming Payment Receipts
 fetch('http://localhost:8000/clientbookings')
@@ -161,4 +161,4 @@ fetch('http://localhost:8000/clientbookings')
             container.appendChild(billDiv);
         }
     });
-})
+}).catch(error => console.error('Error loading client booking:', error));
