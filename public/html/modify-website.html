@@ -34,7 +34,7 @@
 
                 <a href="admin-manage-services.html">
                     <span class="icons"><i class="fa-solid fa-bars-progress"></i></span>
-                    <h3 href="#">Manage Bookings</h3>
+                    <h3 href="#">Manage Services</h3>
                 </a>
 
                 <a href="modify-services.html">
@@ -79,126 +79,136 @@
                 <!-- Home Page Section -->
                 <div class="home-page-form form-section">
                     <h2>Home Page</h2>
+                    <label class="subtitle">Company Brand</label>
+                    <label>Company Name</label>
+                    <input type="text" id="name" name="name" placeholder="ex: Google" required>
+                    <label>Logo</label>
+                    <input type="file" id="logo" name="logo" required>
 
-                    <label for="welcome">Opening Message</label>
-                    <input type="text" id="welcome" name="welcome" placeholder="Welcome to our cleaning services!">
+                    <label>Opening Message</label>
+                    <input type="text" id="welcome" name="welcome" placeholder="Welcome to our cleaning services!" required>
 
-                    <label for="description">Initial Short Hook</label>
-                    <textarea id="description" name="description" placeholder="Enter description..."></textarea>
+                    <label>Initial Short Hook</label>
+                    <textarea id="hook" name="hook" placeholder="Enter description..." required></textarea>
 
-                    <label for="welcome-background">ex: Welcome Page Background Image</label>
-                    <input type="file" id="welcome-background">
+                    <label>Welcome Page Background Image</label>
+                    <input type="file" id="welcome-background" required>
 
                     <div class="benefits">
-                        <label for="benefits" class="subtitle">Benefits of your Services</label>
-                        <label for="welcome">Benefit 1</label>
-                        <input type="text" id="welcome" name="welcome" placeholder="ex: Reliable">
-                        <label for="description">Explanation</label>
-                        <textarea id="description" name="description" placeholder="Enter description..."></textarea>
+                        <label class="subtitle">Benefits of your Services</label>
+                        <label>Title to introduce the benefits</label>
+                        <input type="text" id="benefit-title" name="benefit-title" placeholder="ex: Why choose us?" required>
+                        <label>Benefit 1</label>
+                        <input type="text" id="benefit-1" name="benefit-1" placeholder="ex: Reliable" required>
+                        <label>Explanation</label>
+                        <textarea id="benefit-description-1" name="benefit-description-1" placeholder="Enter description..." required></textarea>
 
-                        <label for="welcome">Benefit 2</label>
-                        <input type="text" id="welcome" name="welcome" placeholder="ex: Inexpensive">
-                        <label for="description">Explanation</label>
-                        <textarea id="description" name="description" placeholder="Enter description..."></textarea>
+                        <label>Benefit 2</label>
+                        <input type="text" id="benefit-2" name="benefit-2" placeholder="ex: Inexpensive" required>
+                        <label>Explanation</label>
+                        <textarea id="benefit-description-2" name="benefit-description-2" placeholder="Enter description..." required></textarea>
 
-                        <label for="welcome">Benefit 3</label>
-                        <input type="text" id="welcome" name="welcome" placeholder="ex: Convenient">
-                        <label for="description">Explanation</label>
-                        <textarea id="description" name="description" placeholder="Enter description..."></textarea>
+                        <label>Benefit 3</label>
+                        <input type="text" id="benefit-3" name="benefit-3" placeholder="ex: Convenient" required>
+                        <label>Explanation</label>
+                        <textarea id="benefit-description-3" name="benefit-description-3" placeholder="Enter description..." required></textarea>
+
+                        <label>Benefit 4</label>
+                        <input type="text" id="benefit-4" name="benefit-4" placeholder="ex: Accessible" required>
+                        <label>Explanation</label>
+                        <textarea id="benefit-description-4" name="benefit-description-4" placeholder="Enter description..." required></textarea>
                     </div>
 
                     <div class="slideshow">
-                        <label for="location" class="subtitle">Slideshow</label>
+                        <label class="subtitle">Slideshow</label>
 
-                        <label for="slideshow">Slideshow Display Images</label>
-                        <input type="file" id="slideshow" name="slideshow" multiple>
+                        <label>Slideshow Image 1:</label>
+                        <input type="file" id="slideshow-1" name="slideshow-1" accept="image/*" required /><br />
+                        <label>Caption for Image 1</label>
+                        <input type="text" id="caption-1" name="caption-1" placeholder="Enter your caption">
 
-                        <label for="slideshow">Caption for Image 1</label>
-                        <input type="text" id="address" name="address" placeholder="Enter your caption">
+                        <label>Slideshow Image 2:</label>
+                        <input type="file" id="slideshow-2" name="slideshow-2" accept="image/*" required /><br />
+                        <label>Caption for Image 2</label>
+                        <input type="text" id="caption-2" name="caption-2" placeholder="Enter your caption">
 
-                        <label for="slideshow">Caption for Image 2</label>
-                        <input type="text" id="address" name="address" placeholder="Enter your caption">
+                        <label>Slideshow Image 3:</label>
+                        <input type="file" id="slideshow-3" name="slideshow-3" accept="image/*" required /><br />
+                        <label>Caption for Image 3</label>
+                        <input type="text" id="caption-3" name="caption-3" placeholder="Enter your caption">
 
-                        <label for="slideshow">Caption for Image 3</label>
-                        <input type="text" id="address" name="address" placeholder="Enter your caption">
-
-                        <label for="slideshow">Caption for Image 4</label>
-                        <input type="text" id="address" name="address" placeholder="Enter your caption">
+                        <label>Slideshow Image 4:</label>
+                        <input type="file" id="slideshow-4" name="slideshow-4" accept="image/*" required /><br />
+                        <label>Caption for Image 4</label>
+                        <input type="text" id="caption-4" name="caption-4" placeholder="Enter your caption">
                     </div>
 
-                    
-
-                    <!-------- To be Change -------->
-                    <div class="services">
-                        <label for="services" class="subtitle">Most Popular Services Offered</label>
-                        <p>Select the services you want to display on the home page (max: 3 services):</p>
-                        <div class="checkbox-display">
-                            <div class="checkbox-display">
-                                <h3>Select Services:</h3>
-                                <label><input type="checkbox" name="services" value="Service 1">Blastoise Car Cleaning</label>
-                                <label><input type="checkbox" name="services" value="Service 2">Primeape's 1h Boxing Lesson</label>
-                                <label><input type="checkbox" name="services" value="Service 3">Sylveon's Medical Care/label>
-                                <label><input type="checkbox" name="services" value="Service 4">Fishing with Cramorant</label>
-                                <label><input type="checkbox" name="services" value="Service 5">Roasting Smores with Cyndaquil</label>
-                                <label><input type="checkbox" name="services" value="Service 6">Playing with Togepi</label>
-                                <label><input type="checkbox" name="services" value="Service 7">Jigglipuff Singing a Lullaby</label>
-                                <label><input type="checkbox" name="services" value="Service 8">Bring Mr. Mime to your Party</label>
-                            </div>
-                        </div>                
+                    <!-- Save and Preview Buttons -->
+                    <div class="form-btn" style="margin-top: 1rem;">
+                        <button type="submit" class="btn save-home-page" id="save-home-page">Save Changes</button>
+                        <button class="btn preview">Client's View</button>
                     </div>
                 </div>
 
                 <!-- Contact Page Section -->
                 <div class="contact-form form-section">
                     <h2>Contact Page</h2>
+                    <label>Small Description for Contact Page</label>
+                    <textarea name="contact-description" id="contact-description" placeholder="Enter description..." required></textarea>
 
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="contact@example.com">
+                    <label>Email</label>
+                    <input type="email" id="email" name="email" placeholder="contact@example.com" required>
 
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                    <label >Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890" required>
 
                     <div class="location">
-                        <label for="location" class="subtitle">Location</label>
+                        <label class="subtitle">Location</label>
 
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" placeholder="Enter your address">
+                        <label>Address</label>
+                        <input type="text" id="address" name="address" placeholder="Enter your address" required>
                         
-                        <label for="city">City</label>
-                        <input type="text" id="city" name="city" placeholder="Enter your city">
+                        <label>City</label>
+                        <input type="text" id="city" name="city" placeholder="Enter your city" required>
                         
-                        <label for="state">State/Province</label>
-                        <input type="text" id="state" name="state" placeholder="Enter your state or province">
+                        <label>State/Province</label>
+                        <input type="text" id="state" name="state" placeholder="Enter your state or province" required>
                         
-                        <label for="zip">Zip Code:</label>
-                        <input type="text" id="zip" name="zip" placeholder="Enter your zip code">
+                        <label>Zip Code:</label>
+                        <input type="text" id="zip" name="zip" placeholder="Enter your zip code" required>
+                    </div>
+
+                    <!-- Save and Preview Buttons -->
+                    <div class="form-btn">
+                        <button type="submit" class="btn save-contact" id="save-contact">Save Changes</button>
+                        <button class="btn preview">Client's View</button>
                     </div>
                 </div>
 
                 <div class="footer-form form-section">
                     <h2>Footer Elements</h2>
 
-                    <label for="description">Brief About Us Description</label>
-                    <textarea id="description" name="description" placeholder="Enter description..."></textarea>
+                    <label>Brief About Us Description</label>
+                    <textarea id="about-us-description" name="description" placeholder="Enter description..." required></textarea>
 
                     <div class="socials">
-                        <label for="socials" class="subtitle">Social Media Accounts</label>
+                        <label class="subtitle">Social Media Accounts</label>
 
-                        <label for="social">Facebook Account Link</label>
-                        <input type="url" id="facebook-acc" class="facebook-acc" placeholder="Enter the link to the Facebook Account">
+                        <label>Facebook Account Link</label>
+                        <input type="url" id="facebook-acc" class="facebook-acc" placeholder="Enter the link to the Facebook Account" required>
 
-                        <label for="social">Instagram Account Link</label>
-                        <input type="url" id="instagram-acc" class="instagram-acc" placeholder="Enter the link to the Instagram Account">
+                        <label>Instagram Account Link</label>
+                        <input type="url" id="instagram-acc" class="instagram-acc" placeholder="Enter the link to the Instagram Account" required>
 
-                        <label for="social">Twitter Account Link</label>
-                        <input type="url" id="twitter-acc" class="twitter-acc" placeholder="Enter the link to the Twitter Account">
+                        <label>Twitter Account Link</label>
+                        <input type="url" id="twitter-acc" class="twitter-acc" placeholder="Enter the link to the Twitter Account" required>
+                        
+                        <!-- Save and Preview Buttons -->
+                        <div class="form-btn">
+                            <button type="submit" class="btn save-footer" id="save-footer">Save Changes</button>
+                            <button class="btn preview">Client's View</button>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Save and Preview Buttons -->
-                <div class="form-btn">
-                    <button class="btn save">Save Changes</button>
-                    <button class="btn preview">Client's View</button>
                 </div>
             </div>
         </main>
@@ -206,8 +216,6 @@
     </div>
 
     <script src="/javascript/admin-dashboard.js"></script>
-    <script src="/javascript/modify-website.js"></script>
-    <script src="/javascript/sampleServices.js"></script>
     <script src="/javascript/modifyWebsite.js"></script>
 </body>
 </html>
