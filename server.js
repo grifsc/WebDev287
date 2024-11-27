@@ -11,7 +11,7 @@ const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "webdev287" 
+    database: "WebDev287" 
 });
 
 // Handles error if database is not properly connected
