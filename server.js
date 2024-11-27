@@ -405,6 +405,45 @@ app.post('/edit-user', (req, res) => {
         res.json({ success: true });
     });
 });
+//edit only user name
+app.post('/edit-user-name', (req, res) => {
+    const { id, first, last } = req.body;
+    const query = 'UPDATE Users SET first = ?, last = ? WHERE id = ?';
+    db.query(query, [first, last, id], (err, result) => {
+        if (err) {
+            console.error('Error updating user name: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+//edit only user email
+app.post('/edit-user-email', (req, res) => {
+    const { id, email } = req.body;
+    const query = 'UPDATE Users SET email = ? WHERE id = ?';
+    db.query(query, [email, id], (err, result) => {
+        if (err) {
+            console.error('Error updating user email: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+//edit only user password
+app.post('/edit-user-password', (req, res) => {
+    const { id, password } = req.body;
+    const query = 'UPDATE Users SET password = ? WHERE id = ?';
+    db.query(query, [password, id], (err, result) => {
+        if (err) {
+            console.error('Error updating user password: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
 
 //Delete user
 app.delete('/delete-user/:id', (req, res) => {
