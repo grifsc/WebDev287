@@ -103,15 +103,26 @@ function fetchAndDisplayBookings(sortBy = '', searchInput = '') {
                     <td>${currentUserName}</td>
                     <td>${booking.service}</td>
                     <td>${booking.date}</td>
-                    <td class="${
-                        booking.status === 'Pending' ? 'warning' :
-                        booking.status === 'Cancelled' ? 'danger' :
-                        booking.status === 'Complete' ? 'success' : 'primary'
-                    }">${booking.status}</td>
-                    <td class="${
-                        booking.payment === 'Paid' ? 'success' :
-                        booking.payment === 'Unpaid' ? 'danger' : 'primary'
-                    }">${booking.payment}</td>
+                    <td>
+                        <select class="status-dropdown ${
+                            booking.status === 'Pending' ? 'warning' :
+                            booking.status === 'Cancelled' ? 'danger' :
+                            booking.status === 'Complete' ? 'success' : 'primary'
+                        }" data-id="${booking.id}">
+                            <option value="Pending" ${booking.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Cancelled" ${booking.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                            <option value="Complete" ${booking.status === 'Complete' ? 'selected' : ''}>Complete</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="payment-dropdown ${
+                            booking.payment === 'Paid' ? 'success' :
+                            booking.payment === 'Unpaid' ? 'danger' : 'primary'
+                        }" data-id="${booking.id}">
+                            <option value="Paid" ${booking.payment === 'Paid' ? 'selected' : ''}>Paid</option>
+                            <option value="Unpaid" ${booking.payment === 'Unpaid' ? 'selected' : ''}>Unpaid</option>
+                        </select>
+                    </td>
                     <td>$${booking.price}</td>
                     <td>
                         <button onclick="window.location.href='mailto:${currentUserEmail}?subject=Appointment Details&body=Hey ${currentUserName},%0A%0AYour appointment details are as follows:%0A%0AService: ${booking.service}%0ADate: ${booking.date}%0AStatus: ${booking.status}%0APayment%20Status: ${booking.payment}%0APrice: $${booking.price}'">
@@ -124,6 +135,21 @@ function fetchAndDisplayBookings(sortBy = '', searchInput = '') {
                 `;
                 tr.innerHTML = trContent;
                 tableBody.appendChild(tr);
+            });
+            document.querySelectorAll('.status-dropdown').forEach(dropdown => {
+                dropdown.addEventListener('change', (event) => {
+                    const bookingID = event.target.getAttribute('data-id');
+                    const newStatus = event.target.value;
+                    updateBooking(bookingID, { status: newStatus }); // Pass the status change
+                });
+            });
+            
+            document.querySelectorAll('.payment-dropdown').forEach(dropdown => {
+                dropdown.addEventListener('change', (event) => {
+                    const bookingID = event.target.getAttribute('data-id');
+                    const newPayment = event.target.value;
+                    updateBooking(bookingID, { payment: newPayment }); // Pass the payment change
+                });
             });
 
             //attach event listeners to delete buttons
@@ -190,6 +216,91 @@ function setSortDropdown(selectedOption) {
     const sortDropdown = document.getElementById('sort-options');
     sortDropdown.value = selectedOption;
 }
+
+// Helper function to check if the update is related to status
+function isStatusUpdate(updates) {
+    return updates.hasOwnProperty('status');
+}
+
+// Helper function to check if the update is related to payment
+function isPaymentUpdate(updates) {
+    return updates.hasOwnProperty('payment');
+}
+
+// Updated function to handle booking update
+function updateBooking(bookingID, updates) {
+
+            var oldBook = [];
+            // Fetch the recent bookings to display after clientInfo is populated
+            fetch('/bookings')
+                .then(response => response.json())
+                .then(bookings => {
+                    if(bookings.id == bookingID) {
+                        oldBook.push(bookings.clientID)
+                        oldBook.push(bookings.service)
+                        oldBook.push(bookings.status)
+                        oldBook.push(bookings.payment)
+                        oldBook.push(bookings.price)
+                        oldBook.push(bookings.date)
+                        oldBook.push(bookings.time)
+                    }
+                })
+                .catch(error => console.log('Error loading the booking: ', error));
+    // Check if the update is related to status or payment, and handle accordingly
+        var thing = "haskdhasdkj";
+        var serviceName = oldBook[1];
+    const requestData = {
+        id: bookingID,
+        ...updates, 
+    };
+
+    // If it's a status update, handle the status field
+    if (isStatusUpdate(updates)) {
+        requestData.status = updates.status;
+        // Make the fetch request with the appropriate update
+    fetch('/edit-booking-status', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData), // Send the requestData as JSON
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Booking updated successfully.');
+            window.location.reload(); // Reload the page to reflect changes
+        } else {
+            alert('Failed to update booking.');
+        }
+    })
+    .catch(error => console.error('Error updating booking:', error));
+    }
+
+    // If it's a payment update, handle the payment field
+    if (isPaymentUpdate(updates)) {
+        requestData.payment = updates.payment;
+        // Make the fetch request with the appropriate update
+    fetch('/edit-booking-payment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData), // Send the requestData as JSON
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Booking updated successfully.');
+            window.location.reload(); // Reload the page to reflect changes
+        } else {
+            alert('Failed to update booking.');
+        }
+    })
+    .catch(error => console.error('Error updating booking:', error));
+    }
+}
+
 
 //event listener for sorting
 document.getElementById('sort-options').addEventListener('change', () => {
