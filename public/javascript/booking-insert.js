@@ -2,30 +2,20 @@
 document.getElementById('bookingForm').addEventListener('submit', bookingForm);
 
 // Reference: https://youtu.be/7LGpIQ6ceJs?si=1uRItCreLZjrrce8
-function bookingForm(e) {
+async function bookingForm(e) {
     e.preventDefault(); // Prevent Page from Refreshing
 
-    // Hardcoded Client ID for now
-    const hardcodedClientID = 2;
+    // Wait to fetch client id, HARDCODED FOR NOW
+    const clientID = 2;
 
-    const clientID = hardcodedClientID;
     const dropdown = document.getElementById('pickService');
     const service = dropdown.value;
     alert(service);
     const status = "Pending"; // Pending by default when creating a booking
     const payment = "Unpaid"; // Unpaid by default when creating a booking
-    let price = "20 DOLLAHS GOTTA FIX THIS LATER";
-    // TODO: FETCH PRICE FROM SERVICES!!!
-    fetch('/services')
-        .then(response => response.json())
-        .then(services => {
-            services.forEach(service => {
-                if (service.name == service) { // If the service's name corresponds to the current service selected
-                    price = service.price;
-                }
-            })
-        })
-        .catch(error => console.error('Error editing service:', error));;
+    
+    // Wait to be able to fetch the price first
+    price = await fetchPrice(service);
     const date = document.getElementById('date').value;
     // const date = "1999";
     const time = "unused"; // Deprecated
@@ -62,4 +52,26 @@ function insertBooking(data) {
         }
     })
     .catch(error => console.error('Error adding booking:', error));
+}
+
+async function fetchPrice(serviceName) {
+    try {
+        // Wait to store the information before going through the next, works the same as .then
+        const response = await fetch('/services');
+        const services = await response.json();
+        
+        // Search for the service with the matching name
+        const service = services.find(s => s.name === serviceName);
+        
+        if (service) {
+            console.log('Price for service:', service.price);
+            return service.price;
+        } else {
+            console.error('Service not found');
+            return "Service not found!";
+        }
+    } catch (error) {
+        console.error('Error fetching services:', error);
+        return "Error fetching services!";
+    }
 }

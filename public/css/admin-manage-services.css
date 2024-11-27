@@ -438,3 +438,6 @@ main .content-table a{
         font-size: 0.8rem;
     }
 }
+select {
+text-align:center;
+}

@@ -261,6 +261,24 @@ app.get('/clientbookings', (req, res) => {
     });
 });
 
+// Testing to only retrieve client id
+app.get('/userid', (req, res) => {
+    // Validate that userId exists in the session
+    if (!req.session.userId) {
+        return res.status(400).send('User ID is missing');
+    }
+
+    // Query to fetch data for a specific user ID
+    const query = 'SELECT * FROM users WHERE userId = ?'; // Assuming 'users' is your table name
+
+    // Execute the query with parameterized input to prevent SQL injection
+    db.query(query, [req.session.userId], (err, results) => {
+        // Return the user's data as JSON
+        res.json(results[0].userId); // Send only the first result since you're expecting a single user
+    });
+});
+
+
 // vvv Problems with adding bookings
 // Add new booking
 app.post('/add-booking', (req, res) => {
@@ -275,7 +293,7 @@ app.post('/add-booking', (req, res) => {
     });
 });
 
-//Edit booking
+//edit booking
 app.post('/edit-booking', (req, res) => {
     const { id, clientID, service, status, payment, price, date, time } = req.body;
     const query = 'UPDATE Bookings SET clientID = ?, service = ?, status = ?, payment = ?, price = ?, date = ?, time = ? WHERE id = ?';
@@ -297,7 +315,7 @@ app.post('/edit-booking-status', (req, res) => {
         return res.status(400).json({ success: false, message: 'Booking ID and status are required' });
     }
 
-    // Update the booking status in the database (using the booking ID)
+    //update the booking status in the database
     const query = `
         UPDATE Bookings
         SET status = ?
@@ -310,7 +328,7 @@ app.post('/edit-booking-status', (req, res) => {
             return res.status(500).json({ success: false, message: 'Failed to update booking status' });
         }
 
-        // Check if the booking was found and updated
+        //check if the booking was found and updated
         if (result.affectedRows === 0) {
             return res.status(404).json({ success: false, message: 'Booking not found' });
         }
@@ -328,7 +346,7 @@ app.post('/edit-booking-payment', (req, res) => {
         return res.status(400).json({ success: false, message: 'Booking ID and payment status are required' });
     }
 
-    // Update the payment status in the database (using the booking ID)
+    //update the payment status in the database
     const query = `
         UPDATE Bookings
         SET payment = ?
@@ -341,7 +359,7 @@ app.post('/edit-booking-payment', (req, res) => {
             return res.status(500).json({ success: false, message: 'Failed to update booking payment' });
         }
 
-        // Check if the booking was found and updated
+        //check if the booking was found and updated
         if (result.affectedRows === 0) {
             return res.status(404).json({ success: false, message: 'Booking not found' });
         }
@@ -405,6 +423,45 @@ app.post('/edit-user', (req, res) => {
         res.json({ success: true });
     });
 });
+//edit only user name
+app.post('/edit-user-name', (req, res) => {
+    const { id, first, last } = req.body;
+    const query = 'UPDATE Users SET first = ?, last = ? WHERE id = ?';
+    db.query(query, [first, last, id], (err, result) => {
+        if (err) {
+            console.error('Error updating user name: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+//edit only user email
+app.post('/edit-user-email', (req, res) => {
+    const { id, email } = req.body;
+    const query = 'UPDATE Users SET email = ? WHERE id = ?';
+    db.query(query, [email, id], (err, result) => {
+        if (err) {
+            console.error('Error updating user email: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
+//edit only user password
+app.post('/edit-user-password', (req, res) => {
+    const { id, password } = req.body;
+    const query = 'UPDATE Users SET password = ? WHERE id = ?';
+    db.query(query, [password, id], (err, result) => {
+        if (err) {
+            console.error('Error updating user password: ', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
 
 //Delete user
 app.delete('/delete-user/:id', (req, res) => {

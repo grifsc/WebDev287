@@ -27,6 +27,10 @@
     font-family: "Fredoka", sans-serif;
 }
 
+body {
+    overflow:auto;
+}
+
 button {
     background-color: #f44336;
     color: white;
