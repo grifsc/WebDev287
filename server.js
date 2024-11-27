@@ -288,6 +288,68 @@ app.post('/edit-booking', (req, res) => {
     });
 });
 
+//edit only the status of a booking
+app.post('/edit-booking-status', (req, res) => {
+    const { id, status } = req.body;
+
+    // Validate input
+    if (!id || !status) {
+        return res.status(400).json({ success: false, message: 'Booking ID and status are required' });
+    }
+
+    // Update the booking status in the database (using the booking ID)
+    const query = `
+        UPDATE Bookings
+        SET status = ?
+        WHERE id = ?;
+    `;
+
+    db.query(query, [status, id], (err, result) => {
+        if (err) {
+            console.error('Error updating booking status:', err);
+            return res.status(500).json({ success: false, message: 'Failed to update booking status' });
+        }
+
+        // Check if the booking was found and updated
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Booking not found' });
+        }
+
+        res.json({ success: true });
+    });
+});
+
+//edit only the payment status of a booking
+app.post('/edit-booking-payment', (req, res) => {
+    const { id, payment } = req.body;
+
+    // Validate input
+    if (!id || !payment) {
+        return res.status(400).json({ success: false, message: 'Booking ID and payment status are required' });
+    }
+
+    // Update the payment status in the database (using the booking ID)
+    const query = `
+        UPDATE Bookings
+        SET payment = ?
+        WHERE id = ?;
+    `;
+
+    db.query(query, [payment, id], (err, result) => {
+        if (err) {
+            console.error('Error updating booking payment:', err);
+            return res.status(500).json({ success: false, message: 'Failed to update booking payment' });
+        }
+
+        // Check if the booking was found and updated
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Booking not found' });
+        }
+
+        res.json({ success: true });
+    });
+});
+
 //Delete booking
 app.delete('/delete-booking/:id', (req, res) => {
     const bookingId = req.params.id;
