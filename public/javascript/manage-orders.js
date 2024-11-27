@@ -11,15 +11,12 @@ function loadServices() {
     })
     .catch(error => console.error('Error loading bookingss:', error));
 
-    fetch('/bookings')
+    fetch('/clientbookings')
         .then(response => response.json())
         .then(bookings => {
             const bookingsList = document.querySelector('.horizontal-list');
-
-            //Dynamically display each bookings saved in DB
             bookings.forEach(booking => {
-                const hardcodedClientID = 2;
-                if (booking.clientID == hardcodedClientID) {
+                if (booking.status == "Pending") {
                     const bookingsDiv = document.createElement('li');
                     bookingsDiv.classList.add('bookings-option');
                     bookingsDiv.id = 'bookings-' + booking.id;
@@ -45,7 +42,7 @@ function loadServices() {
                     bookingsDiv.innerHTML = bookingsInfo;
                     bookingsList.appendChild(bookingsDiv);
                 }
-            });
+            })
         })
         .catch(error => console.error('Error loading bookingss:', error));
 }
