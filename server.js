@@ -363,24 +363,6 @@ app.delete('/delete-booking/:id', (req, res) => {
     });
 });
 
-//Client-Bookings 
-app.get('/client-bookings', (req, res) => {
-    //Check if the user is login
-    if(!req.session.userId){
-        return res.status(401).json({ success: false });
-    }
-
-    const clientID = req.session.userId;
-    const query = 'SELECT * FROM Bookings WHERE clientID = ?';
-    db.query(query, [clientID], (err, results) => {
-        if(err){
-            console.error('Error fetching client bookings: ', err);
-            return res.status(500).json({ success: false });
-        }
-        res.json({ success: true });
-    });
-});
-
 /**
  * 
  * Users Access
