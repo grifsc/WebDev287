@@ -1,5 +1,27 @@
 //Display the last 10 most recent booking
 function loadDashboard() {
+    //Display the logo and the client name dynamically
+    fetch('/home-page-info/1')
+        .then(response => response.json())
+        .then(data => {
+            const logoContainer = document.querySelector('.logo');
+            logoContainer.innerHTML = `
+                <img src="${data.logo}" alt="Logo">
+            `;
+        })
+        .catch(error => console.error('Error loading logo:', error));
+
+    fetch('/admin')
+        .then(response => response.json())
+        .then(users => {
+            const name = users.first;
+            const container = document.getElementById('admin-name');
+            if (container) {
+                container.textContent = name; 
+            }
+        }).catch(error => console.error('Error loading client name:', error));
+
+    //Display the rest of the dashboard
     let clientInfo = [];
 
     fetch('/users')
