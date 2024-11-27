@@ -224,59 +224,41 @@ function setSortDropdown(selectedOption) {
     sortDropdown.value = selectedOption;
 }
 
-// Helper function to check if the update is related to status
+//check if the update is related to status
 function isStatusUpdate(updates) {
     return updates.hasOwnProperty('status');
 }
 
-// Helper function to check if the update is related to payment
+//check if the update is related to payment
 function isPaymentUpdate(updates) {
     return updates.hasOwnProperty('payment');
 }
 
-// Updated function to handle booking update
+//updated function to handle booking update
 function updateBooking(bookingID, updates) {
 
-            var oldBook = [];
-            // Fetch the recent bookings to display after clientInfo is populated
-            fetch('/bookings')
-                .then(response => response.json())
-                .then(bookings => {
-                    if(bookings.id == bookingID) {
-                        oldBook.push(bookings.clientID)
-                        oldBook.push(bookings.service)
-                        oldBook.push(bookings.status)
-                        oldBook.push(bookings.payment)
-                        oldBook.push(bookings.price)
-                        oldBook.push(bookings.date)
-                        oldBook.push(bookings.time)
-                    }
-                })
-                .catch(error => console.log('Error loading the booking: ', error));
-    // Check if the update is related to status or payment, and handle accordingly
-        var thing = "haskdhasdkj";
-        var serviceName = oldBook[1];
-    const requestData = {
+    //send booking id and shallow copy of updates
+    const bookEdit = {
         id: bookingID,
         ...updates, 
     };
 
-    // If it's a status update, handle the status field
+    //check type of update looking for status
     if (isStatusUpdate(updates)) {
-        requestData.status = updates.status;
-        // Make the fetch request with the appropriate update
+        bookEdit.status = updates.status;
     fetch('/edit-booking-status', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(requestData), // Send the requestData as JSON
+        //send edits as a json
+        body: JSON.stringify(bookEdit),
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             alert('Booking updated successfully.');
-            window.location.reload(); // Reload the page to reflect changes
+            window.location.reload(); 
         } else {
             alert('Failed to update booking.');
         }
@@ -284,22 +266,22 @@ function updateBooking(bookingID, updates) {
     .catch(error => console.error('Error updating booking:', error));
     }
 
-    // If it's a payment update, handle the payment field
+    //check type of update lookin for payment
     if (isPaymentUpdate(updates)) {
-        requestData.payment = updates.payment;
-        // Make the fetch request with the appropriate update
+        bookEdit.payment = updates.payment;
     fetch('/edit-booking-payment', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(requestData), // Send the requestData as JSON
+        //send the edits as json
+        body: JSON.stringify(bookEdit), 
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             alert('Booking updated successfully.');
-            window.location.reload(); // Reload the page to reflect changes
+            window.location.reload();
         } else {
             alert('Failed to update booking.');
         }

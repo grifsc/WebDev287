@@ -275,7 +275,7 @@ app.post('/add-booking', (req, res) => {
     });
 });
 
-//Edit booking
+//edit booking
 app.post('/edit-booking', (req, res) => {
     const { id, clientID, service, status, payment, price, date, time } = req.body;
     const query = 'UPDATE Bookings SET clientID = ?, service = ?, status = ?, payment = ?, price = ?, date = ?, time = ? WHERE id = ?';
@@ -297,7 +297,7 @@ app.post('/edit-booking-status', (req, res) => {
         return res.status(400).json({ success: false, message: 'Booking ID and status are required' });
     }
 
-    // Update the booking status in the database (using the booking ID)
+    //update the booking status in the database
     const query = `
         UPDATE Bookings
         SET status = ?
@@ -310,7 +310,7 @@ app.post('/edit-booking-status', (req, res) => {
             return res.status(500).json({ success: false, message: 'Failed to update booking status' });
         }
 
-        // Check if the booking was found and updated
+        //check if the booking was found and updated
         if (result.affectedRows === 0) {
             return res.status(404).json({ success: false, message: 'Booking not found' });
         }
@@ -328,7 +328,7 @@ app.post('/edit-booking-payment', (req, res) => {
         return res.status(400).json({ success: false, message: 'Booking ID and payment status are required' });
     }
 
-    // Update the payment status in the database (using the booking ID)
+    //update the payment status in the database
     const query = `
         UPDATE Bookings
         SET payment = ?
@@ -341,7 +341,7 @@ app.post('/edit-booking-payment', (req, res) => {
             return res.status(500).json({ success: false, message: 'Failed to update booking payment' });
         }
 
-        // Check if the booking was found and updated
+        //check if the booking was found and updated
         if (result.affectedRows === 0) {
             return res.status(404).json({ success: false, message: 'Booking not found' });
         }
