@@ -261,25 +261,6 @@ app.get('/clientbookings', (req, res) => {
     });
 });
 
-// Testing to only retrieve client id
-app.get('/userid', (req, res) => {
-    // Validate that userId exists in the session
-    if (!req.session.userId) {
-        return res.status(400).send('User ID is missing');
-    }
-
-    // Query to fetch data for a specific user ID
-    const query = 'SELECT * FROM users WHERE userId = ?'; // Assuming 'users' is your table name
-
-    // Execute the query with parameterized input to prevent SQL injection
-    db.query(query, [req.session.userId], (err, results) => {
-        // Return the user's data as JSON
-        res.json(results[0].userId); // Send only the first result since you're expecting a single user
-    });
-});
-
-
-// vvv Problems with adding bookings
 // Add new booking
 app.post('/add-booking', (req, res) => {
     const { clientID, service, status, payment, price, date, time} = req.body;
