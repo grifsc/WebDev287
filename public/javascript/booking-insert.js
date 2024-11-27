@@ -17,21 +17,28 @@ async function bookingForm(e) {
     // Wait to be able to fetch the price first
     price = await fetchPrice(service);
     const date = document.getElementById('date').value;
-    // const date = "1999";
+    
     const time = "unused"; // Deprecated
 
-    const data = {
-        clientID,
-        service,
-        status,
-        payment,
-        price,
-        date,
-        time,
+    if (date == "") {
+        alert("Select a Date!!!")
+        insertBooking("Throws Error");
     }
 
-    // Take the data and insert a booking
-    insertBooking(data);
+    else {
+        const data = {
+            clientID,
+            service,
+            status,
+            payment,
+            price,
+            date,
+            time,
+        }
+    
+        // Take the data and insert a booking
+        insertBooking(data);
+    }
 }
 
 // Insert a booking to the database
