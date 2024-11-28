@@ -157,6 +157,7 @@ button:hover {
 }
 
 .popup-form input[type="text"],
+.popup-form input[type="email"],
 .popup-form input[type="password"] {
     width: 100%;
     padding: 1rem;

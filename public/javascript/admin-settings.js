@@ -1,3 +1,5 @@
+let userID = null;
+
 //Display the logo and the client name dynamically
 fetch('/home-page-info/1')
 .then(response => response.json())
@@ -243,7 +245,7 @@ function loadSettings() {
         .then(users => {
             //change the name in the top right corner
             const name = users.first;
-            const userID = users.id;
+            userID = users.id;
             const container = document.getElementById('admin-name');
             if (container) {
                 container.textContent = name; 
@@ -269,11 +271,14 @@ function loadSettings() {
             updateEmail(userID);
             updatePassword(userID);
             
-            
+            //Delete user
+            const searchField = document.querySelector('.delete-user-btn');
+            searchField.addEventListener('click', () => {
+                deleteUser(userID);
+            });
         })
         .catch(error => console.error('Error loading client details:', error));
 }
 
 // Call the loadSettings function to apply updates
 loadSettings();
-//if user is deleted redirect to home page
