@@ -210,3 +210,14 @@ select option{
 #sort-options {
     font-family: "Fredoka", sans-serif
 }
+
+.delete-user-btn{
+    background-color: #f44336;
+    width: 10rem;
+
+}
+
+.delete-user-btn:hover{
+    background-color: #d32f2f
+    
+}

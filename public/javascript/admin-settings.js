@@ -71,55 +71,209 @@ function hidePopup() {
     }, 300); 
 }
 
-//update the Name
-//add an event listener to the name form's submit event
+function updateName(userID) {
+// Update Name
 document.getElementById('nameForm').addEventListener('submit', function(event) {
-    //prevent the default form submission behavior
     event.preventDefault();
-    
-    //retrieve the new name input by the user
-    var newName = document.getElementById('newName').value;
 
-    //update the page's 'name' display element with the new name
-    document.getElementById('name').innerText = newName;
+    // Retrieve the new name input by the user
+    var newName = document.getElementById('newName').value.trim();
 
-    //close the popup and overlay after updating the name
-    hidePopup();
+    // Split the name into first and last
+    var [firstName, lastName = ''] = newName.split(' '); // Default lastName to empty string if not provided
+
+    // Send POST request to update the user name
+    fetch('/edit-user-name', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: userID,
+            first: firstName,
+            last: lastName,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update the displayed name on success
+            document.getElementById('name').innerText = newName;
+            hidePopup();
+        } else {
+            console.error('Failed to update name');
+        }
+    })
+    .catch(error => console.error('Error updating name:', error));
 });
+}
 
-//update the Email
-//add an event listener to the email form's submit event
+function updateEmail(userID) {
+    // Update Email
 document.getElementById('emailForm').addEventListener('submit', function(event) {
-    //prevent the default submission behavior
     event.preventDefault();
 
-    //retrieve the new email input by the user
-    var newEmail = document.getElementById('newEmail').value;
+    // Retrieve the new email input by the user
+    var newEmail = document.getElementById('newEmail').value.trim();
 
-    //update the page's 'email' display element with the new email
-    document.getElementById('email').innerText = newEmail;
-
-    //close the popup and overlay after updating the email
-    hidePopup();
+    // Send POST request to update the user email
+    fetch('/edit-user-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: userID,
+            email: newEmail,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update the displayed email on success
+            document.getElementById('email').innerText = newEmail;
+            hidePopup();
+        } else {
+            console.error('Failed to update email');
+        }
+    })
+    .catch(error => console.error('Error updating email:', error));
 });
+}
 
-//update the Password
-//add an event listener to the password form's submit event
+function updatePassword(userID) {
+    // Update Password
 document.getElementById('passwordForm').addEventListener('submit', function(event) {
-    // Prevent the default form submission behavior
     event.preventDefault();
 
-    //retrieve the new password input by the user
-    var newPassword = document.getElementById('newPassword').value;
+    // Retrieve the new password input by the user
+    var newPassword = document.getElementById('newPassword').value.trim();
 
-    //display a masked version of the password on the page to protect privacy
-    document.getElementById('password').innerText = '********';
-
-    //close the popup and overlay after updating the password
-    hidePopup();
+    // Send POST request to update the user password
+    fetch('/edit-user-password', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: userID,
+            password: newPassword,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Display a placeholder for the password on success
+            document.getElementById('password').innerText = '********';
+            hidePopup();
+        } else {
+            console.error('Failed to update password');
+        }
+    })
+    .catch(error => console.error('Error updating password:', error));
 });
+}
 
-//hide popup when clicking on the overlay outside the popup form
-document.getElementById('overlay').addEventListener('click', function() {
-    hidePopup();
-});
+//function to delete a user and their incomplete bookings
+function deleteUser(userID) {
+    if (confirm('Are you sure you want to delete this client?')) {
+        
+        //delete the user
+        fetch(`/delete-user/${userID}`, {
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Client deleted successfully');
+                    
+                    //delete bookings associated with the removed client
+                    fetch('/bookings')
+                        .then(response => response.json())
+                        .then(bookings => {
+                            //the booking clientID should match the removed userID
+                            //also check that the booking is not complete, otherwise it has been serviced and money is owed or recieved
+                            let incompleteBookings = bookings.filter(booking => 
+                                booking.clientID == userID && booking.status != 'Complete'
+                            );
+
+                            //delete each incomplete booking
+                            incompleteBookings.forEach(booking => {
+                                fetch(`/delete-booking/${booking.id}`, {
+                                    method: 'DELETE',
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            alert(`Booking ID ${booking.id} deleted successfully.`);
+                                        } else {
+                                            alert(`Failed to delete booking ID ${booking.id}.`);
+                                        }
+                                    })
+                                    .catch(error => console.error(`Error deleting booking ID ${booking.id}:`, error));
+                            });
+                        })
+                        .catch(error => console.error('Error fetching bookings:', error));
+                    //redirect to the home page
+                    window.location.href = '/html/home.html';
+                } else {
+                    alert('Failed to delete client.');
+                }
+            })
+            .catch(error => console.error('Error deleting client:', error));
+    }
+}
+function loadSettings() {
+    // Display the logo dynamically
+    fetch('/home-page-info/1')
+        .then(response => response.json())
+        .then(data => {
+            const logoContainer = document.querySelector('.logo');
+            if (logoContainer) {
+                logoContainer.innerHTML = `
+                    <img src="${data.logo}" alt="Logo">
+                `;
+            }
+        })
+        .catch(error => console.error('Error loading logo:', error));
+
+    // Display the user name and email dynamically
+    fetch('/admin')
+        .then(response => response.json())
+        .then(users => {
+            //change the name in the top right corner
+            const name = users.first;
+            const userID = users.id;
+            const container = document.getElementById('admin-name');
+            if (container) {
+                container.textContent = name; 
+            }
+
+            // Construct the full name and retrieve email
+            const nameSetting = `${users.first} ${users.last}`;
+            const emailSetting = users.email;
+
+            // Replace the "Matteo" in the HTML with the full name
+            const nameContainer = document.getElementById('name');
+            if (nameContainer) {
+                nameContainer.textContent = nameSetting;
+            }
+
+            // Replace "matteo@hotmail.com" in the HTML with the email
+            const emailContainer = document.getElementById('email');
+            if (emailContainer) {
+                emailContainer.textContent = emailSetting;
+            }
+            
+            updateName(userID);
+            updateEmail(userID);
+            updatePassword(userID);
+            
+            
+        })
+        .catch(error => console.error('Error loading client details:', error));
+}
+
+// Call the loadSettings function to apply updates
+loadSettings();
+//if user is deleted redirect to home page

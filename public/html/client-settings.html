@@ -93,7 +93,7 @@
                     <div class="info-container">
                         <div class="info-section">
                             <label for="name">Name:</label>
-                            <p id="name" class="info-text">John Doe</p>
+                            <p id="name" class="info-text"><!-- name dynamically displayed--></p>
                         </div>
                         <button onclick="showPopup('name')">Edit Name</button>
                     </div>
@@ -113,7 +113,7 @@
                     <div class="info-container">
                         <div class="info-section">
                             <label for="email">Email:</label>
-                            <p id="email" class="info-text">john.doe@gmail.com</p>
+                            <p id="email" class="info-text"><!--email dynamically displayed--></p>
                         </div>
                         <button onclick="showPopup('email')">Edit Email</button>
                     </div>
@@ -148,7 +148,8 @@
                             <button type="submit" class="save-btn">Save</button>
                         </form>
                     </div>
-                
+                    
+                    <button type="button" class="delete-user-btn" onclick="deleteUser()">Delete Account</button>
                     <!-- Dimmed overlay -->
                     <div class="overlay" id="overlay"></div>
                 </div>      
