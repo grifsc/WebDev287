@@ -18,7 +18,7 @@ function loadServices() {
 
                 const serviceInfo = `
                     <h2>${service.name}
-                    <br>${service.price}
+                    <br>$${service.price}
                     </h2>
                     <img src="${service.image}" alt="404">
                 `;

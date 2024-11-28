@@ -32,7 +32,7 @@ function loadServices() {
                     const bookingsInfo = `
                         <h2>${booking.date}</h2>
                         <h3>${booking.service}
-                        <br>${booking.price}
+                        <br>$${booking.price}
                         </h3>
                         <img src="${thisimage}" alt="404">
                         <!--Button-->

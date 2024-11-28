@@ -18,9 +18,9 @@ async function bookingForm(e) {
     
     // Wait to be able to fetch the price first
     let price = await fetchPrice(service);
-    const date = document.getElementById('date').value;
+    const date = formatDate(document.getElementById('date').valueAsDate);
     
-    const time = "Any Time"; // Deprecated
+    const time = ''; // Deprecated
 
     if (date == "") {
         alert("Select a Date!!!")
@@ -85,28 +85,6 @@ async function fetchPrice(serviceName) {
     }
 }
 
-async function fetchPrice(serviceName) {
-    try {
-        // Wait to store the information before going through the next, works the same as .then
-        const response = await fetch('/services');
-        const services = await response.json();
-        
-        // Search for the service with the matching name
-        const service = services.find(s => s.name === serviceName);
-        
-        if (service) {
-            console.log('Price for service:', service.price);
-            return service.price;
-        } else {
-            console.error('Service not found');
-            return "Service not found!";
-        }
-    } catch (error) {
-        console.error('Error fetching services:', error);
-        return "Error fetching services!";
-    }
-}
-
 async function fetchUserId() {
     try {
         // Wait to store the information before going through the next, works the same as .then
@@ -120,4 +98,17 @@ async function fetchUserId() {
         console.error('Error fetching users:', error);
         return "Error fetching users!";
     }
+}
+
+//Format date (reverse the parseDate)
+function formatDate(date){
+    const months = [
+        'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May.', 'Jun.',
+        'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'
+    ];
+
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${month} ${day}, ${year}`;
 }
