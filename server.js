@@ -261,6 +261,18 @@ app.get('/clientbookings', (req, res) => {
     });
 });
 
+// Route for user ID by Anthony
+app.get('/fetchUserId', (req, res) => {
+    const query = `SELECT * FROM Users WHERE id = ${req.session.userId}`;
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error retrieving users from database: ', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        res.json(results);
+    });
+});
+
 // Add new booking
 app.post('/add-booking', (req, res) => {
     const { clientID, service, status, payment, price, date, time} = req.body;
