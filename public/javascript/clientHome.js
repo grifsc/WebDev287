@@ -103,7 +103,6 @@ function loadHome(){
                 const trContent = `
                     <td>${booking.service}</td>
                     <td>${booking.date}</td>
-                    <td>${booking.time}</td>
                     <td class="${
                         booking.status === 'Pending' ? 'warning' :
                         booking.status === 'Cancelled' ? 'danger' :
