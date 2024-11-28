@@ -99,7 +99,7 @@
                     <div class="info-container">
                         <div class="info-section">
                             <label for="name">Name:</label>
-                            <p id="name" class="info-text">Matteo</p>
+                            <p id="name" class="info-text"><!--dynamically fills user name--></p>
                         </div>
                         <button onclick="showPopup('name')">Edit Name</button>
                     </div>
@@ -111,7 +111,7 @@
                             <input type="text" id="newName" name="newName" placeholder="Enter new name" required>
                             <!-- Two buttons: Save and Cancel -->
                             <button type="button" class="cancel-btn" onclick="hidePopup()">Cancel</button>
-                            <button type="submit" class="save-btn">Save</button>
+                            <button type="submit" class="save-btn" onclick="">Save</button>
                         </form>
                     </div>
                 
@@ -119,7 +119,7 @@
                     <div class="info-container">
                         <div class="info-section">
                             <label for="email">Email:</label>
-                            <p id="email" class="info-text">matteo@hotmail.com</p>
+                            <p id="email" class="info-text"><!--dynamically fills user email--></p>
                         </div>
                         <button onclick="showPopup('email')">Edit Email</button>
                     </div>
@@ -131,7 +131,7 @@
                             <input type="text" id="newEmail" email="newEmail" placeholder="Enter new email" required>
                             <!-- Two buttons: Save and Cancel -->
                             <button type="button" class="cancel-btn" onclick="hidePopup()">Cancel</button>
-                            <button type="submit" class="save-btn">Save</button>
+                            <button type="submit" class="save-btn" onclick="">Save</button>
                         </form>
                     </div>
                 
@@ -151,9 +151,11 @@
                             <input type="password" id="newPassword" password="newPassword" placeholder="Enter new password" required>
                             <!-- Two buttons: Save and Cancel -->
                             <button type="button" class="cancel-btn" onclick="hidePopup()">Cancel</button>
-                            <button type="submit" class="save-btn">Save</button>
+                            <button type="submit" class="save-btn" onclick="">Save</button>
                         </form>
                     </div>
+                    
+                    <button type="button" class="delete-user-btn" onclick="deleteUser()">Delete Account</button>
                 
                     <!-- Dimmed overlay -->
                     <div class="overlay" id="overlay"></div>
