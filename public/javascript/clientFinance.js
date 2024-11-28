@@ -116,7 +116,7 @@ fetch('http://localhost:8000/clientbookings')
             const billDiv = document.createElement('div');
             billDiv.className = 'bill';
             billDiv.innerHTML = `
-            <p>NO SERVICES HAS BEEN COMPLETED</p>
+            <p>UPCOMING</p>
             `;
             container.appendChild(billDiv);
         }
@@ -156,7 +156,7 @@ fetch('http://localhost:8000/clientbookings')
             const billDiv = document.createElement('div');
             billDiv.className = 'bill';
             billDiv.innerHTML = `
-            <p>NO UPCOMING PAYMENTS</p>
+            <p>COMPLETED</p>
             `;
             container.appendChild(billDiv);
         }

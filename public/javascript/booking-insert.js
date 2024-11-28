@@ -20,7 +20,7 @@ async function bookingForm(e) {
     let price = await fetchPrice(service);
     const date = document.getElementById('date').value;
     
-    const time = "unused"; // Deprecated
+    const time = "Any Time"; // Deprecated
 
     if (date == "") {
         alert("Select a Date!!!")
