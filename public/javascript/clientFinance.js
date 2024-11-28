@@ -69,7 +69,6 @@ fetch('http://localhost:8000/clientbookings').then(response => {
                 'primary'
             }">${service.status}</td>
             <td>${service.date}</td>
-            <td>${service.time}</td>
             <td class= "${
                 service.payment === 'Paid' ? 'success' :
                 service.payment === 'Unpaid' ? 'danger' :
